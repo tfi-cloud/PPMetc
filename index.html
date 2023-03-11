@@ -1,0 +1,29 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PPMetc</title>
+        <script src="https://unpkg.com/vue@3.0.2"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link REL=StyleSheet HREF="style.scss" TYPE="text/css" MEDIA=screen>
+    </head>
+    <body>
+        <div id="app">
+            <div v-if="showName">
+                <p> Hi, {{name}}</p>
+                <button @click="name = 'Luisa'">Change name</button>
+            </div>
+
+            <button @click="toggleShowName">
+                <span v-if="showName"> Hide Name </span>
+                <span v-else> Show Name </span>
+            </button>
+
+            <div v-show = "showName">
+                <p>currently show</p>
+            </div>
+
+        </div>
+        <script src="app.js" ></script>
+    </body>
+</html>
