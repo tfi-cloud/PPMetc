@@ -13,6 +13,7 @@
 
         <div class="log-in">
             <form>
+                <img class="logo-cloud" src="@/assets/TFI-Cloud.png"/>
                 <label>User:</label>
                 <input type="text" required>
                 <label>Password:</label>
@@ -55,14 +56,27 @@ export default {
         font-weight: bold; 
         margin-bottom: 60px;
     }
+    ul{
+        padding-top: 5%;
+    }
+    li{
+        padding-bottom: 5%;
+    }
     form{
         width: 400px;
         margin: 10px;
-        margin-top: 20%;
+        margin-top: 8%;
         background: #EFEFEF;
         text-align: left;
         padding: 40px;
         border-radius: 10px;
+    }
+    .logo-cloud{
+        width: 55%;
+        height: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
     label{
         color:#646464;

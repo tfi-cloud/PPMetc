@@ -10,33 +10,37 @@ export default {
 }
 </script>
 
-<style>
+<style escoped>
+
   div .main-nav{
     width: 100%;
     height: 60px;
     background-color: black;
     display: block;
-    margin: 0%;
     margin-bottom: 40px;
+    column-count: 2;
+    border-bottom-style: solid !important;
+    border-bottom-color: #FEAE00;
   }
   button{
     border:none;
     background-color:#FEAE00;
     color:black;
     font-weight: bold;
-    width: 10%;
+    width: 20%;
     padding: 10px 20px;
-    margin-top: 5px;
+    margin-top: 10px;
     border-radius: 5px;
-    margin-right: 0;
-    margin-left: 80%;
+    margin-left: 70%;
     cursor: pointer;
     display: inline-block;
   }
-  img{
-    max-width: 110px;
+  .logo{
+    width: 110px;
     max-height: auto; 
-    display: inline-block;
+    margin-right: 70%;
+    margin-top: 4px;
+    cursor: pointer;
   }
 
 </style>
