@@ -21,7 +21,6 @@
                 <button>Log in</button>
             </form>
         </div>
-
     </div>
 
 </template>
@@ -32,7 +31,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     div .root{
         display:inline-flex;
         column-count: 2;
@@ -105,5 +104,5 @@ export default {
         margin-right: auto;
         cursor: pointer;
     }
-
 </style>
+    
