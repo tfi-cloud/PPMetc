@@ -1,23 +1,10 @@
 <template>
-  <MainBar/>
-  <SignUpForm/>
+  <nav>
+    <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link>
+  </nav>
+  <router-view/>
 </template>
-
-<script>
-
-import MainBar from './components/MainBar.vue'
-import SignUpForm from './components/SignUpForm.vue'
-
-export default {
-  name: 'App',
-
-  components:{
-    MainBar,
-    SignUpForm,
-  }
-}
-
-</script>
 
 <style>
 #app {
@@ -27,9 +14,17 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-body{
-  margin: 0;
-  background: white;
+
+nav {
+  padding: 30px;
 }
 
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
+}
 </style>
