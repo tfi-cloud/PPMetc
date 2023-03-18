@@ -1,19 +1,20 @@
 <template>
-  <div class="login">
+  <div class="new-user">
     <main-bar></main-bar>
-    <sign-in-form></sign-in-form>
+    <sign-up-form></sign-up-form>
   </div>
 </template>
 
 <script>
-  import SignInForm from '../components/SignInForm.vue'
   import MainBar from '../components/MainBar.vue'
+  import SignUpForm from '../components/SignUpForm.vue'
 
   export default {
-    name: 'LoginView',
+    name: 'NewUserView',
     components: {
-      SignInForm,
-      MainBar
+      MainBar,
+      SignUpForm
     }
   }
 </script>
+

@@ -1,7 +1,10 @@
 <template>
   <div class="main-nav">
     <img class="logo" src="@/assets/TFI-Cloud.png"/>
-    <button>Get your plan</button>
+    <div class="buttons">
+      <button>Get your plan</button>
+      <button>Free Trial</button> 
+    </div>
   </div>
 </template>
 
@@ -13,34 +16,37 @@ export default {
 <style escoped>
 
   div .main-nav{
-    width: 100%;
+    max-width: 100%;
     height: 60px;
     background-color: black;
-    display: block;
+    display: flexbox;
     margin-bottom: 40px;
     column-count: 2;
     border-bottom-style: solid !important;
     border-bottom-color: #FEAE00;
   }
-  button{
+  button {
     border:none;
     background-color:#FEAE00;
     color:black;
     font-weight: bold;
-    width: 20%;
-    padding: 10px 20px;
+    max-width: 60%;
+    padding: 10px 25px;
     margin-top: 10px;
     border-radius: 5px;
-    margin-left: 70%;
+    margin-right: 3%;
+    display: inline-flexbox;
     cursor: pointer;
-    display: inline-block;
+  }
+  .buttons{
+    margin-left: 50%;
   }
   .logo{
-    width: 110px;
+    max-width: 110px;
     max-height: auto; 
-    margin-right: 70%;
     margin-top: 4px;
     cursor: pointer;
+    margin-right: 70%;
   }
 
 </style>
