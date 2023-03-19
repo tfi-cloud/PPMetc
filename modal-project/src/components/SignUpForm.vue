@@ -1,24 +1,42 @@
 <template>
     <div class="log-in">
         <form>
-            <a>Start your free trial</a>
-            <label>Name</label>
-            <input type="text" required>
-            <label>Lastname</label>
-            <input type="text" required>
-            <label>Position</label>
-            <input type="text" required>
-            <label>Phone number</label>
-            <input type="text" required>
-            <label class="column">Email</label>
-            <input type="text" required>
-            <label>Country</label>
-            <input type="text" required>
-            <label>Company</label>
-            <input type="text" required>
-            <label>Employees</label>
-            <input type="text" required>
-            <button>Sign Up</button>
+            <div class="header">Start your free trial</div>
+            <div class="body">
+                <v-col>
+                    <v-row>
+                        <label>Full name</label>
+                        <input type="text" required>
+
+                        <label>Position</label>
+                        <input type="text" required>
+
+                        <label>Email</label>
+                        <input type="text" required>
+
+                        <label>Country</label>
+                        <input type="text" required>
+                    </v-row>
+                </v-col>
+                <v-col>
+                    <v-row>
+                        <label>a</label>
+                        <input type="text" required>
+
+                        <label>b</label>
+                        <input type="text" required>
+
+                        <label>c</label>
+                        <input type="text" required>
+
+                        <label>d</label>
+                        <input type="text" required>
+                    </v-row>
+                </v-col>
+
+                    <button>Sign Up</button>
+
+            </div>
         </form>
     </div>
 </template>
@@ -31,32 +49,39 @@ export default {
 
 <style scoped>
     form{
-        max-width: 40%;
+        max-width: 70%;
         margin-top: 2%;
         background: #EFEFEF;
         text-align: left;
         padding: 40px;
+        padding-left: 80px;
         border-radius: 10px;
-        column-count: 2;
         margin:0 auto;
 	    width:100%;
     }
-    a{
-        font-size: 0.9em;
+    .header{
+        font-size: 1.0em;
         text-transform: uppercase;
         letter-spacing: 1px;
         font-weight: bold;
         display:block;
-        margin-bottom: 5%;
+        padding-bottom: 5%;
     }
     label{
         color:#646464;
-        display:inline-table;
-        margin: 25px 0 15px;
+        display:inline-block;
         font-size: 0.7em;
         text-transform: uppercase;
         letter-spacing: 1px;
         font-weight: bold;
+    }
+    v-row{
+        text-align: justify;
+    }
+    v-col{
+        display: block;
+        text-align: justify;
+        column-count: 2;
     }
     input{
         display:block;
@@ -67,9 +92,7 @@ export default {
         border: 1px solid #ddd;
         color:#646464;
         background-color: white;
-    }
-    .column{
-        margin-top: 19%;
+        margin-bottom: 6% !important;
     }
     button{
         box-sizing: border-box;
@@ -77,12 +100,12 @@ export default {
         background-color:#FEAE00;
         color:black;
         font-weight: bold;
-        width: 35%;
+        width: 15%;
         padding: 10px 20px;
         margin-top: 30px;
         border-radius: 5px;
         display:block;
-        margin-left: 55%;
+        margin-left: 80%;
         cursor: pointer;
     }
 </style>
