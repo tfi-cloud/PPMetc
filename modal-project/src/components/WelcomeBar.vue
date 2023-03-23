@@ -22,14 +22,14 @@
 
   
   <style scoped>
-  div .welcome-nav{
+ div .welcome-nav{
         width: 100%;
         height: 70px;
         background-color: #1571C1;
         display: flex;
         align-items: flex-start;
         column-count: 3;
-        position: fixed;
+        position: absolute;
     }
     button {
         border:none;
@@ -41,7 +41,7 @@
         padding: 5px 25px;
         box-sizing: border-box;
         border-radius: 5px;
-        margin-left: 20%;
+        margin-left: 5%;
         cursor: pointer;
     }
     .button{
@@ -72,4 +72,5 @@
         font-size: 0.9em;
         text-transform: capitalize;
     }
+
   </style>

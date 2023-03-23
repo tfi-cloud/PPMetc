@@ -16,14 +16,14 @@ export default {
 <style escoped>
 
   div .main-nav{
-    max-width: 100%;
+    width: 100%;
     height: 60px;
     background-color: black;
     display: flexbox;
-    margin-bottom: 40px;
     column-count: 2;
     border-bottom-style: solid !important;
     border-bottom-color: #FEAE00;
+    position: absolute;
   }
   button {
     border:none;

@@ -50,14 +50,15 @@ export default {
 <style scoped>
     form{
         max-width: 70%;
-        margin-top: 2%;
+        margin-top: 50%;
         background: #EFEFEF;
         text-align: left;
         padding: 40px;
         padding-left: 80px;
         border-radius: 10px;
-        margin:0 auto;
+        margin:7% auto auto 10%;
 	    width:100%;
+        position: fixed;
     }
     .header{
         font-size: 1.0em;

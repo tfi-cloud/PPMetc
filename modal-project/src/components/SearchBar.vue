@@ -1,29 +1,23 @@
 <template>
-
-    <div class="root">
-        <div class="welcome">
-            <title>Welcome to Project ETC</title> <br>
-            <a>Manage your project portfolio in an organized and efficient way.</a>
-            <ul>
-                <li>You will be able to design/optimize planning, follow-up, monitoring and budget management processes.</li>
-                <li>You will be able to count on timely and accurate information on the status of your projects.</li>
-                <li>You will be able to select the appropriate projects for the organization and carry out effective control for their timely conclusion.</li>
-            </ul>
+    <div class="search">
+        <div class="log">
+            <img class="logo" src="@/assets/TFI-Cloud.png"/> 
         </div>
-
-        <div class="log-in">
-            <form>
-                <img class="logo-cloud" src="@/assets/TFI-Cloud.png"/>
-                <label>User</label>
-                <input type="text" required>
-                <label>Password</label>
-                <input type="password" required>
-                <label class="link">Forgot email?</label>
-                <button>Log in</button>
+        <div class="searcher">
+            <form id="search">
+            <input class='query' name="query" v-model="searchQuery" placeholder="Search..">
             </form>
         </div>
-    </div>
+        <div class="icons">
+            <span class="material-icons">grade</span>
+            <span class="material-icons">add_circle</span>
+            <span class="material-icons">help</span>
+            <span class="material-icons">notifications</span>
+            <span class="material-icons">settings</span>
+            <span class="material-icons">account_circle</span>
+        </div>
 
+    </div>
 </template>
 
 <script>
@@ -33,90 +27,63 @@ export default {
 </script>
 
 <style scoped>
-    div .root{
-        display:inline-flex;
-        column-count: 2;
+    div.search{
+        position: absolute;
+        margin:4% auto auto auto;
+        height: 55px;
+        column-count: 3;
+        width: 100%;
+        background-color: #EFEFEF;
+        padding-top: 30px;
     }
-    div .welcome{
-        max-width: 570px;
-        max-height: 460px;
-        margin: 10px;
-        background: #EFEFEF;
-        text-align: left;
-        padding: 40px;
-        border-radius: 10px; 
+    div.log{
+        width: 20%;
+        margin-left: 7%;
+        margin-right: 0%;
     }
-    title{
-        color:#646464;
-        display:inline-block;
-        margin: 25px 0 15px;
-        font-size: 0.9em;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: bold; 
-        margin-bottom: 60px;
+    .logo{
+        max-width: 110px;
+        max-height: auto; 
+        cursor: pointer;
     }
-    ul{
-        padding-top: 5%;
-    }
-    li{
-        padding-bottom: 5%;
-    }
-    form{
-        max-width: 400px;
-        margin: 10px;
-        margin-top: 2%;
-        background: #EFEFEF;
-        text-align: left;
-        padding: 40px;
-        border-radius: 10px;
-    }
-    .logo-cloud{
-        width: 55%;
-        height: auto;
+    div.searcher{
         display: block;
-        margin-left: auto;
-        margin-right: auto;
+        width: 60%;
+        margin-right: 30%;
     }
-    label{
-        color:#646464;
-        display:inline-block;
-        margin: 25px 0 15px;
-        font-size: 0.7em;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: bold;
+    .query{
+        margin-left: 5%;
+        width: 80%;
+    }
+    div.icons{
+        color: #FEAE00;
+        margin-left: 30%;   
+    }
+    span{
+        margin-left: 5%;
     }
     input{
-        display:block;
-        padding: 10px 6px;
-        width: 100%;
-        box-sizing: border-box;
-        border:none;
-        border: 1px solid #ddd;
-        color:#646464;
-        background-color: white;
+        color: rgba(0,0,0,.70);
+        border: 1px solid rgba(0,0,0,.12);
+        transition: .15s all ease-in-out;
+        background: white;
+        padding-right: 50%;
+        padding-top: 14px;
+        padding-bottom: 5px;
+        padding-left: 5px;
     }
-    .link{
-        color:#5CA4CE;
-        font-weight: bold;
-        text-decoration: underline;
-        cursor: pointer;
+    input:focus{
+        outline: none;
+        transform: scale(1.05);
     }
-    button{
-        box-sizing: border-box;
-        border:none;
-        background-color:#FEAE00;
-        color:black;
-        font-weight: bold;
-        width: 30%;
-        padding: 10px 20px;
-        margin-top: 30px;
-        border-radius: 5px;
-        display:block;
-        margin-left: auto;
-        margin-right: auto;
-        cursor: pointer;
+    input + label {
+        font-size: 10px;
+        transform: translateY(-24px) translateX(-12px);
+    }    
+    input::-webkit-input-placeholder {
+        font-size: 12px;
+        color: rgba(0,0,0,.50);
+        font-weight: 100;
     }
 </style>
     
