@@ -36,6 +36,8 @@ export default {
     div .root{
         display:inline-flex;
         column-count: 2;
+        margin:10% auto auto auto;
+
     }
     div .welcome{
         max-width: 570px;

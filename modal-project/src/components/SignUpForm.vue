@@ -48,6 +48,7 @@ export default {
 </script>
 
 <style scoped>
+
     form{
         max-width: 70%;
         margin-top: 50%;
