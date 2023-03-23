@@ -19,7 +19,7 @@
                 <label>Password</label>
                 <input type="password" required>
                 <label class="link">Forgot email?</label>
-                <button>Log in</button>
+                <router-link to="/dashboard"><button>Login</button></router-link>
             </form>
         </div>
     </div>
@@ -117,6 +117,7 @@ export default {
         margin-left: auto;
         margin-right: auto;
         cursor: pointer;
+        text-decoration: none !important;
     }
 </style>
     

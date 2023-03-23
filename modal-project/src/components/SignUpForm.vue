@@ -34,7 +34,7 @@
                     </v-row>
                 </v-col>
 
-                    <button>Sign Up</button>
+                <router-link to="/dashboard"><button>Sign Up</button></router-link>
 
             </div>
         </form>

@@ -3,7 +3,7 @@
     <img class="logo" src="@/assets/TFI-Cloud.png"/>
     <div class="buttons">
       <button>Get your plan</button>
-      <button>Free Trial</button> 
+      <router-link to="/sign-up"><button>Free Trial</button></router-link>
     </div>
   </div>
 </template>
