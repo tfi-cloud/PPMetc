@@ -1,16 +1,16 @@
 <template>
     <div class="login">
-      <main-bar></main-bar>
+      <welcome-bar></welcome-bar>
     </div>
   </template>
   
   <script>
-    import MainBar from '../components/MainBar.vue'
+    import WelcomeBar from '../components/WelcomeBar.vue'
   
     export default {
       name: 'LoginView',
       components: {
-        MainBar
+        WelcomeBar
       }
     }
   </script>

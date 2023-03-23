@@ -5,31 +5,31 @@
             <div class="body">
                 <v-col>
                     <v-row>
-                        <label>Full name</label>
+                        <label>Full name *</label>
                         <input type="text" required>
 
-                        <label>Email</label>
+                        <label>Email *</label>
                         <input type="email" required>
 
-                        <label>Phone number</label>
-                        <input type="text" required>
+                        <label>Phone number *</label>
+                        <input type="tel" required>
 
-                        <label>Company</label>
+                        <label>Company *</label>
                         <input type="text" required>
                     </v-row>
                 </v-col>
                 <v-col>
                     <v-row>
-                        <label>User</label>
+                        <label>User *</label>
                         <input type="text" required>
 
-                        <label>Password</label>
+                        <label>Password *</label>
+                        <input type="password" required>
+
+                        <label>Country *</label>
                         <input type="text" required>
 
-                        <label>Country</label>
-                        <input type="text" required>
-
-                        <label>City</label>
+                        <label>City *</label>
                         <input type="text" required>
                     </v-row>
                 </v-col>
