@@ -8,28 +8,28 @@
                         <label>Full name</label>
                         <input type="text" required>
 
-                        <label>Position</label>
-                        <input type="text" required>
-
                         <label>Email</label>
+                        <input type="email" required>
+
+                        <label>Phone number</label>
                         <input type="text" required>
 
-                        <label>Country</label>
+                        <label>Company</label>
                         <input type="text" required>
                     </v-row>
                 </v-col>
                 <v-col>
                     <v-row>
-                        <label>a</label>
+                        <label>User</label>
                         <input type="text" required>
 
-                        <label>b</label>
+                        <label>Password</label>
                         <input type="text" required>
 
-                        <label>c</label>
+                        <label>Country</label>
                         <input type="text" required>
 
-                        <label>d</label>
+                        <label>City</label>
                         <input type="text" required>
                     </v-row>
                 </v-col>
