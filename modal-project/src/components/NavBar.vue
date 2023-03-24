@@ -2,7 +2,9 @@
 
     <div class="navbar">
         <nav class="nav-bar">
-            <div><router-link to="/dashboard">Dashboard</router-link></div>
+            <div>
+                <router-link to="/dashboard">Dashboard</router-link>
+            </div>
 
             <div>
                 <router-link to="/portfolio">Portfolio</router-link>
@@ -58,25 +60,16 @@ export default {
         font-size: 0.9em;
     }
     .nav-bar div:hover {
+        font-weight: bold;
         border-top-width: 2px;
         border-top-style: solid !important;
         border-top-color: #FEAE00;
-        background-color: #efefef;
-    }
-    .nav-bar div:hover select{
         background-color: #efefef;
     }
     .nav-bar > div{
         padding-bottom: 10px;
         padding-top: 5px;
         display: inline;
-    }
-    select{
-        border: none; 
-        width: fit-content;
-    }
-    select:focus{
-        border: none; 
     }
 </style>
     
