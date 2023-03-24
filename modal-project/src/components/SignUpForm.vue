@@ -1,5 +1,5 @@
 <template>
-    <div class="log-in">
+    <div class="sign-up">
         <form>
             <div class="header">Start your free trial</div>
             <div class="body">
@@ -48,18 +48,20 @@ export default {
 </script>
 
 <style scoped>
+    .sign-up{
+        position: relative;
+        margin-top: 3%;
+        margin-left: 20%;
+    }
 
     form{
         max-width: 70%;
-        margin-top: 50%;
         background: #EFEFEF;
         text-align: left;
         padding: 40px;
         padding-left: 80px;
         border-radius: 10px;
-        margin:7% auto auto 10%;
-	    width:100%;
-        position: fixed;
+	    width:60%;
     }
     .header{
         font-size: 1.0em;
@@ -109,5 +111,8 @@ export default {
         display:block;
         margin-left: 80%;
         cursor: pointer;
+    }
+    a{
+        text-decoration: none;
     }
 </style>
