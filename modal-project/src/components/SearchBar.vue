@@ -34,7 +34,7 @@ export default {
         width: 100%;
         position: relative;
         overflow: hidden;
-        height: 60px;
+        height: 50px;
         padding: 10px;
         grid-gap: 30px;
         background-color: white;

@@ -44,8 +44,8 @@ const routes = [
     component: ProjectsView
   },
   {
-    path: '/resouces',
-    name: 'resouces',
+    path: '/resources',
+    name: 'resources',
     component: ResoucesView
   },
   {
