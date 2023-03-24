@@ -16,14 +16,18 @@ export default {
 <style escoped>
 
   div .main-nav{
+    display: grid;
+    grid-template-columns: 10% auto;
     width: 100%;
     height: 60px;
-    background-color: black;
-    display: flexbox;
-    column-count: 2;
+    position: relative;
+    overflow: hidden;
+    height: 60px;
+    padding: 10px;
+    grid-gap: 30px;
+    background-color: #1571C1;
     border-bottom-style: solid !important;
     border-bottom-color: #FEAE00;
-    position: absolute;
   }
   button {
     border:none;
@@ -39,7 +43,7 @@ export default {
     cursor: pointer;
   }
   .buttons{
-    margin-left: 50%;
+    margin-left: 75%;
   }
   .logo{
     max-width: 110px;

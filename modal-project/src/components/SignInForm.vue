@@ -2,7 +2,7 @@
 
     <div class="root">
         <div class="welcome">
-            <title>Welcome to Project ETC</title> <br>
+            <title>Welcome to TFI Cloud PPM</title> <br>
             <a>Manage your project portfolio in an organized and efficient way.</a>
             <ul>
                 <li>You will be able to design/optimize planning, follow-up, monitoring and budget management processes.</li>
@@ -36,8 +36,8 @@ export default {
     div .root{
         display:inline-flex;
         column-count: 2;
-        margin:10% auto auto auto;
-
+        position: relative;
+        margin-top: 3%;
     }
     div .welcome{
         max-width: 570px;
@@ -120,6 +120,9 @@ export default {
         margin-right: auto;
         cursor: pointer;
         text-decoration: none !important;
+    }
+    a{
+        text-decoration: none;
     }
 </style>
     
