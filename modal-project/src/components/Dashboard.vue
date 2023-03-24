@@ -1,13 +1,19 @@
 <template>
 
-  <div class="root">
-      <div class="welcome">
+  <div class="dashboard">
 
-      </div>
+    <div class="canvas">
 
-      <div class="log-in">
+    </div>
 
-      </div>
+    <div class="welcome">
+        <title>Welcome to TFI Cloud PPM</title>
+        <p>Welcome to TFI Cloud PPM, 
+            where you can handle the entire project portfolio of your organization,
+            when you want to see a tutorial look here</p><br><br><br><br><br><br><br><br><br><br><br>
+        <button class="cancel">Dismiss</button>
+        <button>See demo</button>
+    </div>
   </div>
 
 </template>
@@ -19,47 +25,51 @@ export default {
 </script>
 
 <style scoped>
-  div .root{
-      display:inline-flex;
-      column-count: 2;
-      margin:10% auto auto auto;
+    .dashboard{
+        display: grid;
+        grid-template-columns: auto 30%;
+        grid-auto-rows: minmax(117px, auto);
+        width: 100%;
+        height: 100%;
+        position: relative;
+        padding: 10px;
+        grid-gap: 10px;
+        background-color: white;
   }
-  div .welcome{
-          width: 400px;
-      margin: 10px;
-      margin-top: 2%;
-      background: #EFEFEF;
-      text-align: left;
-      padding: 40px;
-      border-radius: 10px;
-
-  }
-  title{
-      color:#646464;
-      display:inline-block;
-      margin: 25px 0 15px;
-      font-size: 0.9em;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: bold; 
-      margin-bottom: 60px;
-  }
-  ul{
-      padding-top: 5%;
-  }
-  li{
-      padding-bottom: 5%;
-  }
-  .log-in{
-    width: 570px;
-      height: 460px;
-      margin: 10px;
-      background: #EFEFEF;
-      text-align: left;
-      padding: 40px;
-      border-radius: 10px; 
-  }
-
+    .welcome{
+        width: 70%;
+        margin: 10px;
+        margin-top: 2%;
+        background: #EFEFEF;
+        text-align: left;
+        padding: 40px;
+        border-radius: 10px;
+        grid-row: 1 / 5;
+    }
+    title{
+        color:#646464;
+        display:inline-block;
+        margin: 25px 0 15px;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: bold; 
+        margin-bottom: 20px;
+    }
+    .cancel{
+        border: 1px solid #B9B9B9;
+        background: #EFEFEF;
+    }
+    .canvas{
+        width: 85%;
+        margin: 10px;
+        background: #EFEFEF;
+        text-align: left;
+        padding: 40px;
+        border-radius: 10px; 
+        grid-row: 1 / 5;
+        margin-left: 5%;
+    }
 </style>
   
     

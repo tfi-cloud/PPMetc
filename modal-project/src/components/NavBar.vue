@@ -5,15 +5,7 @@
             <div><router-link to="/dashboard">Dashboard</router-link></div>
 
             <div>
-            
-                <dropdown-vue
-                    title="Simple Filter"
-                    text="Click to filter"
-                    :items="[
-                        {text: 'Item 1'},
-                        {text: 'Item 2'}
-                    ]">hhjjhjh
-                </dropdown-vue>
+                <router-link to="/portfolio">Portfolio</router-link>
             </div>
 
             <div>
@@ -58,12 +50,12 @@ export default {
         padding-left: 13%;
         border-bottom-style: solid !important;
         border-bottom-color: #FEAE00;
-
     }
     .nav-bar a {
         text-decoration: none;
         color: black; 
         padding: 20px;
+        font-size: 0.9em;
     }
     .nav-bar div:hover {
         border-top-width: 2px;
@@ -86,7 +78,5 @@ export default {
     select:focus{
         border: none; 
     }
-
-
 </style>
     
