@@ -2,7 +2,6 @@
     <div class="dashboard">
         <welcome-bar></welcome-bar>
         <search-bar></search-bar>
-        <dashboard></dashboard>
     </div>
   </template>
   

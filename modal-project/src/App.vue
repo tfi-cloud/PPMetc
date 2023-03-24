@@ -10,7 +10,14 @@
     text-align: center;
     color: #2c3e50;
   }
+  html, body{
+    height: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+
   body{
+    overflow: hidden;
     margin: 0;
   }
 </style>

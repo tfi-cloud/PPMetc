@@ -1,14 +1,15 @@
 <template>
-    <div class="search">
-        <div class="log">
+    <div class="wrapper">
+        <div class="col-1">
             <img class="logo" src="@/assets/TFI-Cloud.png"/> 
         </div>
-        <div class="searcher">
+        <div class="col-2">
             <form id="search">
-            <input class='query' name="query" v-model="searchQuery" placeholder="Search..">
+                <span class="material-icons">search</span>
+                <input name="query" v-model="searchQuery" placeholder="Search...">
             </form>
         </div>
-        <div class="icons">
+        <div class="col-3">
             <span class="material-icons">grade</span>
             <span class="material-icons">add_circle</span>
             <span class="material-icons">help</span>
@@ -27,63 +28,55 @@ export default {
 </script>
 
 <style scoped>
-    div.search{
-        position: absolute;
-        margin:4% auto auto auto;
-        height: 55px;
-        column-count: 3;
+    .wrapper{
+        display: grid;
+        grid-template-columns: 10% 60% auto;
         width: 100%;
-        background-color: #EFEFEF;
-        padding-top: 30px;
+        position: relative;
+        overflow: hidden;
+        height: 60px;
+        padding: 10px;
+        grid-gap: 30px;
+        background-color: white;
     }
-    div.log{
-        width: 20%;
-        margin-left: 7%;
-        margin-right: 0%;
+    .wrapper > div {
+        text-align: center;
+        font-size: 30px; 
     }
     .logo{
-        max-width: 110px;
-        max-height: auto; 
-        cursor: pointer;
+        margin-left: 10%;
     }
-    div.searcher{
-        display: block;
-        width: 60%;
-        margin-right: 30%;
+    .col-2{
+        margin-left: 20%;
+        padding: 10px 0;
     }
-    .query{
-        margin-left: 5%;
-        width: 80%;
-    }
-    div.icons{
-        color: #FEAE00;
-        margin-left: 30%;   
-    }
-    span{
-        margin-left: 5%;
-    }
-    input{
+    .col-2 input{
         color: rgba(0,0,0,.70);
         border: 1px solid rgba(0,0,0,.12);
         transition: .15s all ease-in-out;
         background: white;
-        padding-right: 50%;
+        padding-right: 40%;
         padding-top: 14px;
         padding-bottom: 5px;
-        padding-left: 5px;
+        padding-left: 15px;
+        border-radius: 5px;
+        width: 7%;
+        margin-left: 20px;
     }
-    input:focus{
+    .col-2 input:focus{
         outline: none;
         transform: scale(1.05);
     }
-    input + label {
-        font-size: 10px;
-        transform: translateY(-24px) translateX(-12px);
-    }    
-    input::-webkit-input-placeholder {
-        font-size: 12px;
-        color: rgba(0,0,0,.50);
-        font-weight: 100;
+    .col-3{
+        color: #FEAE00;
+        align-content: end;
+        margin-left: 40%;
+        padding: 10px 0;
+        cursor: pointer;
     }
+    .col-3 span{
+        margin-right: 4%;
+    }
+    
 </style>
     
