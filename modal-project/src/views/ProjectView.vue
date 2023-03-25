@@ -1,10 +1,10 @@
 <template>
-  <div class="dashboard">
+  <div class="project-view">
       <welcome-bar></welcome-bar>
       <search-bar></search-bar>
       <nav-bar></nav-bar>
-      <action-bar></action-bar>
-      <portfolio></portfolio>
+      <action-bar created="New Project" deleted="Delete Project" updated="Edit Project"/>
+      <portfolio/>
   </div>
 </template>
 
@@ -18,21 +18,14 @@
 
   export default {
 
-    name: 'DashboardView',
+    name: 'ProjectView',
     components: {
       WelcomeBar,
       SearchBar,
       NavBar,
       ActionBar,
       Portfolio,
-    },
-    data(){
-      return{
-        created:'New Project',
-        deleted:'Delete Project',
-        updated:'Save',
-      }  
-    }  
+    }
   }
 </script>
 

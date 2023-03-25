@@ -1,20 +1,14 @@
 <template>
     <div class="action-bar">
-            <button> <span class="material-icons">add</span> {{created}} </button>
-            <button> <span class="material-icons">delete</span> {{deleted}} </button>
-            <button> <span class="material-icons">save</span> {{updated}} </button>
+            <button> <span class="material-icons">add</span> {{ created }} </button>
+            <button> <span class="material-icons">delete</span> {{ deleted }} </button>
+            <button> <span class="material-icons">save</span> {{ updated }} </button>
     </div>
 </template>
 
 <script scoped>
 export default {
-    data(){
-      return{
-        created:'',
-        deleted:'',
-        updated:'',
-      }  
-    }
+    props: ['created', 'deleted', 'updated']
 }
 </script>
 
@@ -23,13 +17,13 @@ export default {
         width: 100%;
         position: relative;
         overflow: hidden;
-        height: 30px;
-        padding: 10px;
+        height: 40px;
         background-color: #efefef;
         text-align: left;
         padding-left: 160px;
+        margin-top: 10px;
         display: grid;
-        grid-template-columns: 12% 12% auto;
+        grid-template-columns: 12% 12% 12%;
     }
     .action-bar button{
         background-color: #efefef;
@@ -45,12 +39,10 @@ export default {
         margin-right: 5px;
         vertical-align: middle;
     }
-
     .action-bar button:hover{
         background-color: #D9D9D9;  
-        padding: 10px;
         margin:0ch;
-        font-weight: normal;
+        font-weight: bold;
     }
 
 </style>

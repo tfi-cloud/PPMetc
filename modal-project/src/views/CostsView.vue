@@ -1,9 +1,9 @@
 <template>
-    <div class="dashboard">
+    <div class="cost-view">
         <welcome-bar></welcome-bar>
         <search-bar></search-bar>
         <nav-bar></nav-bar>
-        <dashboard></dashboard>
+        <portfolio/>
     </div>
   </template>
   
@@ -11,16 +11,16 @@
     import WelcomeBar from '../components/WelcomeBar.vue'
     import SearchBar from '../components/SearchBar.vue'
     import NavBar from '../components/NavBar.vue'
-    import Dashboard from '../components/Dashboard.vue'
+    import Portfolio from '../components/Portfolio.vue'
 
   
     export default {
-      name: 'DashboardView',
+      name: 'CostView',
       components: {
         WelcomeBar,
         SearchBar,
         NavBar,
-        Dashboard,
+        Portfolio,
       }
     }
   </script>

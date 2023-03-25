@@ -1,9 +1,9 @@
 <template>
-    <div class="dashboard">
+    <div class="portfolio-view">
         <welcome-bar></welcome-bar>
         <search-bar></search-bar>
         <nav-bar></nav-bar>
-        <action-bar></action-bar>
+        <action-bar created="New Portfolio" deleted="Delete Portfolio" updated="Edit Portfolio"/>
         <portfolio></portfolio>
     </div>
   </template>
@@ -17,7 +17,7 @@
 
   
     export default {
-      name: 'DashboardView',
+      name: 'PortfolioView',
       components: {
         WelcomeBar,
         SearchBar,

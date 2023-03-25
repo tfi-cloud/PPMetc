@@ -47,6 +47,7 @@ export default {
         color: black; 
         padding: 10px;
         font-size: 0.9em;
+        padding-right: 10px;
     }
     .nav-bar a:hover {
         font-weight: bold;

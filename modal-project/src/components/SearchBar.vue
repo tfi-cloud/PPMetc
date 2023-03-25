@@ -34,8 +34,8 @@ export default {
         width: 100%;
         position: relative;
         overflow: hidden;
-        height: 50px;
-        padding: 10px;
+        height: 40px;
+        padding-bottom: 10px;
         grid-gap: 30px;
         background-color: white;
     }
@@ -44,6 +44,11 @@ export default {
         font-size: 30px; 
     }
     .logo{
+        max-width: 90px;
+        max-height: auto; 
+        margin-top: 4px;
+        cursor: pointer;
+        margin-right: 70%;
         margin-left: 10%;
     }
     .col-2{

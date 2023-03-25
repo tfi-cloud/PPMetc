@@ -45,7 +45,17 @@ export default {
         padding: 10px;
         grid-gap: 10px;
         background-color: white;
-  }
+    }
+  .canvas{
+        width: 85%;
+        margin: 10px;
+        background: #EFEFEF;
+        text-align: left;
+        padding: 40px;
+        border-radius: 10px; 
+        grid-row: 1 / 5;
+        margin-left: 5%;
+    }
     .welcome{
         width: 70%;
         margin: 10px;
@@ -70,16 +80,7 @@ export default {
         border: 1px solid #B9B9B9;
         background: #EFEFEF;
     }
-    .canvas{
-        width: 85%;
-        margin: 10px;
-        background: #EFEFEF;
-        text-align: left;
-        padding: 40px;
-        border-radius: 10px; 
-        grid-row: 1 / 5;
-        margin-left: 5%;
-    }
+
     button:hover{
         background-color:#ECA60E;
     }

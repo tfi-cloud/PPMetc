@@ -28,7 +28,7 @@
         width: 100%;
         position: relative;
         overflow: hidden;
-        height: 60px;
+        height: 40px;
         padding: 10px;
         grid-gap: 15px;
         background-color: #1571C1;
@@ -36,7 +36,12 @@
     .welcome-nav > div {
         text-align: left;
     }
-    .logo{
+    .welcome-nav .logo{
+        max-width: 80px;
+        max-height: auto; 
+        margin-top: 4px;
+        cursor: pointer;
+        margin-right: 70%;
         margin-left: 10%;
     }
     a{
@@ -46,13 +51,14 @@
         font-size: 0.9em;
     }
     .col-2{
-        padding: 20px 0;
+        padding: 10px 0;
     }
     a.username{
         font-weight: bold;
         text-transform: capitalize;
     }
     button{
+        margin-top: 0px;
         margin-left: 60%;
     }
     button:hover{

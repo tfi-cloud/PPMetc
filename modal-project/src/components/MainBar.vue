@@ -45,7 +45,7 @@ export default {
   .buttons{
     margin-left: 75%;
   }
-  .logo{
+  .main-nav .logo{
     max-width: 110px;
     max-height: auto; 
     margin-top: 4px;
