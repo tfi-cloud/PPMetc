@@ -74,6 +74,9 @@ export default {
         padding: 10px 0;
         cursor: pointer;
     }
+    .col-3 span:hover{
+        color:#ECA60E;
+    }
     .col-3 span{
         margin-right: 4%;
     }

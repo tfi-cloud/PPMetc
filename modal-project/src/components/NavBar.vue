@@ -49,7 +49,7 @@ export default {
         padding: 10px;
         background-color: white;
         text-align: left;
-        padding-left: 13%;
+        padding-left: 11%;
         border-bottom-style: solid !important;
         border-bottom-color: #FEAE00;
     }

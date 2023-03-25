@@ -53,7 +53,6 @@ export default {
         margin-top: 3%;
         margin-left: 20%;
     }
-
     form{
         max-width: 70%;
         background: #EFEFEF;
@@ -114,5 +113,8 @@ export default {
     }
     a{
         text-decoration: none;
+    }
+    button:hover{
+        background-color:#ECA60E;
     }
 </style>

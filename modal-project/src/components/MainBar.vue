@@ -52,5 +52,8 @@ export default {
     cursor: pointer;
     margin-right: 70%;
   }
+  button:hover{
+        background-color:#ECA60E;
+    }
 
 </style>

@@ -70,6 +70,12 @@ export default {
         grid-row: 1 / 5;
         margin-left: 5%;
     }
+    button:hover{
+        background-color:#ECA60E;
+    }
+    .cancel:hover{
+        background-color:#D9D9D9; 
+    }
 </style>
   
     

@@ -124,5 +124,8 @@ export default {
     a{
         text-decoration: none;
     }
+    button:hover{
+        background-color:#ECA60E;
+    }
 </style>
     
