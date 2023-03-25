@@ -6,12 +6,12 @@
 
     </div>
 
-    <div class="welcome">
+    <div class="welcome" v-if="showDemo">
         <title>Welcome to TFI Cloud PPM</title>
         <p>Welcome to TFI Cloud PPM, 
             where you can handle the entire project portfolio of your organization,
             when you want to see a tutorial look here</p><br><br><br><br><br><br><br><br><br><br><br>
-        <button class="cancel">Dismiss</button>
+        <button class="cancel" @click="toggleShowDemo">Dismiss</button>
         <button>See demo</button>
     </div>
   </div>
@@ -21,6 +21,16 @@
 <script>
 export default {
 
+    data(){
+        return{
+            showDemo:true,
+        }
+    },
+    methods:{
+        toggleShowDemo(){
+            this.showDemo = false
+        }
+    }
 }
 </script>
 

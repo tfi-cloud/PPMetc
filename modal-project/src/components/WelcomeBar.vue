@@ -30,7 +30,7 @@
         overflow: hidden;
         height: 60px;
         padding: 10px;
-        grid-gap: 30px;
+        grid-gap: 15px;
         background-color: #1571C1;
     }
     .welcome-nav > div {
