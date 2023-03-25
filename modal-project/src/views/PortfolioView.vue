@@ -3,7 +3,8 @@
         <welcome-bar></welcome-bar>
         <search-bar></search-bar>
         <nav-bar></nav-bar>
-        <dashboard></dashboard>
+        <action-bar></action-bar>
+        <portfolio></portfolio>
     </div>
   </template>
   
@@ -11,7 +12,8 @@
     import WelcomeBar from '../components/WelcomeBar.vue'
     import SearchBar from '../components/SearchBar.vue'
     import NavBar from '../components/NavBar.vue'
-    import Dashboard from '../components/Dashboard.vue'
+    import ActionBar from '../components/ActionBar.vue'
+    import Portfolio from '../components/Portfolio.vue'
 
   
     export default {
@@ -20,8 +22,16 @@
         WelcomeBar,
         SearchBar,
         NavBar,
-        Dashboard,
-      }
+        ActionBar,
+        Portfolio,
+      },
+      data(){
+      return{
+        created:'New Portfolio',
+        deleted:'Delete Portfolio',
+        updated:'Save',
+      } 
+    }
     }
   </script>
   

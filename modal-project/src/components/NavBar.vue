@@ -34,7 +34,7 @@ export default {
         position: relative;
         overflow: hidden;
         height: 20px;
-        padding: 15px;
+        padding: 10px;
         background-color: white;
         text-align: left;
         padding-left: 11%;
@@ -45,7 +45,7 @@ export default {
     .nav-bar a {
         text-decoration: none;
         color: black; 
-        padding: 20px;
+        padding: 10px;
         font-size: 0.9em;
     }
     .nav-bar a:hover {
@@ -54,7 +54,7 @@ export default {
         border-top-style: solid !important;
         border-top-color: #FEAE00;
         background-color: #efefef;
-        padding:15px;
+        padding:10px;
     }
 
     .nav-bar a.router-link-exact-active {
@@ -63,7 +63,7 @@ export default {
         border-top-style: solid !important;
         border-top-color: #FEAE00;
         background-color: #efefef;
-        padding:15px;
+        padding:10px;
     }
 </style>
     
