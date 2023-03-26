@@ -30,7 +30,7 @@ export default {
 
 <style scoped>
     .navbar{
-        width: 100%;
+        max-width: 100%;
         position: relative;
         overflow: hidden;
         height: 20px;

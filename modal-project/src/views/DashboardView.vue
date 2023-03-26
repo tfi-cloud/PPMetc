@@ -8,9 +8,8 @@
       <div class="canvas">
         <div class="list-portfolio">
 
-          <title>Portfolio 1</title>
-
           <div class="carousel">
+            <title>Portfolio 1</title>
             <vueper-slides class="no-shadow" :visible-slides="3" slide-multiple :bullets="false" :gap="3" :slide-ratio="1 / 4"  :dragging-distance="200" :breakpoints="{ 500: { visibleSlides: 2, slideMultiple: 2 } }">
               <vueper-slide
                 v-for="(slide, i) in slides"
@@ -20,6 +19,21 @@
                 :style="'background-color: white'">
               </vueper-slide>
             </vueper-slides>
+
+          </div>
+
+          <div class="carousel">
+            <title>Portfolio 2</title>
+            <vueper-slides class="no-shadow" :visible-slides="3" slide-multiple :bullets="false" :gap="3" :slide-ratio="1 / 4"  :dragging-distance="200" :breakpoints="{ 500: { visibleSlides: 2, slideMultiple: 2 } }">
+              <vueper-slide
+                v-for="(slide, i) in slides"
+                :key="i"
+                :title="slide.title"
+                :content="slide.content"
+                :style="'background-color: white'">
+              </vueper-slide>
+            </vueper-slides>
+            
           </div>
 
         </div>
@@ -99,18 +113,18 @@ data: () => ({
 <style>
   .dashboard{
     display: grid;
-    grid-template-columns: auto 30%;
+    grid-template-columns: auto 25%;
     grid-auto-rows: minmax(117px, auto);
-    width: 100%;
+    max-width: 100%;
     height: 100%;
     position: relative;
     padding: 5px;
     grid-gap: 10px;
     background-color: white;
-    flex-grow: 1;
   }
   .dashboard .canvas{
-    width: 90%;
+    max-width: 100%;
+    box-sizing: border-box;
     margin: 10px;
     background: #EFEFEF;
     text-align: left;
@@ -121,6 +135,7 @@ data: () => ({
   }
   .welcome{
     width: 70%;
+    height: 400px;
     margin: 10px;
     margin-top: 2%;
     background: #EFEFEF;
@@ -138,6 +153,9 @@ data: () => ({
     letter-spacing: 1px;
     font-weight: bold; 
     margin-bottom: 20px;
+  }
+  .carousel{
+    margin-bottom: 5%;
   }
   .cancel{
     border: 1px solid #B9B9B9;

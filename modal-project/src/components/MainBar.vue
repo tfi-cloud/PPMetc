@@ -18,7 +18,7 @@ export default {
   div .main-nav{
     display: grid;
     grid-template-columns: 10% auto;
-    width: 100%;
+    max-width: 100%;
     height: 60px;
     position: relative;
     overflow: hidden;

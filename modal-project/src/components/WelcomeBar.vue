@@ -25,7 +25,7 @@
     .welcome-nav{
         display: grid;
         grid-template-columns: 10% 60% auto;
-        width: 100%;
+        max-width: 100%;
         position: relative;
         overflow: hidden;
         height: 40px;

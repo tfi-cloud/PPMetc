@@ -14,7 +14,7 @@ export default {
 
 <style>
     .action-bar{
-        width: 100%;
+        max-width: 100%;
         position: relative;
         overflow: hidden;
         height: 40px;
