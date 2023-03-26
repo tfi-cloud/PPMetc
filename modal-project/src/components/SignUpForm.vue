@@ -1,49 +1,65 @@
 <template>
     <div class="sign-up">
-        <form>
-            <div class="header">Start your free trial</div>
-            <div class="body">
-                <v-col>
-                    <v-row>
-                        <label>Full name *</label>
-                        <input type="text" required>
+        <a class="header">Start your free trial</a>
 
-                        <label>Email *</label>
-                        <input type="email" required>
+        <form @submit.prevent="handleSubmit">
 
-                        <label>Phone number *</label>
-                        <input type="tel" required>
+            <label>Full name *</label>
+            <input type="text" required v-model="name">
 
-                        <label>Company *</label>
-                        <input type="text" required>
-                    </v-row>
-                </v-col>
-                <v-col>
-                    <v-row>
-                        <label>User *</label>
-                        <input type="text" required>
+            <label>Email *</label>
+            <input type="email" required v-model="email">
 
-                        <label>Password *</label>
-                        <input type="password" required>
+            <label>Phone number *</label>
+            <input type="tel" required v-model="number">
 
-                        <label>Country *</label>
-                        <input type="text" required>
+            <label>Company *</label>
+            <input type="text" required v-model="company">
 
-                        <label>City *</label>
-                        <input type="text" required>
-                    </v-row>
-                </v-col>
+            <label>User *</label>
+            <input type="text" required v-model="user">
 
-                <router-link to="/dashboard"><button>Sign Up</button></router-link>
+            <label>Password *</label>
+            <input type="password" required v-model="password">
 
-            </div>
+            <label>Country *</label>
+            <input type="text" required v-model="country">
+
+            <label>City *</label>
+            <input type="text" required v-model="city">
+
+            <button>Sign Up</button>
+            
         </form>
     </div>
 </template>
 
 <script>
-export default {
+import { ref } from 'vue';
+import useSignUp from '../composables/useSignUp';
 
+export default {
+    setup(){
+
+        //refs
+        const name = ref('')
+        const email = ref('')
+        const number = ref('')
+        const company = ref('')
+        const user = ref('')
+        const password = ref('')
+        const country = ref('')
+        const city = ref('')
+
+        //use SignUp
+        const {error, signup} = useSignUp()
+
+        const handleSubmit = async () => {
+            await signup(name.value, email.value, number.value, company.value, user.value, password.value, country.value, city.value)
+            console.log("user sign up!")
+        }
+        return { name, email, number, company, user, password, country, city, handleSubmit }
+    }
 }
 </script>
 
@@ -62,7 +78,7 @@ export default {
         border-radius: 10px;
 	    width:60%;
     }
-    .header{
+    a .header{
         font-size: 1.0em;
         text-transform: uppercase;
         letter-spacing: 1px;
@@ -78,17 +94,9 @@ export default {
         letter-spacing: 1px;
         font-weight: bold;
     }
-    v-row{
-        text-align: justify;
-    }
-    v-col{
-        display: block;
-        text-align: justify;
-        column-count: 2;
-    }
     input{
         display:block;
-        padding: 10px 0px 10px 0px;
+        padding: 10px 5px 10px 5px;
         width: 90%;
         box-sizing: border-box;
         border:none;

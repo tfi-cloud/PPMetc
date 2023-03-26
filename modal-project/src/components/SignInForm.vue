@@ -15,9 +15,9 @@
             <form>
                 <img class="logo-cloud" src="@/assets/TFI-Cloud.png"/>
                 <label>User</label>
-                <input type="text" required>
+                <input type="text" required v-model="user">
                 <label>Password</label>
-                <input type="password" required>
+                <input type="password" required v-model="password">
                 <label class="link">Forgot email?</label>
                 <router-link to="/dashboard"><button>Login</button></router-link>
             </form>
@@ -28,7 +28,15 @@
 
 <script>
 export default {
+/*     setup(){
+        //refs
+        const user = ref('')
+        const password = ref('')
+        const handleSubmit = () =>{
 
+        }
+        return {user,password, handleSubmit}
+    } */
 }
 </script>
 

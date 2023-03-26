@@ -6,7 +6,7 @@
         <div class="col-2">
             <form id="search">
                 <span class="material-icons">search</span>
-                <input name="query" v-model="searchQuery" placeholder="Search...">
+                <input name="query" placeholder="Search...">
             </form>
         </div>
         <div class="col-3">
