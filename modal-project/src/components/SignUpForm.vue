@@ -1,5 +1,6 @@
 <template>
     <div class="sign-up">
+
         <a class="header">Start your free trial</a>
 
         <form @submit.prevent="handleSubmit">
@@ -28,7 +29,7 @@
             <label>City *</label>
             <input type="text" required v-model="city">
 
-            <button>Sign Up</button>
+            <router-link to="/login"> <button>Sign Up</button> </router-link>
             
         </form>
     </div>
@@ -96,16 +97,17 @@ export default {
     .sign-up{
         position: relative;
         margin-top: 3%;
-        margin-left: 20%;
     }
     form{
-        max-width: 70%;
+        margin: 0px auto;
+        max-width: 40%;
         background: #EFEFEF;
         text-align: left;
-        padding: 40px;
-        padding-left: 80px;
+        padding: 20px;
+        padding-left: 30px;
         border-radius: 10px;
-	    width:60%;
+        display: grid;
+        grid-template-columns: 30% 60%;
     }
     a .header{
         font-size: 1.0em;
@@ -135,21 +137,25 @@ export default {
         margin-bottom: 6% !important;
     }
     button{
-        box-sizing: border-box;
         border:none;
         background-color:#FEAE00;
         color:black;
         font-weight: bold;
-        width: 15%;
+        width: 50%;
         padding: 10px 20px;
-        margin-top: 30px;
+        margin-top: 10px;
         border-radius: 5px;
         display:block;
-        margin-left: 80%;
         cursor: pointer;
     }
     a{
         text-decoration: none;
+        font-size: 1.0em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: bold;
+        display:block;
+        padding-bottom: 5px;
     }
     button:hover{
         background-color:#ECA60E;
