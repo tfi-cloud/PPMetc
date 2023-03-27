@@ -5,7 +5,7 @@
         <form @submit.prevent="handleSubmit">
 
             <label>Full name *</label>
-            <input type="text" required v-model="name">
+            <input type="text" required v-model="fullname">
 
             <label>Email *</label>
             <input type="email" required v-model="email">
@@ -17,7 +17,7 @@
             <input type="text" required v-model="company">
 
             <label>User *</label>
-            <input type="text" required v-model="user">
+            <input type="text" required v-model="username">
 
             <label>Password *</label>
             <input type="password" required v-model="password">
@@ -37,28 +37,57 @@
 <script>
 import { ref } from 'vue';
 import useSignUp from '../composables/useSignUp';
+import { timestamp } from '../firebase/config'
+import useCollection from '../composables/useCollection';
 
 export default {
     setup(){
 
         //refs
-        const name = ref('')
+        const fullname = ref('')
         const email = ref('')
         const number = ref('')
         const company = ref('')
-        const user = ref('')
+        const username = ref('')
         const password = ref('')
         const country = ref('')
         const city = ref('')
 
+
         //use SignUp
         const {error, signup} = useSignUp()
+        const { addDoc } = useCollection('users')
 
         const handleSubmit = async () => {
-            await signup(name.value, email.value, number.value, company.value, user.value, password.value, country.value, city.value)
+
+            await signup(fullname.value, email.value, number.value, company.value, username.value, password.value, country.value, city.value).then(() => {
+            
+                const user = {
+                fullname: fullname.value,
+                email: email.value,
+                number: number.value,
+                company: company.value,
+                username: username.value,
+                password: password.value,
+                country: country.value,
+                city: city.value,
+                createdAt: timestamp()
+            }
+            
+            addDoc(user)
+            if (!error.value) {
+                fullname.value = '',
+                number.value = '',
+                company.value = '',
+                username.value = '',
+                country.value = '',
+                city.value = ''
+            }
+            })
             console.log("user sign up!")
         }
-        return { name, email, number, company, user, password, country, city, handleSubmit }
+
+        return { fullname, email, number, company, username, password, country, city, handleSubmit }
     }
 }
 </script>
