@@ -29,7 +29,7 @@
             <label>City *</label>
             <input type="text" required v-model="city">
 
-            <router-link to="/login"> <button>Sign Up</button> </router-link>
+            <button>Sign Up</button>
             
         </form>
     </div>

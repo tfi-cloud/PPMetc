@@ -12,14 +12,14 @@
         </div>
 
         <div class="log-in">
-            <form>
+            <form @submit.prevent="handleSubmit">
                 <img class="logo-cloud" src="@/assets/TFI-Cloud.png"/>
-                <label>User</label>
-                <input type="text" required v-model="user">
+                <label>Email</label>
+                <input type="email" required v-model="email">
                 <label>Password</label>
                 <input type="password" required v-model="password">
                 <label class="link">Forgot email?</label>
-                <router-link to="/dashboard"><button>Login</button></router-link>
+                <button>Login</button>
             </form>
         </div>
     </div>
@@ -27,16 +27,26 @@
 </template>
 
 <script>
-export default {
-/*     setup(){
-        //refs
-        const user = ref('')
-        const password = ref('')
-        const handleSubmit = () =>{
+import { ref } from 'vue'
+import useLogIn from '../composables/useLogIn'
 
-        }
-        return {user,password, handleSubmit}
-    } */
+export default {
+     setup(){
+        //refs
+        const email = ref('')
+        const password = ref('')
+
+        const { error, login } = useLogIn()
+        const handleSubmit = async () =>{
+            await login(email.value, password.value)
+                if (!error.value) {
+                console.log('user logged in')
+                }
+            }
+        return {email,password, handleSubmit, error}
+    }
+
+
 }
 </script>
 
