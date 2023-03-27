@@ -32,6 +32,7 @@
             <button>Sign Up</button>
             
         </form>
+        <div class="error">{{ error }}</div>
     </div>
 </template>
 
@@ -88,7 +89,7 @@ export default {
             console.log("user sign up!")
         }
 
-        return { fullname, email, number, company, username, password, country, city, handleSubmit }
+        return { fullname, email, number, company, username, password, country, city, handleSubmit, error }
     }
 }
 </script>
@@ -96,7 +97,7 @@ export default {
 <style scoped>
     .sign-up{
         position: relative;
-        margin-top: 3%;
+        margin-top: 20px;
     }
     form{
         margin: 0px auto;
@@ -159,5 +160,10 @@ export default {
     }
     button:hover{
         background-color:#ECA60E;
+    }
+    .error{
+        margin: 0px auto;
+        text-align: center;
+        color:#CE0F0F;
     }
 </style>

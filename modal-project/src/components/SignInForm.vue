@@ -19,6 +19,7 @@
                 <label>Password</label>
                 <input type="password" required v-model="password">
                 <label class="link">Forgot email?</label>
+                <div class="error">{{ error }}</div>
                 <button>Login</button>
             </form>
         </div>
@@ -144,6 +145,11 @@ export default {
     }
     button:hover{
         background-color:#ECA60E;
+    }
+    .error{
+        margin: 0px auto;
+        text-align: center;
+        color:#CE0F0F;
     }
 </style>
     
