@@ -27,12 +27,12 @@ export default {
         height: 100%;
         position: relative;
         padding: 10px;
-        grid-gap: 10px;
+        grid-gap: 0px;
         background-color: white;
     }  
     .directory{
         width: 70%;
-        margin-left: 12%;
+        margin-left: 4%;
         background: #EFEFEF;
         text-align: left;
         padding: 40px;
@@ -40,7 +40,7 @@ export default {
         grid-row: 1 / 5;
     } 
     .portfolio .canvas{
-        width: 95%;
+        width: 99%;
         background: #EFEFEF;
         text-align: left;
         border-radius: 10px; 

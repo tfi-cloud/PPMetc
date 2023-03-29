@@ -34,7 +34,6 @@
     .welcome-nav > div {
         text-align: left;
     }
-
     a{
         color:white;
         letter-spacing: 1px;
