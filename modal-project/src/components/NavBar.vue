@@ -45,26 +45,21 @@ export default {
     .nav-bar a {
         text-decoration: none;
         color: black; 
-        padding: 20px;
+        padding: 5px 30px 20px 30px;
         font-size: 0.9em;
-        padding-right: 20px;
     }
     .nav-bar a:hover {
-        font-weight: bold;
         border-top-width: 2px;
         border-top-style: solid !important;
         border-top-color: #FEAE00;
         background-color: #efefef;
-        padding:20px;
     }
-
     .nav-bar a.router-link-exact-active {
         font-weight: bold;
         border-top: 2px;
         border-top-style: solid !important;
         border-top-color: #FEAE00;
         background-color: #efefef;
-        padding:10px;
     }
 </style>
     
