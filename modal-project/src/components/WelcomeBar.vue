@@ -3,7 +3,7 @@
 
         <div class="col-1">
             <a>Welcome </a>
-            <a class="username">user</a>
+            <a class="username">{{ user.displayName }}</a>
         </div>
         <div class="col-2">
             <button>Get your plan</button>
@@ -14,7 +14,13 @@
   </template>
   
   <script>
+  import getUser from '@/composables/getUser';
+
   export default {
+    setup(){
+        const { user } = getUser()
+        return{ user }
+    }
   }
   </script>
 

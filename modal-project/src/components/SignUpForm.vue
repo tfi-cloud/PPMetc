@@ -23,7 +23,7 @@
 
             <div> 
                 <label>User *</label>
-                <input type="text" required v-model="username">
+                <input type="text" required v-model="displayName">
 
                 <label>Password *</label>
                 <input type="password" required v-model="password">
@@ -56,7 +56,7 @@ export default {
         const email = ref('')
         const number = ref('')
         const company = ref('')
-        const username = ref('')
+        const displayName = ref('')
         const password = ref('')
         const country = ref('')
         const city = ref('')
@@ -69,14 +69,14 @@ export default {
 
         const handleSubmit = async () => {
 
-            await signup(fullname.value, email.value, number.value, company.value, username.value, password.value, country.value, city.value).then(() => {
+            await signup(fullname.value, email.value, number.value, company.value, displayName.value, password.value, country.value, city.value).then(() => {
             
                 const user = {
                 fullname: fullname.value,
                 email: email.value,
                 number: number.value,
                 company: company.value,
-                username: username.value,
+                displayName: displayName.value,
                 password: password.value,
                 country: country.value,
                 city: city.value,
@@ -90,7 +90,7 @@ export default {
                 fullname.value = '',
                 number.value = '',
                 company.value = '',
-                username.value = '',
+                displayName.value = '',
                 country.value = '',
                 city.value = ''
                 successful.value = 'You have successfully registered' 
@@ -102,7 +102,7 @@ export default {
             
         }
 
-        return { fullname, email, number, company, username, password, country, city, handleSubmit, error, successful }
+        return { fullname, email, number, company, displayName, password, country, city, handleSubmit, error, successful }
     }
 }
 </script>

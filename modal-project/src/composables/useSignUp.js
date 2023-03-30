@@ -3,7 +3,7 @@ import {ref} from "vue";
 
 const error = ref(null)
 
-const signup = async (name, email, number, company, user, password, country, city) => {
+const signup = async (name, email, number, company, displayName, password, country, city) => {
     error.value = null
 
     try{
@@ -12,6 +12,7 @@ const signup = async (name, email, number, company, user, password, country, cit
             throw new Error('could not complete the signup')
         }
 
+        await res.user.updateProfile({ displayName })
         error.value = null
         console.log(res.user)
         return res
