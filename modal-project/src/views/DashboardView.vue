@@ -3,41 +3,12 @@
     <welcome-bar></welcome-bar>
     <search-bar></search-bar>
     <nav-bar></nav-bar>
+    <div class="canvas">
 
-    <div class="dashboard">
-      <div class="canvas">
-        <div class="list-portfolio">
-
-          <div class="carousel">
-            <title>Portfolio 1</title>
-            <vueper-slides class="no-shadow" :visible-slides="3" slide-multiple :bullets="false" :gap="3" :slide-ratio="1 / 4"  :dragging-distance="200" :breakpoints="{ 500: { visibleSlides: 2, slideMultiple: 2 } }">
-              <vueper-slide
-                v-for="(slide, i) in slides"
-                :key="i"
-                :title="slide.title"
-                :content="slide.content"
-                :style="'background-color: white'">
-              </vueper-slide>
-            </vueper-slides>
-
-          </div>
-
-          <div class="carousel">
-            <title>Portfolio 2</title>
-            <vueper-slides class="no-shadow" :visible-slides="3" slide-multiple :bullets="false" :gap="3" :slide-ratio="1 / 4"  :dragging-distance="200" :breakpoints="{ 500: { visibleSlides: 2, slideMultiple: 2 } }">
-              <vueper-slide
-                v-for="(slide, i) in slides"
-                :key="i"
-                :title="slide.title"
-                :content="slide.content"
-                :style="'background-color: white'">
-              </vueper-slide>
-            </vueper-slides>
-            
-          </div>
-
-        </div>
+      <div class="list-carousel">
+        <carousel></carousel>
       </div>
+
       <div class="welcome" v-if="showDemo">
         <title>Welcome to TFI Cloud PPM</title>
         <p>Welcome to TFI Cloud PPM, 
@@ -46,7 +17,9 @@
         <button class="cancel" @click="toggleShowDemo">Dismiss</button>
         <button>See demo</button>
       </div>
+
     </div>
+
   </div>
 </template>
   
@@ -56,6 +29,7 @@
     import NavBar from '../components/NavBar.vue'
     import { VueperSlides, VueperSlide } from 'vueperslides'
     import 'vueperslides/dist/vueperslides.css'
+    import Carousel from '../components/Carousel.vue'
 
     export default {
       name: 'DashboardView',
@@ -65,53 +39,23 @@
         NavBar,
         VueperSlides,
         VueperSlide,
+        Carousel,
       },
       data(){
         return{
-            
+            showDemo:true,
         }
     },
-    
-data: () => ({
-  slides: [
-    {
-      title: 'Slide #1',
-      content: 'Slide 1 content.'
-    },
-    {
-      title: 'Slide #2',
-      content: 'Slide 2 content.'
-    },
-    {
-      title: 'Slide #3',
-      content: 'Slide 3 content.'
-    },
-    {
-      title: 'Slide #4',
-      content: 'Slide 4 content.'
-    },
-    {
-      title: 'Slide #5',
-      content: 'Slide 5 content.'
-    },
-    {
-      title: 'Slide #6',
-      content: 'Slide 6 content.'
-    },
-
-  ],
-  showDemo:true,
-}),
     methods:{
         toggleShowDemo(){
             this.showDemo = false
         }
     }
-    }
+  }
 </script>
   
-<style>
-  .dashboard{
+<style scoped>
+.canvas{
     display: grid;
     grid-template-columns: auto 25%;
     grid-auto-rows: minmax(117px, auto);
@@ -121,8 +65,9 @@ data: () => ({
     padding: 5px;
     grid-gap: 10px;
     background-color: white;
+    overflow: auto;
   }
-  .dashboard .canvas{
+  .canvas .list-carousel{
     max-width: 100%;
     box-sizing: border-box;
     margin: 10px;
@@ -133,7 +78,7 @@ data: () => ({
     grid-row: 1 / 5;
     margin-left: 5%;
   }
-  .welcome{
+  .canvas .welcome{
     width: 70%;
     height: 400px;
     margin: 10px;
@@ -143,37 +88,5 @@ data: () => ({
     padding: 40px;
     border-radius: 10px;
     grid-row: 1 / 5;
-  }
-  title{
-    color:#646464;
-    display:inline-block;
-    margin: 25px 0 15px;
-    font-size: 0.9em;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: bold; 
-    margin-bottom: 20px;
-  }
-  .carousel{
-    margin-bottom: 5%;
-  }
-  .cancel{
-    border: 1px solid #B9B9B9;
-    background: #EFEFEF;
-  }
-  .welcome button:hover{
-    background-color:#ECA60E;
-  }
-  .welcome .cancel:hover{
-    background-color:#D9D9D9; 
-  }
-  .vueperslides__arrow{
-    color: #4C9CCB;
-    stroke-width: 1px;
-  }
-  .vueperslides__arrow:hover{
-    color: #ECA60E;
-    stroke-width: 1px;
-    background-color: transparent;
   }
 </style>

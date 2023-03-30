@@ -32,7 +32,7 @@ import { ref } from 'vue'
 import useLogIn from '../composables/useLogIn'
 
 export default {
-     setup(){
+     setup(props,context){
         //refs
         const email = ref('')
         const password = ref('')
@@ -41,7 +41,8 @@ export default {
         const handleSubmit = async () =>{
             await login(email.value, password.value)
                 if (!error.value) {
-                console.log('user logged in')
+                    //function to redirect if the user login correctly
+                    context.emit('login')
                 }
             }
         return {email,password, handleSubmit, error}

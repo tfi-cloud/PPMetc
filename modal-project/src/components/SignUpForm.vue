@@ -5,34 +5,40 @@
 
         <form @submit.prevent="handleSubmit">
 
-            <label>Full name *</label>
-            <input type="text" required v-model="fullname">
+            <div> 
 
-            <label>Email *</label>
-            <input type="email" required v-model="email">
+                <label>Full name *</label>
+                <input type="text" required v-model="fullname">
 
-            <label>Phone number *</label>
-            <input type="tel" required v-model="number">
+                <label>Email *</label>
+                <input type="email" required v-model="email">
 
-            <label>Company *</label>
-            <input type="text" required v-model="company">
+                <label>Phone number *</label>
+                <input type="tel" required v-model="number">
 
-            <label>User *</label>
-            <input type="text" required v-model="username">
+                <label>Company *</label>
+                <input type="text" required v-model="company">
 
-            <label>Password *</label>
-            <input type="password" required v-model="password">
+            </div>
 
-            <label>Country *</label>
-            <input type="text" required v-model="country">
+            <div> 
+                <label>User *</label>
+                <input type="text" required v-model="username">
 
-            <label>City *</label>
-            <input type="text" required v-model="city">
+                <label>Password *</label>
+                <input type="password" required v-model="password">
 
+                <label>Country *</label>
+                <input type="text" required v-model="country">
+
+                <label>City *</label>
+                <input type="text" required v-model="city">
+
+            </div>
             <button>Sign Up</button>
-            
+            <div class="error">{{ error }}</div> 
+            <div class="success">{{ successful }}</div>
         </form>
-        <div class="error">{{ error }}</div>
     </div>
 </template>
 
@@ -43,7 +49,7 @@ import { timestamp } from '../firebase/config'
 import useCollection from '../composables/useCollection';
 
 export default {
-    setup(){
+    setup(props,context){
 
         //refs
         const fullname = ref('')
@@ -54,6 +60,7 @@ export default {
         const password = ref('')
         const country = ref('')
         const city = ref('')
+        const successful = ref('')
 
 
         //use SignUp
@@ -75,21 +82,27 @@ export default {
                 city: city.value,
                 createdAt: timestamp()
             }
-            
-            addDoc(user)
             if (!error.value) {
+                //if there is no error add the info of the user and then clean all the fields
+                addDoc(user)
+                password.value = '',
+                email.value = '',
                 fullname.value = '',
                 number.value = '',
                 company.value = '',
                 username.value = '',
                 country.value = '',
                 city.value = ''
+                successful.value = 'You have successfully registered' 
+                //function to redirect if the user login correctly
+                context.emit('signup')
             }
+
             })
-            console.log("user sign up!")
+            
         }
 
-        return { fullname, email, number, company, username, password, country, city, handleSubmit, error }
+        return { fullname, email, number, company, username, password, country, city, handleSubmit, error, successful }
     }
 }
 </script>
@@ -97,18 +110,22 @@ export default {
 <style scoped>
     .sign-up{
         position: relative;
-        margin-top: 20px;
+        margin-top: 40px;
     }
     form{
-        margin: 0px auto;
-        max-width: 40%;
+        margin: 40px auto;
+        max-width: 60%;
         background: #EFEFEF;
         text-align: left;
-        padding: 20px;
-        padding-left: 30px;
+        padding: 60px;
+        padding-left: 60px;
         border-radius: 10px;
-        display: grid;
-        grid-template-columns: 30% 60%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    form > div{
+        width: 50%;
     }
     a .header{
         font-size: 1.0em;
@@ -142,12 +159,13 @@ export default {
         background-color:#FEAE00;
         color:black;
         font-weight: bold;
-        width: 50%;
+        width: 13%;
         padding: 10px 20px;
         margin-top: 10px;
         border-radius: 5px;
         display:block;
         cursor: pointer;
+        margin-bottom: 20px;
     }
     a{
         text-decoration: none;
@@ -165,5 +183,14 @@ export default {
         margin: 0px auto;
         text-align: center;
         color:#CE0F0F;
+        display: inline-block;
+        width: 100%;
+    }
+    .success{
+        margin: 0px auto;
+        text-align: center;
+        color:#48A60F;
+        display: inline-block;
+        width: 100%;
     }
 </style>

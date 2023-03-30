@@ -51,7 +51,7 @@
       overflow: auto;
     }
     .modal{
-      width: 700px;
+      width: 600px;
       padding: 20px;
       margin: 120px auto;
       background: white;
@@ -82,7 +82,7 @@
     .window input{
         display:block;
         padding: 10px 5px 10px 5px;
-        width: 60%;
+        width: 70%;
         box-sizing: border-box;
         border: 1px solid #ddd;
         color:#646464;
@@ -92,7 +92,7 @@
     .window textarea{
       display:block;
         padding: 10px 5px 10px 5px;
-        width: 60%;
+        width: 70%;
         height: 100px;
         box-sizing: border-box;
         border: 1px solid #ddd;
