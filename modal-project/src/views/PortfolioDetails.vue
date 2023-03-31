@@ -1,6 +1,20 @@
 <template>
-    <div class="portfolioDetails">
-      <portfolio-view></portfolio-view>
+
+  <div class="portfolio-view"  @click.native="$router.go()">
+      <welcome-bar></welcome-bar>
+      <search-bar></search-bar>
+      <nav-bar></nav-bar>
+
+      <div class="action-bar">
+
+        <div v-if="showModal">
+          <new-portfolio :heading="heading" :text="text" theme="sale" @close="toggleModal"/>
+        </div>
+        <action-bar type="Add Portfolio" icon="add" @click.capture="toggleModal"/>
+        <action-bar type="Delete Portfolio" icon="delete"/>
+        <action-bar type="Save Portfolio" icon="save"/>
+      </div>
+
       <div class="container">
         <portfolio></portfolio>
         <div class="details">
@@ -33,15 +47,18 @@
             <label>date of modification</label>
             <span disabled> {{ document.modifiedTime.toDate() }}</span>
           </div>
-
         </div>
       </div>
-    </div>
+  </div>
 
 </template>
 
 <script>
-    import PortfolioView from './PortfolioView.vue'
+    import WelcomeBar from '../components/WelcomeBar.vue'
+    import SearchBar from '../components/SearchBar.vue'
+    import NavBar from '../components/NavBar.vue'
+    import ActionBar from '../components/ActionBar.vue'
+    import NewPortfolio from '../components/NewPortfolio.vue'
     import Portfolio from '../components/Portfolio.vue'
     import getDocument from '../composables/getDocument'
 
@@ -49,14 +66,29 @@ export default {
   props:['id'],
   name: 'PortfolioDetails',
     components: {
-      PortfolioView,
+      WelcomeBar,
+      SearchBar,
+      NavBar,
+      ActionBar,
+      NewPortfolio,
       Portfolio,
     },
     setup(props){
       const { error, document } = getDocument('portfolio', props.id )
 
       return{ error, document }
+    },
+    data(){
+      return{
+        heading: 'Create a new Portfolio',
+        showModal: false,
+      } 
+    },
+    methods: {
+    toggleModal() {
+      this.showModal = !this.showModal
     }
+  }
 }
 </script>
 

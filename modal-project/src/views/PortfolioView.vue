@@ -14,6 +14,7 @@
         <action-bar type="Delete Portfolio" icon="delete"/>
         <action-bar type="Save Portfolio" icon="save"/>
       </div>
+      <portfolio class="list-port"></portfolio>
   </div>
 </template>
 
@@ -33,7 +34,7 @@ export default {
       NavBar,
       ActionBar,
       NewPortfolio,
-        Portfolio,
+      Portfolio,
     },
     data(){
       return{
@@ -61,5 +62,9 @@ export default {
       margin-top: 10px;
       display: grid;
       grid-template-columns: 12% 12% 12%;
+  }
+  .list-port{
+    margin-top: 10px;
+    
   }
 </style>

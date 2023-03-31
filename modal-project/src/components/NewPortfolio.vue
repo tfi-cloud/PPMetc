@@ -35,6 +35,7 @@
   import useCollection from '../composables/useCollection';
   import { timestamp } from '../firebase/config'
   import getUser from '@/composables/getUser';
+  import { projectAuth } from '../firebase/config'
 
 
   export default {
@@ -47,7 +48,8 @@
       const descriptionPortfolio = ref('')
       const ownerPortfolio = ref('')
       const isPending = ref(false)
-      const {user} = getUser()
+      const user = projectAuth.currentUser.displayName
+      
       //use addDoc
       const { error, addDoc } = useCollection('portfolio')
       const handleSubmit = async () => {
@@ -59,9 +61,9 @@
           ownerPortfolio: ownerPortfolio.value,
           projects: [],
           creationTime: timestamp(),
-          createdBy: '',
-          modifiedTime: '',
-          modifiedBy: '',
+          createdBy: user,
+          modifiedTime: timestamp(),
+          modifiedBy: user,
         })
         isPending.value = false
       }

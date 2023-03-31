@@ -7,9 +7,9 @@
 
                 <router-link to="/portfolio">Portfolio</router-link>
 
-                <router-link to="/projects">Project</router-link>
+                <router-link to="/projects/">Project</router-link>
 
-                <router-link to="/resources">Resouces</router-link>
+                <router-link to="/resouces">Resources</router-link>
 
                 <router-link to="/costs">Costs</router-link>
 

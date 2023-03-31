@@ -1,6 +1,6 @@
 <template>
-        <div class="directory">
-            <div v-for="doc in documents" :key="doc.id">
+        <div class="directory" v-if="documents">
+            <div v-for="doc in documents" :key="doc.id" >
                 <router-link :to="{ name: 'portfolioDetails', params: { id: doc.id } }"> 
                     <ul>
                         <li> {{ doc.namePortfolio }} </li>
@@ -18,7 +18,7 @@ export default {
     setup(){
         const { error, documents } = getCollection('portfolio')
         return{ error, documents }
-    }
+    },
 }
 
 </script>
@@ -26,16 +26,29 @@ export default {
 <style scoped>
 
     .directory{
-        width: 300px;
-        margin-left: 4%;
+        width: 310px;
+        margin-left: 1%;
         background: #EFEFEF;
         text-align: left;
-        padding: 40px;
+        padding: 30px;
         border-radius: 10px;
-        height: 400px;
+        height: 420px;
+        overflow: auto;
     } 
-    li{
+    .directory a{
+        text-decoration: none;
         cursor: pointer;
+        color:black;
     }
-    
+    .directory li{
+        padding: 10px;
+    }
+    .directory ul:hover{
+        background-color: #D9D9D9;
+        font-weight: bold;
+    }
+    .directory  a.router-link-exact-active{
+        font-weight: bold;
+        color: #0071C1;
+    }
 </style>
