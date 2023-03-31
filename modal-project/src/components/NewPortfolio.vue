@@ -5,37 +5,74 @@
         <title>{{ heading }}</title>
         <span class="material-icons" @click.capture="closeModal">clear</span>
       </div>
-        <form class="window">
+        <form class="window" @submit.prevent="handleSubmit">
           <label>Name of Portfolio *</label>
-          <input type="text" required v-model="name">
+          <input type="text" required v-model="namePortfolio">
 
           <label>Status *</label>
-          <select v-model="selected">
+          <select v-model="selectedStatus">
             <option disabled value="">Please select one</option>
             <option>Active</option>
             <option>Disabled</option>
           </select>
 
           <label>Description *</label>
-          <textarea required v-model="description"> </textarea>
+          <textarea required v-model="descriptionPortfolio"> </textarea>
 
           <label>Owner *</label>
-          <input type="text" required v-model="owner">
+          <input type="text" required v-model="ownerPortfolio">
 
-          <button>Create Portfolio</button>
+          <button v-if="!isPending">Create Portfolio</button>
+          <button v-else disabled>Creating Portfolio...</button>
+          <div class="error">{{ error }}</div>
         </form>
       </div>
     </div>
   </template>
   
   <script>
+  import { ref } from 'vue';
+  import useCollection from '../composables/useCollection';
+  import { timestamp } from '../firebase/config'
+  import getUser from '@/composables/getUser';
+
+
   export default {
     props: ['heading', 'text', 'theme'],
+    setup(){
+
+      //refs
+      const namePortfolio = ref('')
+      const selectedStatus = ref('')
+      const descriptionPortfolio = ref('')
+      const ownerPortfolio = ref('')
+      const isPending = ref(false)
+      const {user} = getUser()
+      //use addDoc
+      const { error, addDoc } = useCollection('portfolio')
+      const handleSubmit = async () => {
+        isPending.value = true
+        await addDoc({
+          namePortfolio: namePortfolio.value,
+          selectedStatus: selectedStatus.value,
+          descriptionPortfolio: descriptionPortfolio.value,
+          ownerPortfolio: ownerPortfolio.value,
+          projects: [],
+          creationTime: timestamp(),
+          createdBy: '',
+          modifiedTime: '',
+          modifiedBy: '',
+        })
+        isPending.value = false
+      }
+      return{namePortfolio, selectedStatus, descriptionPortfolio, ownerPortfolio, handleSubmit, isPending, error}
+    },
     methods: {
       closeModal() {
         this.$emit('close')
       }
     }
+
   }
   </script>
   
@@ -109,5 +146,12 @@
       color:#646464;
       background-color: white;
       margin-bottom: 6% !important;
+    }
+    .error{
+        margin: 0px auto;
+        text-align: center;
+        color:#CE0F0F;
+        display: inline-block;
+        width: 100%;
     }
   </style>
