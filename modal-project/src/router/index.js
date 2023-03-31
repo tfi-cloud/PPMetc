@@ -9,6 +9,17 @@ import ResoucesView from '../views/ResoucesView.vue'
 import CostsView from '../views/CostsView.vue'
 import ReportsView from '../views/ReportsView.vue'
 import TasksView from '../views/TasksView.vue'
+import { projectAuth } from '../firebase/config'
+
+//auth guard
+const requireAuth =  (to, from, next) =>{
+  let user = projectAuth.currentUser
+  if (!user) {
+    next( { name: 'login' })
+  }else{
+    next()
+  }
+}
 
 const routes = [
   {
@@ -31,37 +42,44 @@ const routes = [
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: DashboardView
+    component: DashboardView,
+    beforeEnter: requireAuth
   },
   {
     path: '/portfolio',
     name: 'portfolio',
-    component: PortfolioView
+    component: PortfolioView,
+    beforeEnter: requireAuth
   },
   {
     path: '/projects',
     name: 'projects',
-    component: ProjectsView
+    component: ProjectsView,
+    beforeEnter: requireAuth
   },
   {
     path: '/resources',
     name: 'resources',
-    component: ResoucesView
+    component: ResoucesView,
+    beforeEnter: requireAuth
   },
   {
     path: '/costs',
     name: 'costs',
-    component: CostsView
+    component: CostsView,
+    beforeEnter: requireAuth
   },
   {
     path: '/reports',
     name: 'reports',
-    component: ReportsView
+    component: ReportsView,
+    beforeEnter: requireAuth
   },
   {
     path: '/tasks',
     name: 'tasks',
-    component: TasksView
+    component: TasksView,
+    beforeEnter: requireAuth
   },
 
 ]

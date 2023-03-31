@@ -2,7 +2,7 @@
     <div class="portfolio">
 
         <div class="directory" v-for="portfolio in documents" :key="portfolio.id">
-            <div>{{ portfolio.namePortfolio }}</div>
+            {{ portfolio.namePortfolio }}
         </div>
 
         <div class="canvas">
@@ -13,12 +13,12 @@
 </template>
 
 <script>
-import getCollection from '@/composables/getCollection'
+import getCollection from '../composables/getCollection'
 
 export default {
 setup(){
-    const {error, documents} = getCollection('portfolio')
-    return{error, documents}
+    const { error, documents } = getCollection('portfolio')
+    return{ error, documents }
 }
 
 }
