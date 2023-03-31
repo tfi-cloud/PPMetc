@@ -30,5 +30,4 @@ export default {
         margin:0ch;
         font-weight: bold;
     }
-
 </style>

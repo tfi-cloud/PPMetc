@@ -9,6 +9,7 @@ import ResoucesView from '../views/ResoucesView.vue'
 import CostsView from '../views/CostsView.vue'
 import ReportsView from '../views/ReportsView.vue'
 import TasksView from '../views/TasksView.vue'
+import PortfolioDetails from '../views/PortfolioDetails.vue'
 import { projectAuth } from '../firebase/config'
 
 //auth guard
@@ -50,6 +51,13 @@ const routes = [
     name: 'portfolio',
     component: PortfolioView,
     beforeEnter: requireAuth
+  },
+  {
+    path: '/portfolio/:id',
+    name: 'portfolioDetails',
+    component: PortfolioDetails,
+    beforeEnter: requireAuth,
+    props:true
   },
   {
     path: '/projects',

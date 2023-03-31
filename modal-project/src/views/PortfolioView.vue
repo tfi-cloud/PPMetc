@@ -1,69 +1,65 @@
 <template>
-    <div class="portfolio-view">
-        <welcome-bar></welcome-bar>
-        <search-bar></search-bar>
-        <nav-bar></nav-bar>
+  <div class="portfolio-view">
+      <welcome-bar></welcome-bar>
+      <search-bar></search-bar>
+      <nav-bar></nav-bar>
 
-        <div class="action-bar">
+      <div class="action-bar">
 
-          <div v-if="showModal">
-            <new-portfolio :heading="heading" :text="text" theme="sale" @close="toggleModal"/>
-          </div>
-
-          <action-bar type="Add Portfolio" icon="add" @click.capture="toggleModal"/>
-
-          <action-bar type="Delete Portfolio" icon="delete"/>
-          <action-bar type="Save Portfolio" icon="save"/>
+        <div v-if="showModal">
+          <new-portfolio :heading="heading" :text="text" theme="sale" @close="toggleModal"/>
         </div>
-        <portfolio></portfolio>
-    </div>
-  </template>
-  
-<script>
-  import WelcomeBar from '../components/WelcomeBar.vue'
-  import SearchBar from '../components/SearchBar.vue'
-  import NavBar from '../components/NavBar.vue'
-  import ActionBar from '../components/ActionBar.vue'
-  import Portfolio from '../components/Portfolio.vue'
-  import NewPortfolio from '../components/NewPortfolio.vue'
 
-  
-  export default {
-    name: 'PortfolioView',
-      components: {
-        WelcomeBar,
-        SearchBar,
-        NavBar,
-        ActionBar,
-        NewPortfolio,
+        <action-bar type="Add Portfolio" icon="add" @click.capture="toggleModal"/>
+        <action-bar type="Delete Portfolio" icon="delete"/>
+        <action-bar type="Save Portfolio" icon="save"/>
+      </div>
+  </div>
+</template>
+
+<script>
+import WelcomeBar from '../components/WelcomeBar.vue'
+import SearchBar from '../components/SearchBar.vue'
+import NavBar from '../components/NavBar.vue'
+import ActionBar from '../components/ActionBar.vue'
+import NewPortfolio from '../components/NewPortfolio.vue'
+import Portfolio from '../components/Portfolio.vue'
+
+export default {
+  name: 'PortfolioView',
+    components: {
+      WelcomeBar,
+      SearchBar,
+      NavBar,
+      ActionBar,
+      NewPortfolio,
         Portfolio,
-      },
-      data(){
-        return{
-          heading: 'Create a new Portfolio',
-          showModal: false,
-        } 
-      },
-    methods: {
-      toggleModal() {
-        this.showModal = !this.showModal
-      }
+    },
+    data(){
+      return{
+        heading: 'Create a new Portfolio',
+        showModal: false,
+      } 
+    },
+  methods: {
+    toggleModal() {
+      this.showModal = !this.showModal
     }
   }
-  </script>
-  
-<style>
-    .action-bar{
-        max-width: 100%;
-        position: relative;
-        overflow: hidden;
-        height: 40px;
-        background-color: #efefef;
-        text-align: left;
-        padding-left: 15px;
-        margin-top: 10px;
-        display: grid;
-        grid-template-columns: 12% 12% 12%;
-    }
+}
+</script>
 
+<style>
+  .action-bar{
+      max-width: 100%;
+      position: relative;
+      overflow: hidden;
+      height: 40px;
+      background-color: #efefef;
+      text-align: left;
+      padding-left: 15px;
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: 12% 12% 12%;
+  }
 </style>
