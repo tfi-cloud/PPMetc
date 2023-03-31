@@ -1,8 +1,17 @@
 <template>
     <div class="portfolio">
+        <div v-if="error">{{ error }}</div>
+        <div class="directory" v-if="documents">
 
-        <div class="directory" v-for="portfolio in documents" :key="portfolio.id">
-            {{ portfolio.namePortfolio }}
+            <div v-for="doc in documents" :key="doc.id">
+                <ul>
+                    <li> {{ doc.namePortfolio }} </li>
+                    <ul>
+                        <li>Black tea</li>
+                    </ul>
+                </ul>
+
+            </div>
         </div>
 
         <div class="canvas">
@@ -16,10 +25,11 @@
 import getCollection from '../composables/getCollection'
 
 export default {
-setup(){
-    const { error, documents } = getCollection('portfolio')
-    return{ error, documents }
-}
+    setup(){
+        const { error, documents } = getCollection('portfolio')
+
+        return{ error, documents }
+    }
 
 }
 </script>
@@ -43,15 +53,16 @@ setup(){
         text-align: left;
         padding: 40px;
         border-radius: 10px;
-        grid-row: 1 / 5;
+        height: 400px;
+
     } 
     .portfolio .canvas{
         width: 99%;
         background: #EFEFEF;
         text-align: left;
         border-radius: 10px; 
-        grid-row: 1 / 5;
         margin-left: 0%;
+        height: 480px;
     }
 
 </style>

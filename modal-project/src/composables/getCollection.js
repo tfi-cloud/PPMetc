@@ -1,4 +1,4 @@
-import { ref, watchEffect } from 'vue'
+import { ref } from 'vue'
 import { projectFirestore } from '../firebase/config'
 
 const getCollection = (collection) => {
@@ -8,13 +8,14 @@ const getCollection = (collection) => {
 
   // register the firestore collection reference
   let collectionRef = projectFirestore.collection(collection)
-    .orderBy('createdAt')
 
-  const unsub = collectionRef.onSnapshot(snap => {
+
+  collectionRef.onSnapshot( snap => {
     let results = []
-    snap.docs.forEach(doc => {
+    snap.docs.forEach( doc => {
       // must wait for the server to create the timestamp & send it back
-      doc.data().createdAt && results.push({...doc.data(), id: doc.id})
+      // we don't want to edit data until it has done this
+      results.push({ ...doc.data(), id: doc.id })
     });
     
     // update values
@@ -25,10 +26,6 @@ const getCollection = (collection) => {
     documents.value = null
     error.value = 'could not fetch the data'
   })
-
-  watchEffect((onInvalidate) => {
-    onInvalidate(() => unsub());
-  });
 
   return { error, documents }
 }

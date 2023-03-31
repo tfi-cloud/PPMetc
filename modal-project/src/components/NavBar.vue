@@ -34,10 +34,10 @@ export default {
         position: relative;
         overflow: hidden;
         height: 20px;
-        padding: 10px;
+        padding: 6px;
         background-color: white;
         text-align: left;
-        padding-left: 11px;
+        padding-left: 8px;
         border-bottom-style: solid !important;
         border-bottom-color: #FEAE00;
         margin-top: 10px;
@@ -45,7 +45,7 @@ export default {
     .nav-bar a {
         text-decoration: none;
         color: black; 
-        padding: 5px 30px 20px 30px;
+        padding: 5px 10px 20px 10px;
         font-size: 0.9em;
     }
     .nav-bar a:hover {
