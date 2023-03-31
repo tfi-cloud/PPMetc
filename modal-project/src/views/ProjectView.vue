@@ -14,7 +14,7 @@
         <action-bar type="Delete Project" icon="delete"/>
         <action-bar type="Save Project" icon="save"/>
       </div>
-      <portfolio/>
+      <project/>
   </div>
 </template>
 
@@ -24,7 +24,7 @@
   import NavBar from '../components/NavBar.vue'
   import ActionBar from '../components/ActionBar.vue'
   import NewProject from '@/components/NewProject.vue'
-  import Portfolio from '../components/Portfolio.vue'
+  import Project from '../components/Project.vue'
 
 
   export default {
@@ -36,7 +36,7 @@
       NavBar,
       ActionBar,
       NewProject,
-      Portfolio,
+      Project,
     },
     data(){
         return{

@@ -11,6 +11,9 @@
             <label>Name of Project *</label>
             <input type="text" required v-model="name">
 
+            <label>Upload a cover image for the project *</label>
+            <input type="file" required>
+
             <label>Description of the project*</label>
             <textarea required v-model="descrip_project"> </textarea>
 
@@ -139,7 +142,7 @@
       display: block;
       padding: 10px 5px 10px 5px;
       width: 90%;
-      height: 130px;
+      height: 90px;
       box-sizing: border-box;
       border: 1px solid #ddd;
       color:#646464;
