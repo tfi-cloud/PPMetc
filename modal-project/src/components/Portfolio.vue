@@ -16,7 +16,7 @@ import getCollection from '../composables/getCollection'
 export default {
 
     setup(){
-        const { error, documents } = getCollection('portfolio')
+        const { error, documents } = getCollection('portfolios')
         return{ error, documents }
     },
 }

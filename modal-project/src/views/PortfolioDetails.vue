@@ -1,6 +1,6 @@
 <template>
 
-  <div class="portfolio-view"  @click.native="$router.go()">
+  <div class="portfolio-view" >
       <welcome-bar></welcome-bar>
       <search-bar></search-bar>
       <nav-bar></nav-bar>
@@ -15,7 +15,7 @@
         <action-bar type="Save Portfolio" icon="save"/>
       </div>
 
-      <div class="container">
+      <div class="container" @click.native="$router.go()">
         <portfolio></portfolio>
         <div class="details">
 
@@ -74,7 +74,7 @@ export default {
       Portfolio,
     },
     setup(props){
-      const { error, document } = getDocument('portfolio', props.id )
+      const { error, document } = getDocument('portfolios', props.id )
 
       return{ error, document }
     },
@@ -95,7 +95,7 @@ export default {
 <style scoped>
     .container{
         display: grid;
-        grid-template-columns: 30% auto;
+        grid-template-columns: 26% auto;
         max-width: 100%;
         height: 100%;
         position: relative;
@@ -104,7 +104,7 @@ export default {
         background-color: white;
     }
     .details{
-        width: 90%;
+        width: 92%;
         background: #EFEFEF;
         text-align: left;
         padding: 40px;

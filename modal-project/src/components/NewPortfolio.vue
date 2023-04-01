@@ -9,6 +9,10 @@
           <label>Name of Portfolio *</label>
           <input type="text" required v-model="namePortfolio">
 
+          <label>Upload a cover image for the project *</label>
+            <input type="file" required @change="handleChange">
+            <div class="error">{{ fileError }}</div>
+
           <label>Status *</label>
           <select v-model="selectedStatus">
             <option disabled value="">Please select one</option>
@@ -34,13 +38,18 @@
   import { ref } from 'vue';
   import useCollection from '../composables/useCollection';
   import { timestamp } from '../firebase/config'
-  import getUser from '@/composables/getUser';
   import { projectAuth } from '../firebase/config'
+  import useStorage from '@/composables/useStorage';
 
 
   export default {
     props: ['heading', 'text', 'theme'],
     setup(){
+
+      //storage
+      const { filePath, url, uploadImage } = useStorage()
+      const file = ref(null)
+      const fileError = ref(null)
 
       //refs
       const namePortfolio = ref('')
@@ -49,25 +58,56 @@
       const ownerPortfolio = ref('')
       const isPending = ref(false)
       const user = projectAuth.currentUser.displayName
-      
-      //use addDoc
-      const { error, addDoc } = useCollection('portfolio')
-      const handleSubmit = async () => {
-        isPending.value = true
-        await addDoc({
-          namePortfolio: namePortfolio.value,
-          selectedStatus: selectedStatus.value,
-          descriptionPortfolio: descriptionPortfolio.value,
-          ownerPortfolio: ownerPortfolio.value,
-          projects: [],
-          creationTime: timestamp(),
-          createdBy: user,
-          modifiedTime: timestamp(),
-          modifiedBy: user,
-        })
-        isPending.value = false
+
+      // allowed file types
+      const types = ['image/png', 'image/jpeg']
+
+      const handleChange = (e) => {
+        let selected = e.target.files[0]
+        console.log(selected)
+
+        if (selected && types.includes(selected.type)) {
+
+          file.value = selected
+          fileError.value = null
+
+        } else {
+
+          file.value = null
+          fileError.value = 'Please select an image file (png or jpg)'
+
+        }
       }
-      return{namePortfolio, selectedStatus, descriptionPortfolio, ownerPortfolio, handleSubmit, isPending, error}
+
+      //use addDoc
+      const { error, addDoc } = useCollection('portfolios')
+
+      const handleSubmit = async () => {
+        if(file.value){
+          isPending.value = true
+          await uploadImage(file.value)
+          console.log('image uploaded, url: ', url.value)
+          await addDoc({
+            namePortfolio: namePortfolio.value,
+            coverUrl: url.value,
+            filePath: filePath.value,
+            selectedStatus: selectedStatus.value,
+            descriptionPortfolio: descriptionPortfolio.value,
+            ownerPortfolio: ownerPortfolio.value,
+            projects: {},
+            creationTime: timestamp(),
+            createdBy: user,
+            modifiedTime: timestamp(),
+            modifiedBy: user,
+          })
+          isPending.value = false
+          if(!error){
+            console.log('portfolio added')
+          }
+
+        }
+      }
+      return{namePortfolio, selectedStatus, descriptionPortfolio, ownerPortfolio, fileError, handleChange, handleSubmit, handleChange, isPending, error}
     },
     methods: {
       closeModal() {
