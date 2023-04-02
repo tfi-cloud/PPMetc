@@ -32,7 +32,7 @@ export default {
         text-align: left;
         padding: 30px;
         border-radius: 10px;
-        height: 420px;
+        height: 449px;
         overflow: auto;
     } 
     .directory a{

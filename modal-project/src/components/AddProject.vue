@@ -1,5 +1,7 @@
 <template>
-    <div class="backdrop" @click.self="closeModal">
+    <div>
+        <div v-if="showModal">
+          <div class="backdrop" @click.self="closeModal">
       <div class="modal">
       <div class="header">
         <title>{{ heading }}</title>
@@ -42,20 +44,27 @@
         </form>
       </div>
     </div>
-  </template>
-  
-  <script>
-    import { ref } from 'vue';
-    import useCollection from '../composables/useCollection';
-    import { timestamp } from '../firebase/config'
-    import { projectAuth } from '../firebase/config'
-    import getCollection from '../composables/getCollection'
-    import useDocument from '../composables/useDocument'
+        </div>
+        <action-bar type="Add Project" icon="add" @click.capture="toggleModal"/>
+    </div>
+</template>
 
-    export default {
-    props: ['heading', 'text','document'],
+<script>
+import ActionBar from '../components/ActionBar.vue'
+import { ref } from 'vue';
+import useCollection from '../composables/useCollection';
+import { timestamp } from '../firebase/config'
+import { projectAuth } from '../firebase/config'
+import getCollection from '../composables/getCollection'
+import useDocument from '../composables/useDocument'
+
+export default {
+    components: {
+    ActionBar,
+    },
+    props: ['document'],
     setup(props){
-      //refs
+            //refs
       const nameProject = ref('')
       const descriptionProject = ref('')
       const visionProject = ref('')
@@ -76,7 +85,7 @@
       const fieldValue = ref(false)
 
       //use document to add projects in
-      //const { error, AddSubCol } = useDocument('portfolios','projects', this.props.document.id)
+      const { error, AddSubCol } = useDocument('portfolios','projects', props.document.id)
       
       //get portfolios names
       const { documents } = getCollection('portfolios')
@@ -115,16 +124,26 @@
       }
       return{linkedPortfolio,nameProject, descriptionProject, visionProject, statusProject, plannedStartDate,actualStartDate,plannedFinishDate,
         actualFinishDate,plannedValue,earnedValue,actualCost,budgetAtCompletion,percentComplete,hashtag,handleSubmit, isPending, documents}
+
     },
-    methods: {
-      closeModal() {
+    data(){
+      return{
+        heading: 'Create a new Project',
+        showModal: false,
+      } 
+    },
+  methods: {
+    toggleModal() {
+      this.showModal = !this.showModal
+    },
+    closeModal() {
         this.$emit('close')
       }
-    }
   }
-  </script>
-  
-  <style scoped>
+}
+</script>
+
+<style scoped>
     .backdrop {
       top: 0;
       left: 0;

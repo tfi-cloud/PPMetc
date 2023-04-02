@@ -7,7 +7,7 @@
       <div class="action-bar">
 
         <div v-if="showModal">
-          <new-portfolio :heading="heading" :text="text" theme="sale" @close="toggleModal"/>
+          <new-portfolio :heading="heading" :text="text" @close="toggleModal"/>
         </div>
 
         <action-bar type="Add Portfolio" icon="add" @click.capture="toggleModal"/>

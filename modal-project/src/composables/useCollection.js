@@ -21,7 +21,7 @@ const useCollection = (collection) => {
     }
     catch(err) {
       console.log(err.message)
-      error.value = 'could not save user data'
+      error.value = 'could not add subsollection'
       isPending.value = false
     }
   }

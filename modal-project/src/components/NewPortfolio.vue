@@ -27,8 +27,9 @@
           <input type="text" required v-model="ownerPortfolio">
 
           <button v-if="!isPending">Create Portfolio</button>
-          <button v-else disabled>Creating Portfolio...</button>
+          <button v-else disabled class="isPending">Creating Portfolio...</button>
           <div class="error">{{ error }}</div>
+          
         </form>
       </div>
     </div>
@@ -43,7 +44,7 @@
 
 
   export default {
-    props: ['heading', 'text', 'theme'],
+    props: ['heading', 'text', 'id'],
     setup(){
 
       //storage
@@ -195,5 +196,8 @@
         color:#CE0F0F;
         display: inline-block;
         width: 100%;
+    }
+    button .isPending{
+      background-color: #CCCECB;
     }
   </style>

@@ -15,8 +15,8 @@
         <action-bar type="Save Portfolio" icon="save"/>
       </div>
 
-      <div class="container" @click.native="$router.go()">
-        <portfolio></portfolio>
+      <div class="container">
+        <portfolio @click.native="$router.go()"></portfolio>
         <div class="details">
 
           <div class="col">
@@ -33,7 +33,6 @@
             <span disabled> {{ document.ownerPortfolio }}</span>
           </div>
 
-
           <div class="col">
             <label>Created by</label>
             <span disabled> {{ document.createdBy }}</span>
@@ -47,7 +46,11 @@
             <label>date of modification</label>
             <span disabled> {{ document.modifiedTime.toDate() }}</span>
           </div>
+          
+          <add-project :document="document"/>
+          
         </div>
+        
       </div>
   </div>
 
@@ -61,6 +64,7 @@
     import NewPortfolio from '../components/NewPortfolio.vue'
     import Portfolio from '../components/Portfolio.vue'
     import getDocument from '../composables/getDocument'
+    import AddProject from '../components/AddProject.vue'
 
 export default {
   props:['id'],
@@ -72,16 +76,17 @@ export default {
       ActionBar,
       NewPortfolio,
       Portfolio,
+      AddProject
     },
     setup(props){
       const { error, document } = getDocument('portfolios', props.id )
-
       return{ error, document }
     },
     data(){
       return{
         heading: 'Create a new Portfolio',
         showModal: false,
+        
       } 
     },
     methods: {
@@ -109,7 +114,7 @@ export default {
         text-align: left;
         padding: 40px;
         border-radius: 10px;
-        height: 400px;
+        height: 430px;
     }
     .col{
       display: inline-block;
