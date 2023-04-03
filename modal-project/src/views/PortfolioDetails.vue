@@ -11,6 +11,7 @@
           <new-portfolio :heading="heading" :text="text" theme="sale" @close="toggleModal"/>
         </div>
         <action-bar type="Add Portfolio" icon="add" @click.capture="toggleModal"/>
+
         <action-bar type="Delete Portfolio" icon="delete"/>
         <action-bar type="Save Portfolio" icon="save"/>
       </div>
@@ -43,11 +44,15 @@
             <label>Modified by</label>
             <span disabled> {{ document.modifiedBy }}</span>
 
-            <label>date of modification</label>
+            <label>Date of modification</label>
             <span disabled> {{ document.modifiedTime.toDate() }}</span>
           </div>
+
+          <action-bar type="Add Project" icon="add" @click.capture="toggleModalProject"/>
+          <div v-if="showModalProject">
+            <add-project :heading="heading" :text="text" theme="sale" @close="toggleModalProject" :document="document"/>
+          </div>
           
-          <add-project :document="document"/>
           
         </div>
         
@@ -86,15 +91,21 @@ export default {
       return{
         heading: 'Create a new Portfolio',
         showModal: false,
-        
+        showModalProject: false,
       } 
     },
+
     methods: {
     toggleModal() {
       this.showModal = !this.showModal
+    },
+    toggleModalProject() {
+      this.showModalProject = !this.showModalProject
     }
   }
 }
+
+
 </script>
 
 <style scoped>

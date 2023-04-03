@@ -1,56 +1,65 @@
 <template>
-    <div class="project">
-
-        <div class="directory">
+    <div class="directory" v-if="documents">
+        <div v-for="docu in documents" :key="docu.id" >
+            <ul>
+                <li> {{ docu.namePortfolio }} </li>
+                <div v-for="docs in documentos" :key="docs.id" class="subcol">
+                    <router-link :to="{ name: 'projectDetails', params: { id: docs.id } }"> 
+                        <ul class="main">
+                            <li> {{ docs.nameProject }} </li>
+                        </ul>
+                    </router-link>
+                </div>
+            </ul>
         </div>
-
-        <div class="canvas">
-
-        </div>
-
-    </div>
+    </div> 
 </template>
 
 <script>
+import getSubcollection from '../composables/getSubcollection'
 import getCollection from '../composables/getCollection'
 
 export default {
-    setup(){
 
-    }
-
+setup(){
+    const { error, documentos } = getSubcollection('portfolios', 'projects','portfolios.id')
+    const { documents } = getCollection('portfolios')
+    return{ error, documentos, documents }
+},
 }
+
 </script>
 
 <style scoped>
-    .project{
-        display: grid;
-        grid-template-columns: 30% auto;
-        grid-auto-rows: minmax(117px, auto);
-        max-width: 100%;
-        height: 100%;
-        position: relative;
-        padding: 10px;
-        grid-gap: 0px;
-        background-color: white;
-    }  
-    .directory{
-        width: 70%;
-        margin-left: 4%;
-        background: #EFEFEF;
-        text-align: left;
-        padding: 40px;
-        border-radius: 10px;
-        height: 400px;
 
-    } 
-    .project .canvas{
-        width: 99%;
-        background: #EFEFEF;
-        text-align: left;
-        border-radius: 10px; 
-        margin-left: 0%;
-        height: 480px;
-    }
+.directory{
+    width: 310px;
+    margin-left: 1%;
+    background: #EFEFEF;
+    text-align: left;
+    padding: 30px;
+    border-radius: 10px;
+    height: 470px;
+    overflow: auto;
+} 
+.directory ul ul {
+    cursor: pointer;
+    color:black;
+}
+.directory li{
+    padding: 10px;
+}
+.directory a{
+    text-decoration: none;
+}
+.directory ul.main:hover{
+    background-color: #D9D9D9;
+    font-weight: bold;
+    cursor: pointer;
+}
+.directory  a.router-link-exact-active{
+    font-weight: bold;
+    color: #0071C1 !important;
+}
 
 </style>

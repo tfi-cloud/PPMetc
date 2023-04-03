@@ -3,18 +3,7 @@
       <welcome-bar></welcome-bar>
       <search-bar></search-bar>
       <nav-bar></nav-bar>
-      <div class="action-bar">
-
-        <div v-if="showModal">
-          <new-project :heading="heading" :text="text" theme="sale" @close="toggleModal"/>
-        </div>
-
-        <action-bar type="Add Project" icon="add" @click.capture="toggleModal"/>
-
-        <action-bar type="Delete Project" icon="delete"/>
-        <action-bar type="Save Project" icon="save"/>
-      </div>
-      <project/>
+      <project class="list-port"/>
   </div>
 </template>
 
@@ -53,5 +42,8 @@
 </script>
 
 <style>
-
+  .list-port{
+    margin-top: 20px;
+    
+  }
 </style>

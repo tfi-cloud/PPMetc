@@ -1,58 +1,52 @@
 <template>
-    <div>
-        <div v-if="showModal">
           <div class="backdrop" @click.self="closeModal">
-      <div class="modal">
-      <div class="header">
-        <title>{{ heading }}</title>
-        <span class="material-icons" @click.capture="closeModal">clear</span>
-      </div>
-        <form class="window" @submit.prevent="handleSubmit">
-          <div>
+            <div class="modal">
+              <div class="header">
+                <title>{{ heading }}</title>
+                <span class="material-icons" @click.capture="closeModal">clear</span>
+              </div>
+              <form class="window" @submit.prevent="handleSubmit">
+                <div>
             
-            <label>Name of Project *</label>
-            <input type="text" required v-model="nameProject">
+                <label>Name of Project *</label>
+                <input type="text" required v-model="nameProject">
 
-            <label>Description of the project *</label>
-            <textarea required v-model="descriptionProject"> </textarea>
+                <label>Description of the project *</label>
+                <textarea required v-model="descriptionProject"> </textarea>
 
-            <label>Vision *</label>
-            <textarea required v-model="visionProject"> </textarea>
+                <label>Vision *</label>
+                <textarea required v-model="visionProject"> </textarea>
 
+                </div>
+                <div>
+                  <label>Status *</label>
+                  <select v-model="statusProject" class="select">
+                    <option disabled value="">Please select one</option>
+                    <option>Active</option>
+                    <option>Disabled</option>
+                  </select>
+
+                  <label>Planned Start Date *</label>
+                  <input type="date" required v-model="plannedStartDate">
+
+                  <label>Planned Value *</label>
+                  <input type="number" required v-model="plannedValue">
+
+
+                  <label>Hashtag *</label>
+                  <input type="text" required v-model="hashtag">
+                </div>
+
+                <button v-if="!isPending">Create Project</button>
+                <button v-else class="isPending" disabled>Creating Project...</button>
+              </form>
+            </div>
           </div>
-          <div>
-            <label>Status *</label>
-            <select v-model="statusProject" class="select">
-              <option disabled value="">Please select one</option>
-              <option>Active</option>
-              <option>Disabled</option>
-            </select>
-
-            <label>Planned Start Date *</label>
-            <input type="date" required v-model="plannedStartDate">
-
-          <label>Planned Value *</label>
-          <input type="number" required v-model="plannedValue">
-
-
-          <label>Hashtag *</label>
-          <input type="text" required v-model="hashtag">
-        </div>
-
-          <button v-if="!isPending">Create Project</button>
-          <button v-else class="isPending" disabled>Creating Project...</button>
-        </form>
-      </div>
-    </div>
-        </div>
-        <action-bar type="Add Project" icon="add" @click.capture="toggleModal"/>
-    </div>
 </template>
 
 <script>
 import ActionBar from '../components/ActionBar.vue'
 import { ref } from 'vue';
-import useCollection from '../composables/useCollection';
 import { timestamp } from '../firebase/config'
 import { projectAuth } from '../firebase/config'
 import getCollection from '../composables/getCollection'
@@ -62,7 +56,7 @@ export default {
     components: {
     ActionBar,
     },
-    props: ['document'],
+    props: ['heading', 'text','document'],
     setup(props){
             //refs
       const nameProject = ref('')
@@ -82,7 +76,6 @@ export default {
       const linkedPortfolio = ref('')
       const user = projectAuth.currentUser.displayName
       const isPending = ref(false)
-      const fieldValue = ref(false)
 
       //use document to add projects in
       const { error, AddSubCol } = useDocument('portfolios','projects', props.document.id)
@@ -115,8 +108,17 @@ export default {
             modifiedBy: user,
           }
           AddSubCol(newProject)
-
-          isPending.value = false
+            nameProject.value = '',
+            descriptionProject.value = '',
+            visionProject.value = '',
+            statusProject.value = '',
+            plannedStartDate.value = '',
+            plannedFinishDate.value = '',
+            plannedValue.value = '',
+            hashtag.value = '',
+            isPending.value = false
+            //function to redirect if the user login correctly
+            context.emit('project')
 
           if(!error.value){
             console.log('project added')
@@ -133,12 +135,9 @@ export default {
       } 
     },
   methods: {
-    toggleModal() {
-      this.showModal = !this.showModal
-    },
     closeModal() {
-        this.$emit('close')
-      }
+      this.$emit('close')
+    },
   }
 }
 </script>

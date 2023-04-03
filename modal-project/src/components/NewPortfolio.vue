@@ -108,14 +108,13 @@
 
         }
       }
-      return{namePortfolio, selectedStatus, descriptionPortfolio, ownerPortfolio, fileError, handleChange, handleSubmit, handleChange, isPending, error}
+      return{namePortfolio, selectedStatus, descriptionPortfolio, ownerPortfolio, fileError, handleChange, handleSubmit, isPending, error}
     },
     methods: {
       closeModal() {
         this.$emit('close')
       }
     }
-
   }
   </script>
   

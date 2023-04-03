@@ -10,6 +10,7 @@ import CostsView from '../views/CostsView.vue'
 import ReportsView from '../views/ReportsView.vue'
 import TasksView from '../views/TasksView.vue'
 import PortfolioDetails from '../views/PortfolioDetails.vue'
+import ProjectDetails from '../views/ProjectDetails.vue'
 import { projectAuth } from '../firebase/config'
 
 //auth guard
@@ -32,6 +33,11 @@ const routes = [
     path: '/sign-up',
     name: 'sign-up',
     component: SignUpView
+  },
+  {
+    path: '/projects/:id',
+    name: 'projectDetails',
+    component: ProjectDetails
   },
   //page for not found links
   {
