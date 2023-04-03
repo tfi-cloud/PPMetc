@@ -37,7 +37,8 @@ const routes = [
   {
     path: '/projects/:id',
     name: 'projectDetails',
-    component: ProjectDetails
+    component: ProjectDetails,
+    props: true,
   },
   //page for not found links
   {
@@ -69,7 +70,7 @@ const routes = [
     path: '/projects',
     name: 'projects',
     component: ProjectsView,
-    beforeEnter: requireAuth
+    beforeEnter: requireAuth,
   },
   {
     path: '/resources',

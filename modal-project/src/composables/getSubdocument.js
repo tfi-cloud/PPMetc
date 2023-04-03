@@ -10,7 +10,7 @@ const getSubdocument = (collection, idC) => {
   const folderRef = projectFirestore.collection('portfolios').doc('V76Jvl08S2LsxZ30hxhc')
 
   // register the firestore document by id reference
-  const documentRef = folderRef.collection(collection).doc('0kOO17ZIBZLyPATI2OBf')
+  const documentRef = folderRef.collection(collection).doc(idC)
 
   const unsub = documentRef.onSnapshot( doc => {
     if(doc.data()){
