@@ -39,7 +39,7 @@ setup(){
     text-align: left;
     padding: 30px;
     border-radius: 10px;
-    height: 470px;
+    height: 450px;
     overflow: auto;
 } 
 .directory ul ul {

@@ -65,7 +65,6 @@
       import NewPortfolio from '../components/NewPortfolio.vue'
       import Project from '../components/Project.vue'
       import getSubdocument from '../composables/getSubdocument'
-      import AddProject from '../components/AddProject.vue'
   
   export default {
     props:['id'],
@@ -77,7 +76,6 @@
         ActionBar,
         NewPortfolio,
         Project,
-        AddProject
       },
       setup(props){
         const { error, document } = getSubdocument('projects', props.id)

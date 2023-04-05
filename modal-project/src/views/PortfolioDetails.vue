@@ -47,15 +47,7 @@
             <label>Date of modification</label>
             <span disabled> {{ document.modifiedTime.toDate() }}</span>
           </div>
-
-          <action-bar type="Add Project" icon="add" @click.capture="toggleModalProject"/>
-          <div v-if="showModalProject">
-            <add-project :heading="heading" :text="text" theme="sale" @close="toggleModalProject" :document="document"/>
-          </div>
-          
-          
         </div>
-        
       </div>
   </div>
 
@@ -69,7 +61,6 @@
     import NewPortfolio from '../components/NewPortfolio.vue'
     import Portfolio from '../components/Portfolio.vue'
     import getDocument from '../composables/getDocument'
-    import AddProject from '../components/AddProject.vue'
 
 export default {
   props:['id'],
@@ -81,7 +72,6 @@ export default {
       ActionBar,
       NewPortfolio,
       Portfolio,
-      AddProject
     },
     setup(props){
       const { error, document } = getDocument('portfolios', props.id )
@@ -104,7 +94,6 @@ export default {
     }
   }
 }
-
 
 </script>
 
