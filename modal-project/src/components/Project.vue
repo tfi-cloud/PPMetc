@@ -1,12 +1,12 @@
 <template>
-    <div class="directory" v-if="documents">
-        <div v-for="docu in documents" :key="docu.id" >
+    <div class="directory" v-if="documentos">
+        <div v-for="doc in documentos" :key="doc.id" >
             <ul>
-                <li> {{ docu.namePortfolio }} </li>
-                <div v-for="docs in documentos" :key="docs.id" class="subcol">
-                    <router-link :to="{ name: 'projectDetails', params: { id: docs.id } }"> 
+                <li> {{ doc.namePortfolio }} </li>
+                <div v-for="subdoc in doc.projects" :key="subdoc.id" class="subcol">
+                    <router-link :to="{ name: 'projectDetails', params: { id: subdoc.id } }"> 
                         <ul class="main">
-                            <li> {{ docs.nameProject }} </li>
+                            <li> {{ subdoc.nameProject }} </li>
                         </ul>
                     </router-link>
                 </div>
@@ -17,15 +17,14 @@
 
 <script>
 import getSubcollection from '../composables/getSubcollection'
-import getCollection from '../composables/getCollection'
 
 export default {
 
-setup(){
-    const { error, documentos } = getSubcollection('portfolios', 'projects','portfolios.id')
-    const { documents } = getCollection('portfolios')
-    return{ error, documentos, documents }
-},
+    setup(){
+        const { error, documentos, load } = getSubcollection('portfolios', 'projects')
+        load()
+        return{ error, documentos }
+    },
 }
 
 </script>

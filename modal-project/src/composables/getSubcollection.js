@@ -1,36 +1,49 @@
-import { watchEffect, ref } from 'vue'
+import { ref } from 'vue'
 import { projectFirestore } from '../firebase/config'
-//i also request for the id of one specific document
 
-
-const getDocument = (folder,collection, id) => {
-
-  const documentos = ref(null)
+const getSubcollection = (folder, subcollection) => {
   const error = ref(null)
+  const documentos = ref(null)
 
-  
-  // Definir la referencia de la colección principal
-  const mainCollectionRef = projectFirestore .collection(folder)
+  const load = async () => {
+    try {
+      const querySnapshot = await projectFirestore.collection(folder).get()
+      const docs = querySnapshot.docs.map(doc => {
+        const data = doc.data()
+        return {
+          ...data,
+          id: doc.id
+        }
+      })
 
-  // Definir la referencia de la subcolección
-  const subCollectionRef = mainCollectionRef.doc('V76Jvl08S2LsxZ30hxhc').collection(collection)
-  
+      for (const doc of docs) {
+        const subquerySnapshot = await projectFirestore
+          .collection(folder)
+          .doc(doc.id)
+          .collection(subcollection)
+          .get()
 
-  // Obtener los documentos de la subcolección
-  subCollectionRef.get().then((querySnapshot) => {
+        const subdocs = subquerySnapshot.docs.map(subdoc => {
+          const subdata = subdoc.data()
+          return {
+            ...subdata,
+            id: subdoc.id
+          }
+        })
 
-  let results = []
+        doc[subcollection] = subdocs
+      }
 
-  querySnapshot.forEach((doc) => {
-    results.push({ ...doc.data(), id: doc.id })
-  });
+      documentos.value = docs
+      error.value = null
+    } catch (err) {
+      console.log(err.message)
+      error.value = 'could not fetch the documents'
+    }
+  }
 
-  // update values
-  documentos.value = results
-  error.value = null
-})
-
-  return { error, documentos }
+  return { error, documentos, load }
 }
 
-export default getDocument
+export default getSubcollection
+
