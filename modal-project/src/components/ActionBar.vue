@@ -12,7 +12,7 @@ export default {
 
 <style scoped>
     .action-button button{
-        background-color: #efefef;
+        background-color: white;
         max-width: fit-content;  
         padding: 10px;
         font-weight: normal;
@@ -26,8 +26,9 @@ export default {
         vertical-align: middle;
     }
     .action-button button:hover{
-        background-color: #D9D9D9;  
-        margin:0ch;
+        background-color: #efefef;  
+        margin:0ch !important;
         font-weight: bold;
+        border-radius: 0%;
     }
 </style>

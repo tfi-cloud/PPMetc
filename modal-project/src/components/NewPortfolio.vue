@@ -153,8 +153,8 @@
     .window label{
         color:#646464;
         display:inline-block;
-        font-size: 0.7em;
-        text-transform: uppercase;
+        font-size: 0.9em;
+        text-transform: capitalize;
         letter-spacing: 1px;
         font-weight: bold;
     }

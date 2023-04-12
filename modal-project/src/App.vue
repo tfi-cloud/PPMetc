@@ -20,5 +20,9 @@
     overflow: auto;
     margin: 0;
     box-sizing: border-box;
+    background-image: url("@/assets/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
   }
+
 </style>

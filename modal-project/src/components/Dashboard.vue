@@ -44,12 +44,10 @@ export default {
         position: relative;
         padding: 10px;
         grid-gap: 10px;
-        background-color: white;
     }
   .canvas{
         width: 85%;
         margin: 10px;
-        background: #EFEFEF;
         text-align: left;
         padding: 40px;
         border-radius: 10px; 
@@ -60,7 +58,7 @@ export default {
         width: 70%;
         margin: 10px;
         margin-top: 2%;
-        background: #EFEFEF;
+        background: white;
         text-align: left;
         padding: 40px;
         border-radius: 10px;
@@ -76,7 +74,7 @@ export default {
         font-weight: bold; 
         margin-bottom: 20px;
     }
-    .cancel{
+    button.cancel{
         border: 1px solid #B9B9B9;
         background: #EFEFEF;
     }

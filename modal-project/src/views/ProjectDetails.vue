@@ -4,9 +4,20 @@
         <welcome-bar></welcome-bar>
         <search-bar></search-bar>
         <nav-bar></nav-bar>
+
+        <div class="action-bar">
+
+          <div v-if="showModal">
+            <new-project :heading="heading" :text="text" @close="toggleModal"/>
+          </div>
+
+          <action-bar type="Add Project" icon="add" @click.capture="toggleModal"/>
+          <action-bar type="Delete Project" icon="delete"/>
+          <action-bar type="Save Project" icon="save"/>
+        </div>
   
         <div class="container">
-          <project @click.native="$router.go()"></project>
+          <project @click.native="$router.go()" class="directory"></project>
           <div class="details">
   
             <div class="col">
@@ -83,9 +94,8 @@
       },
       data(){
         return{
-          heading: 'Create a new Portfolio',
+          heading: 'Create a new project',
           showModal: false,
-          showModalProject: false,
         } 
       },
   
@@ -93,9 +103,6 @@
       toggleModal() {
         this.showModal = !this.showModal
       },
-      toggleModalProject() {
-        this.showModalProject = !this.showModalProject
-      }
     }
   }
   
@@ -103,47 +110,61 @@
   </script>
   
   <style scoped>
-      .container{
-          display: grid;
-          grid-template-columns: 26% auto;
-          max-width: 100%;
-          height: 100%;
-          position: relative;
-          padding: 20px;
-          grid-gap: 0px;
-          background-color: white;
-      }
-      .details{
-          width: 92%;
-          background: #EFEFEF;
-          text-align: left;
-          padding: 40px;
-          border-radius: 10px;
-          height: 450px;
-          overflow: auto;
-      }
-      .col{
-        display: inline-block;
-        width: 50%;
-      }
-      .details label{
-        color:#646464;
-        display:block;
-        font-size: 0.7em;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: bold;
-      }
-      .details span{
-        display:block;
-        padding: 10px 5px 10px 5px;
-        width: 90%;
-        box-sizing: border-box;
-        border:none;
-        height: 33px;
-        border: 1px solid #ddd;
-        color:#646464;
-        background-color: white;
-        margin-bottom: 8%;
-      }
+    .container{
+      display: grid;
+      grid-template-columns: 26% auto;
+      max-width: 100%;
+      height: 100%;
+      position: relative;
+      padding: 8px;
+      grid-gap: 0px;
+    }
+    .action-bar{
+      max-width: 100%;
+      position: relative;
+      overflow: hidden;
+      height: 40px;
+      background-color: #efefef;
+      text-align: left;
+      padding-left: 15px;
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: 12% 12% 12%;
+  }
+    .details{
+      width: 92%;
+      background: white;
+      text-align: left;
+      padding: 40px;
+      border-radius: 10px;
+      height: 450px;
+      overflow: auto;
+    }
+    .col{
+      display: inline-block;
+      width: 50%;
+    }
+    .details label{
+      color:#646464;
+      display:block;
+      font-size: 0.7em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: bold;
+    }
+    .details span{
+      display:block;
+      padding: 10px 5px 10px 5px;
+      width: 90%;
+      box-sizing: border-box;
+      border:none;
+      height: 33px;
+      border: 1px solid #ddd;
+      color:#646464;
+      background-color: white;
+      margin-bottom: 8%;
+    }
+    .directory{
+      height: 470px;
+    }
   </style>

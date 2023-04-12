@@ -28,11 +28,11 @@ export default {
     .directory{
         width: 310px;
         margin-left: 1%;
-        background: #EFEFEF;
+        background: white;
         text-align: left;
         padding: 30px;
         border-radius: 10px;
-        height: 449px;
+        height: 460px;
         overflow: auto;
     } 
     .directory a{
@@ -44,7 +44,7 @@ export default {
         padding: 10px;
     }
     .directory ul:hover{
-        background-color: #D9D9D9;
+        background-color: #efefef;
         font-weight: bold;
     }
     .directory  a.router-link-exact-active{

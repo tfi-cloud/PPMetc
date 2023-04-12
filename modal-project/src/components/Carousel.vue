@@ -5,7 +5,7 @@
         <vueper-slide
             v-for="(slide, i) in slides"
             :key="i"
-            :style="'background-color: white'">
+            :style="'background-color: #F6F6F6' ">
         <template #content>
 
             <div id="myDIV">

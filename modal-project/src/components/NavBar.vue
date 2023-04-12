@@ -40,7 +40,7 @@ export default {
         padding-left: 8px;
         border-bottom-style: solid !important;
         border-bottom-color: #FEAE00;
-        margin-top: 10px;
+        padding-top: 10px;
     }
     .nav-bar a {
         text-decoration: none;

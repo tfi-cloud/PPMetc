@@ -63,7 +63,7 @@ export default {
         max-width: 570px;
         max-height: 460px;
         margin: 10px;
-        background: #EFEFEF;
+        background: white;
         text-align: left;
         padding: 40px;
         border-radius: 10px; 
@@ -88,7 +88,7 @@ export default {
         max-width: 400px;
         margin: 10px;
         margin-top: 2%;
-        background: #EFEFEF;
+        background: white;
         text-align: left;
         padding: 40px;
         border-radius: 10px;

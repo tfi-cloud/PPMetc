@@ -106,15 +106,14 @@ export default {
         position: relative;
         padding: 10px;
         grid-gap: 0px;
-        background-color: white;
     }
     .details{
-        width: 92%;
-        background: #EFEFEF;
+        width: 92.5%;
+        background: white;
         text-align: left;
         padding: 40px;
         border-radius: 10px;
-        height: 430px;
+        height: 440px;
     }
     .col{
       display: inline-block;
@@ -124,8 +123,8 @@ export default {
     .details label{
       color:#646464;
       display:block;
-      font-size: 0.7em;
-      text-transform: uppercase;
+      font-size: 0.9em;
+      text-transform: capitalize;
       letter-spacing: 1px;
       font-weight: bold;
     }

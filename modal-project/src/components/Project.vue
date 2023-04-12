@@ -34,7 +34,7 @@ export default {
 .directory{
     width: 310px;
     margin-left: 1%;
-    background: #EFEFEF;
+    background: white;
     text-align: left;
     padding: 30px;
     border-radius: 10px;

@@ -1,12 +1,12 @@
 <template>
     <div class="sign-up">
 
-        <a class="header">Start your free trial</a>
-
         <form @submit.prevent="handleSubmit">
 
-            <div> 
+           <div class="header"> <a class="header">Start your free trial</a></div>
 
+            <div> 
+                
                 <label>Full name *</label>
                 <input type="text" required v-model="fullname">
 
@@ -115,7 +115,7 @@ export default {
     form{
         margin: 40px auto;
         max-width: 60%;
-        background: #EFEFEF;
+        background: white;
         text-align: left;
         padding: 60px;
         padding-left: 60px;
@@ -192,5 +192,13 @@ export default {
         color:#48A60F;
         display: inline-block;
         width: 100%;
+    }
+    div.header{
+        width: 100%;
+        margin-bottom: 40px;
+        
+    }
+    a.header{
+        color: #68737e
     }
 </style>

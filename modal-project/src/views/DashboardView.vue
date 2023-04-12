@@ -64,14 +64,13 @@
     position: relative;
     padding: 5px;
     grid-gap: 10px;
-    background-color: white;
     overflow: auto;
   }
   .canvas .list-carousel{
     max-width: 100%;
     box-sizing: border-box;
     margin: 10px;
-    background: #EFEFEF;
+    background: white;
     text-align: left;
     padding: 20px;
     border-radius: 10px; 
@@ -83,7 +82,7 @@
     height: 400px;
     margin: 10px;
     margin-top: 2%;
-    background: #EFEFEF;
+    background: white;
     text-align: left;
     padding: 40px;
     border-radius: 10px;
