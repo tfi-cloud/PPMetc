@@ -18,36 +18,73 @@
 
       <div class="container">
         <portfolio @click.native="$router.go()"></portfolio>
-        <div class="details">
+        <div class="canvas">
+          <div class="details">
 
-          <div class="col">
+            <a class="title">{{ document.namePortfolio }}</a>
+
             <label>Name Portfolio</label>
             <span disabled> {{ document.namePortfolio }}</span>
 
             <label>Description</label>
-            <span disabled> {{ document.descriptionPortfolio }}</span>
+            <span disabled style="height: 90px; max-height: fit-content;"> {{ document.descriptionPortfolio }}</span>
 
             <label>Status</label>
-            <span disabled> {{ document.selectedStatus }}</span>
+            <span disabled style="width: 40%;"> {{ document.selectedStatus }}</span>
 
             <label>Owner</label>
-            <span disabled> {{ document.ownerPortfolio }}</span>
-          </div>
+            <span disabled style="width: 40%;"> {{ document.ownerPortfolio }}</span>
 
-          <div class="col">
             <label>Created by</label>
-            <span disabled> {{ document.createdBy }}</span>
+            <span disabled style="width: 40%; background-color: #EFEFEF;"> {{ document.createdBy }}</span>
 
             <label>Date of creation</label>
-            <span disabled>{{ document.creationTime.toDate() }}</span>
+            <span disabled  style="background-color: #EFEFEF;">{{ document.creationTime.toDate() }}</span>
 
             <label>Modified by</label>
-            <span disabled> {{ document.modifiedBy }}</span>
+            <span disabled style="width: 40%; background-color: #EFEFEF;"> {{ document.modifiedBy }}</span>
 
             <label>Date of modification</label>
-            <span disabled> {{ document.modifiedTime.toDate() }}</span>
+            <span disabled style="background-color: #EFEFEF;"> {{ document.modifiedTime.toDate() }}</span>
+          </div>
+        
+          <div class="header">
+            <div>
+              <a class="sub-title">portfolio objectives</a>
+              <hr>
+            </div>
+
+            <div v-if="showModalGoal">
+              <new-goal :heading="header" :text="text" :document="document" @close="toggleModalGoal"/>
+            </div>
+            <action-bar type="Add Objective" class="add-objective" icon="add_circle" @click.capture="toggleModalGoal" />
+          </div>
+          
+          <div class="list-obj"  v-for="doc in goals" :key="doc.id" >
+              <ul>
+                <li> {{doc.nameGoal}} </li>
+              </ul>
+          </div>
+
+        </div>
+
+        <div class="related">
+          <div>
+            <span class="material-icons" style="color: #21ADFF;">crisis_alert</span> 
+            <span class="material-icons" style="color: #ECA60E;">description</span> 
+            <span class="material-icons" style="color: #FF42A1;">pie_chart</span> 
+            <span class="material-icons" style="color: #60D937;">insert_chart</span> 
+          </div>
+
+          <div>
+            <a>portfolio objectives ({{  }})</a>
+            <a>portfolio projects ({{  }})</a>
+            <a>KPI's</a>
+            <a>Reports</a>
           </div>
         </div>
+
+
       </div>
   </div>
 
@@ -61,6 +98,8 @@
     import NewPortfolio from '../components/NewPortfolio.vue'
     import Portfolio from '../components/Portfolio.vue'
     import getDocument from '../composables/getDocument'
+    import NewGoal from '../components/NewGoal.vue'
+    import getGoals from '../composables/getGoals'
 
 export default {
   props:['id'],
@@ -72,16 +111,20 @@ export default {
       ActionBar,
       NewPortfolio,
       Portfolio,
+      NewGoal,
     },
     setup(props){
       const { error, document } = getDocument('portfolios', props.id )
-      return{ error, document }
+      const { goals } = getGoals('goals', props.id )
+      return{ error, document, goals }
     },
     data(){
       return{
         heading: 'Create a new Portfolio',
+        header: 'Create a new Goal',
         showModal: false,
         showModalProject: false,
+        showModalGoal:false,
       } 
     },
 
@@ -91,6 +134,9 @@ export default {
     },
     toggleModalProject() {
       this.showModalProject = !this.showModalProject
+    },
+    toggleModalGoal() {
+      this.showModalGoal = !this.showModalGoal
     }
   }
 }
@@ -99,45 +145,103 @@ export default {
 
 <style scoped>
     .container{
-        display: grid;
-        grid-template-columns: 26% auto;
-        max-width: 100%;
-        height: 100%;
-        position: relative;
-        padding: 10px;
-        grid-gap: 0px;
+      display: grid;
+      grid-template-columns: 16% 60% 30%;
+      max-width: 100%;
+      height: 100%;
+      position: relative;
+      padding: 10px;
+      grid-gap: 3px;
+    }
+    .canvas{
+      background: white;
+      text-align: left;
+      padding: 40px;
+      border-radius: 10px;
+      height: 440px;
+      overflow: auto;
     }
     .details{
-        width: 92.5%;
-        background: white;
-        text-align: left;
-        padding: 40px;
-        border-radius: 10px;
-        height: 440px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-column-gap: 30px;
+      grid-row-gap: 0px;
     }
-    .col{
-      display: inline-block;
-      width: 50%;
-      margin-top: 3%;
+    .details .title{
+      margin-bottom: 50px;
+      color: #0071C1;
+      font-size: 20px;
     }
     .details label{
       color:#646464;
-      display:block;
       font-size: 0.9em;
       text-transform: capitalize;
       letter-spacing: 1px;
       font-weight: bold;
+      grid-column: 1 / 2;
     }
     .details span{
-      display:block;
       padding: 10px 5px 10px 5px;
-      width: 90%;
+      width: 80%;
       box-sizing: border-box;
       border:none;
       height: fit-content;
       border: 1px solid #ddd;
       color:#646464;
       background-color: white;
-      margin-bottom: 8%;
+      margin-bottom: 3%;
+      grid-column: 2 / 3;
+      border-radius: 5px;
+    }
+    .header{
+      display: grid;
+      grid-template-columns: 68% 20%;
+      margin-top: 40px;
+    }
+    .header a{
+      text-transform: capitalize;
+      font-weight: bold;
+    }
+    .header hr{
+      margin-left: 0%;
+      margin-right: 50%;
+      width: 31%;
+      border: none;
+      height: 3px;
+      background-color: #ECA60E;
+    }
+    .add-objective{
+      width: 142px;
+      border: 1px solid #D9D9D9!important;
+      border-radius: 4px;
+      box-shadow: 2px 2px 2px rgba(184, 184, 184, 0.3);
+    }
+    .list-obj{
+      margin-top: 40px;
+      text-transform: capitalize;
+    }
+    .related{
+      width: 300px;
+      margin-left: 10px;
+      background: white;
+      text-align: left;
+      padding: 20px;
+      border-radius: 10px;
+      height: 260px;
+      overflow: auto;
+      display: grid;
+      grid-template-columns: 16% 80%;
+    }
+    .related span{
+      display: block;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .related a{
+      display: block;
+      padding: 10px;
+      margin-top: 5px;
+      text-transform: capitalize;
+      cursor: pointer;
     }
 </style>

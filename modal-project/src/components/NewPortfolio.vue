@@ -95,7 +95,6 @@
             selectedStatus: selectedStatus.value,
             descriptionPortfolio: descriptionPortfolio.value,
             ownerPortfolio: ownerPortfolio.value,
-            projects: {},
             creationTime: timestamp(),
             createdBy: user,
             modifiedTime: timestamp(),

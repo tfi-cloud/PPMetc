@@ -26,13 +26,11 @@ export default {
 <style scoped>
 
     .directory{
-        width: 310px;
         margin-left: 1%;
         background: white;
         text-align: left;
-        padding: 30px;
         border-radius: 10px;
-        height: 460px;
+        height: 520px;
         overflow: auto;
     } 
     .directory a{

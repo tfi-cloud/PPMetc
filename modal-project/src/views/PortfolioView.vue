@@ -68,6 +68,6 @@ export default {
   .list-port{
     margin-top: 10px 
     !important;
-    
+    width: 260px;
   }
 </style>
