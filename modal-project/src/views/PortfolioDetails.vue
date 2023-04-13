@@ -69,18 +69,21 @@
         </div>
 
         <div class="related">
-          <div>
-            <span class="material-icons" style="color: #21ADFF;">crisis_alert</span> 
-            <span class="material-icons" style="color: #ECA60E;">description</span> 
-            <span class="material-icons" style="color: #FF42A1;">pie_chart</span> 
-            <span class="material-icons" style="color: #60D937;">insert_chart</span> 
-          </div>
+          <div><sub-nav></sub-nav></div>
+          <div class="resume">
+            <div>
+              <span class="material-icons" style="color: #21ADFF;">crisis_alert</span> 
+              <span class="material-icons" style="color: #ECA60E;">description</span> 
+              <span class="material-icons" style="color: #FF42A1;">pie_chart</span> 
+              <span class="material-icons" style="color: #60D937;">insert_chart</span> 
+            </div>
 
-          <div>
-            <a>portfolio objectives ({{  }})</a>
-            <a>portfolio projects ({{  }})</a>
-            <a>KPI's</a>
-            <a>Reports</a>
+            <div>
+              <a>portfolio objectives ({{  }})</a>
+              <a>portfolio projects ({{  }})</a>
+              <a>KPI's</a>
+              <a>Reports</a>
+            </div>
           </div>
         </div>
 
@@ -100,6 +103,7 @@
     import getDocument from '../composables/getDocument'
     import NewGoal from '../components/NewGoal.vue'
     import getGoals from '../composables/getGoals'
+    import SubNav from '../components/SubNav.vue'
 
 export default {
   props:['id'],
@@ -112,6 +116,7 @@ export default {
       NewPortfolio,
       Portfolio,
       NewGoal,
+      SubNav,
     },
     setup(props){
       const { error, document } = getDocument('portfolios', props.id )
@@ -205,7 +210,7 @@ export default {
     .header hr{
       margin-left: 0%;
       margin-right: 50%;
-      width: 31%;
+      width: 28%;
       border: none;
       height: 3px;
       background-color: #ECA60E;
@@ -229,6 +234,8 @@ export default {
       border-radius: 10px;
       height: 260px;
       overflow: auto;
+    }
+    .resume{
       display: grid;
       grid-template-columns: 16% 80%;
     }

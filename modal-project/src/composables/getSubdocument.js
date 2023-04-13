@@ -7,7 +7,7 @@ const getSubdocument = (collection, idC) => {
   const error = ref(null)
 
   // register the firestore document by id reference
-  const folderRef = projectFirestore.collection('portfolios').doc('V76Jvl08S2LsxZ30hxhc')
+  const folderRef = projectFirestore.collection('portfolios').doc('3gTQTIUUVC9u9Z29NwAc')
 
   // register the firestore document by id reference
   const documentRef = folderRef.collection(collection).doc(idC)

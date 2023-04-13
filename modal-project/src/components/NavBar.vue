@@ -1,25 +1,15 @@
 <template>
-
     <div class="navbar">
         <nav class="nav-bar">
-                
-                <router-link to="/dashboard">Dashboard</router-link>
-
-                <router-link to="/portfolio">Portfolio</router-link>
-
-                <router-link to="/projects/">Project</router-link>
-
-                <router-link to="/resources">Resources</router-link>
-
-                <router-link to="/costs">Costs</router-link>
-
-                <router-link to="/reports">Reports</router-link>
-
-                <router-link to="/tasks">Tasks</router-link>
-
+            <router-link to="/dashboard">Dashboard</router-link>
+            <router-link to="/portfolio">Portfolio</router-link>
+            <router-link to="/projects/">Project</router-link>
+            <router-link to="/resources">Resources</router-link>
+            <router-link to="/costs">Costs</router-link>
+            <router-link to="/reports">Reports</router-link>
+            <router-link to="/tasks">Tasks</router-link>
         </nav>
     </div>
-
 </template>
 
 <script>
