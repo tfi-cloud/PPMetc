@@ -100,6 +100,7 @@
             modifiedTime: timestamp(),
             modifiedBy: user,
           })
+          
           isPending.value = false
           if(!error){
             console.log('portfolio added')
@@ -150,33 +151,33 @@
       text-align: left;
     }
     .window label{
-        color:#646464;
-        display:inline-block;
-        font-size: 0.9em;
-        text-transform: capitalize;
-        letter-spacing: 1px;
-        font-weight: bold;
+      color:#646464;
+      display:inline-block;
+      font-size: 0.9em;
+      text-transform: capitalize;
+      letter-spacing: 1px;
+      font-weight: bold;
     }
     .window input{
-        display:block;
-        padding: 10px 5px 10px 5px;
-        width: 70%;
-        box-sizing: border-box;
-        border: 1px solid #ddd;
-        color:#646464;
-        background-color: white;
-        margin-bottom: 6% !important;
+      display:block;
+      padding: 10px 5px 10px 5px;
+      width: 70%;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      color:#646464;
+      background-color: white;
+      margin-bottom: 6% !important;
     }
     .window textarea{
       display:block;
-        padding: 10px 5px 10px 5px;
-        width: 70%;
-        height: 100px;
-        box-sizing: border-box;
-        border: 1px solid #ddd;
-        color:#646464;
-        background-color: white;
-        margin-bottom: 6% !important;
+      padding: 10px 5px 10px 5px;
+      width: 70%;
+      height: 100px;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      color:#646464;
+      background-color: white;
+      margin-bottom: 6% !important;
     }
     .window select{
       display:block;
@@ -189,13 +190,13 @@
       margin-bottom: 6% !important;
     }
     .error{
-        margin: 0px auto;
-        text-align: center;
-        color:#CE0F0F;
-        display: inline-block;
-        width: 100%;
+      margin: 0px auto;
+      text-align: center;
+      color:#CE0F0F;
+      display: inline-block;
+      width: 100%;
     }
-    button .isPending{
-      background-color: #CCCECB;
+    .isPending{
+      background-color: #CCCECB !important;
     }
   </style>

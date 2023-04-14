@@ -60,12 +60,9 @@
                 <label>Vision of the project</label>
                 <span disabled> {{ document.visionProject }}</span>
           </div>
-            
-          </div>
-          
         </div>
+      </div>
     </div>
-  
   </template>
   
   <script>
@@ -73,19 +70,19 @@
       import SearchBar from '../components/SearchBar.vue'
       import NavBar from '../components/NavBar.vue'
       import ActionBar from '../components/ActionBar.vue'
-      import NewPortfolio from '../components/NewPortfolio.vue'
+      import NewProject from '../components/NewProject.vue'
       import Project from '../components/Project.vue'
       import getSubdocument from '../composables/getSubdocument'
   
   export default {
-    props:['id'],
+    props:['heading','text','id'],
     name: 'ProjectDetails',
       components: {
         WelcomeBar,
         SearchBar,
         NavBar,
+        NewProject,
         ActionBar,
-        NewPortfolio,
         Project,
       },
       setup(props){
@@ -148,7 +145,7 @@
       color:#646464;
       display:block;
       font-size: 0.7em;
-      text-transform: uppercase;
+      text-transform: capitalize;
       letter-spacing: 1px;
       font-weight: bold;
     }

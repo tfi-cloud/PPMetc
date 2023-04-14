@@ -88,4 +88,7 @@
     border-radius: 10px;
     grid-row: 1 / 5;
   }
+  .cancel{
+    background-color: #d9d9d9;
+  }
 </style>

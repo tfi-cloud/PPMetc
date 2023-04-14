@@ -1,7 +1,7 @@
 <template>
     <div class="subbar">
         <nav class="sub-bar">
-            <a>Related</a>
+            <a class="active">Related</a>
             <a>Portfolios</a>
             <a>Resources</a>
         </nav>
@@ -48,6 +48,12 @@ export default {
         border-top-style: solid !important;
         border-top-color: #FEAE00;
         background-color: #efefef;
+    }
+    .active{
+        border-bottom-width: 2px;
+        border-bottom-style: solid !important;
+        border-bottom-color: #FEAE00;
+        font-weight:bold;
     }
 </style>
     
