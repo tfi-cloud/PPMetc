@@ -71,16 +71,16 @@
         <div class="related">
           <div><sub-nav></sub-nav></div>
           <div class="resume">
-            <div>
+            <div class="col">
               <span class="material-icons" style="color: #21ADFF;">crisis_alert</span> 
               <span class="material-icons" style="color: #ECA60E;">description</span> 
               <span class="material-icons" style="color: #FF42A1;">pie_chart</span> 
               <span class="material-icons" style="color: #60D937;">insert_chart</span> 
             </div>
 
-            <div>
-              <a>portfolio objectives ({{  }})</a>
-              <a>portfolio projects ({{  }})</a>
+            <div class="col">
+              <a>portfolio objectives ({{ goals.length }})</a>
+              <a>portfolio projects ({{ projects.length }})</a>
               <a>KPI's</a>
               <a>Reports</a>
             </div>
@@ -104,6 +104,7 @@
     import NewGoal from '../components/NewGoal.vue'
     import getGoals from '../composables/getGoals'
     import SubNav from '../components/SubNav.vue'
+    import getProjects from '../composables/getProjects'
 
 export default {
   props:['id'],
@@ -120,8 +121,9 @@ export default {
     },
     setup(props){
       const { error, document } = getDocument('portfolios', props.id )
+      const { projects } = getProjects('projects', props.id)
       const { goals } = getGoals('goals', props.id )
-      return{ error, document, goals }
+      return{ error, document, goals, projects }
     },
     data(){
       return{

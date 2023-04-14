@@ -1,10 +1,10 @@
 import { ref } from 'vue'
 import { projectFirestore } from '../firebase/config'
+//i also request for the id of one specific document
+const getProjects = (collection, id) => {
 
-const goals = ref(null)
-const error = ref(null)
-
-const getGoals = (collection, id) => {
+  const projects = ref(null)
+  const error = ref(null)
 
   // register the firestore document by id reference
   const folderRef = projectFirestore.collection('portfolios').doc(id)
@@ -21,15 +21,15 @@ const getGoals = (collection, id) => {
     });
     
     // update values
-    goals.value = results
+    projects.value = results
     error.value = null
   }, err => {
     console.log(err.message)
-    goals.value = null
+    projects.value = null
     error.value = 'could not fetch the data'
   })
 
-  return { error, goals }
+  return { error, projects }
 }
 
-export default getGoals
+export default getProjects
