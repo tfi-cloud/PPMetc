@@ -18,49 +18,50 @@
   
         <div class="container">
           <project @click.native="$router.go()" class="directory"></project>
-          <div class="details">
+          <div class="details" v-if="documento">
   
-            <div class="col">
+              <div class="col" >
                 <label>Name Project</label>
-                <span disabled> {{ document.nameProject }}</span>
+                <span disabled> {{ documento.nameProject }}</span>
               
                 <label>Description</label>
-                <span disabled> {{document.descriptionProject }}</span>
+                <span disabled> {{documento.descriptionProject }}</span>
 
                 <label>Status</label>
-                <span disabled> {{ document.statusProject }}</span>
+                <span disabled> {{ documento.statusProject }}</span>
 
                 <label>Planned start date</label>
-                <span disabled> {{ document.plannedStartDate }}</span>
+                <span disabled> {{ documento.plannedStartDate }}</span>
 
                 <label>Planned finish date</label>
-                <span disabled> {{ document.plannedFinishDate }}</span>
+                <span disabled> {{ documento.plannedFinishDate }}</span>
 
                 <label>Percent Complete</label>
-                <span disabled> {{ document.percentComplete }}</span>
+                <span disabled> {{ documento.percentComplete }}</span>
 
-            </div>
+              </div>
   
-            <div class="col">
+              <div class="col">
                 <label>Created by</label>
-                <span disabled> {{ document.createdBy }}</span>
+                <span disabled> {{ documento.createdBy }}</span>
 
                 <label>Date of creation</label>
-                <span disabled>{{ document.creationTime.toDate() }}</span>
+                <span disabled>{{ documento.creationTime.toDate() }}</span>
 
                 <label>Modified by</label>
-                <span disabled> {{ document.modifiedBy }}</span>
+                <span disabled> {{ documento.modifiedBy }}</span>
 
                 <label>Date of modification</label>
-                <span disabled> {{ document.modifiedTime.toDate() }}</span>
+                <span disabled> {{ documento.modifiedTime.toDate() }}</span>
 
                 <label>Planned value</label>
-                <span disabled> {{ document.plannedValue }}</span>
+                <span disabled> {{ documento.plannedValue }}</span>
 
                 <label>Vision of the project</label>
-                <span disabled> {{ document.visionProject }}</span>
+                <span disabled> {{ documento.visionProject }}</span>
+              </div>
           </div>
-        </div>
+          <div v-if="error">{{ error }}</div>
       </div>
     </div>
   </template>
@@ -86,8 +87,9 @@
         Project,
       },
       setup(props){
-        const { error, document } = getSubdocument('projects', props.id)
-        return{ error, document }
+        const { error, documento, load } = getSubdocument('portfolios','projects', props.id)
+        load()
+        return{ error, documento }
       },
       data(){
         return{

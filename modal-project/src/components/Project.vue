@@ -47,6 +47,7 @@ export default {
 }
 .directory li{
     padding: 10px;
+    text-transform: capitalize;
 }
 .directory a{
     text-decoration: none;

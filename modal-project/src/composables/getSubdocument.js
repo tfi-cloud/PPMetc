@@ -1,34 +1,45 @@
-import { watchEffect, ref } from 'vue'
+import { ref } from 'vue'
 import { projectFirestore } from '../firebase/config'
-//i also request for the id of one specific document
-const getSubdocument = (collection, idC) => {
 
-  const document = ref(null)
+const getSubdocument = (folder, subcollection, idC) => {
   const error = ref(null)
+  const documento = ref(null)
 
-  // register the firestore document by id reference
-  const folderRef = projectFirestore.collection('portfolios').doc('3gTQTIUUVC9u9Z29NwAc')
+  const load = async () => {
+    try {
+      const querySnapshot = await projectFirestore.collection(folder).get()
+      const docs = querySnapshot.docs.map(doc => {
+        const data = doc.data()
+        return {
+          ...data,
+          id: doc.id
+        }
+      })
 
-  // register the firestore document by id reference
-  const documentRef = folderRef.collection(collection).doc(idC)
+      for (const doc of docs) {
+        const subquerySnapshot = await projectFirestore
+          .collection(folder)
+          .doc(doc.id)
+          .collection(subcollection)
+          .doc(idC)
+          .get()
+        
+        if (subquerySnapshot.exists) {
+          const subdoc = subquerySnapshot.data()
+          documento.value = {...subdoc, id: subquerySnapshot.id }
+          error.value = null
+          return
+        }
+      }
 
-  const unsub = documentRef.onSnapshot( doc => {
-    if(doc.data()){
-        document.value = {...doc.data(), id: doc.id}
-        error.value = null
-    }else{
-        error.value = 'that document does not exist'
+      error.value = `Could not find document with ID '${idC}' in subcollection '${subcollection}'`
+    } catch (err) {
+      console.log(err.message)
+      error.value = 'Could not fetch the document'
     }
-  }, err => {
-    console.log(err.message)
-    error.value = 'could not fetch the document'
-  })
-  
-  watchEffect((onInvalidate) => {
-    onInvalidate(() => unsub());
-  });
+  }
 
-  return { error, document }
+  return { error, documento, load }
 }
 
 export default getSubdocument
