@@ -67,6 +67,7 @@ export default {
 
     //refs
     const nameProject = ref('')
+    const ownerProject = ref('')
     const descriptionProject = ref('')
     const visionProject = ref('')
     const statusProject = ref('')
@@ -90,6 +91,7 @@ export default {
       isPending.value = true
       const newProject = {
       nameProject: nameProject.value,
+      ownerProject: ownerProject.value,
       folder: folder.value,
       descriptionProject: descriptionProject.value,
       visionProject: visionProject.value,
@@ -115,6 +117,7 @@ export default {
       AddSubCol(newProject)
         nameProject.value = '',
         folder.value = '',
+        ownerProject = '',
         descriptionProject.value = '',
         visionProject.value = '',
         statusProject.value = '',
@@ -128,7 +131,7 @@ export default {
           console.log('project added')
         }
     }
-    return{error, documents,folder,linkedPortfolio,nameProject, descriptionProject, visionProject, statusProject, plannedStartDate,actualStartDate,plannedFinishDate,
+    return{error, documents,folder,linkedPortfolio,nameProject, ownerProject, descriptionProject, visionProject, statusProject, plannedStartDate,actualStartDate,plannedFinishDate,
         actualFinishDate,plannedValue,earnedValue,actualCost,budgetAtCompletion,percentComplete,hashtag,handleSubmit, isPending,}
   },
   methods: {
