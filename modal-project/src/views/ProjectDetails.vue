@@ -25,7 +25,7 @@
                 <span disabled> {{ documento.nameProject }}</span>
               
                 <label>Description</label>
-                <span disabled> {{documento.descriptionProject }}</span>
+                <span disabled style="height: fit-content;"> {{documento.descriptionProject }}</span>
 
                 <label>Status</label>
                 <span disabled> {{ documento.statusProject }}</span>
@@ -58,7 +58,7 @@
                 <span disabled> {{ documento.plannedValue }}</span>
 
                 <label>Vision of the project</label>
-                <span disabled> {{ documento.visionProject }}</span>
+                <span disabled style="height: fit-content;"> {{ documento.visionProject }}</span>
               </div>
           </div>
           <div v-if="error">{{ error }}</div>
@@ -111,12 +111,13 @@
   <style scoped>
     .container{
       display: grid;
-      grid-template-columns: 26% auto;
+      grid-template-columns: 18% auto;
       max-width: 100%;
       height: 100%;
       position: relative;
       padding: 8px;
       grid-gap: 0px;
+      margin-left: 6px;
     }
     .action-bar{
       max-width: 100%;
@@ -136,7 +137,7 @@
       text-align: left;
       padding: 40px;
       border-radius: 10px;
-      height: 450px;
+      height: 440px;
       overflow: auto;
     }
     .col{
@@ -164,6 +165,6 @@
       margin-bottom: 8%;
     }
     .directory{
-      height: 470px;
+      width: 260px !important;
     }
   </style>

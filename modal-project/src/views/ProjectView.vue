@@ -52,19 +52,18 @@ export default {
 
 <style>
   .action-bar{
-      max-width: 100%;
-      position: relative;
-      overflow: hidden;
-      height: 40px;
-      background-color: #efefef;
-      text-align: left;
-      padding-left: 15px;
-      margin-top: 10px;
-      display: grid;
-      grid-template-columns: 12% 12% 12%;
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+    height: 40px;
+    background-color: #efefef;
+    text-align: left;
+    padding-left: 15px;
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 12% 12% 12%;
   }
   .list-port{
     margin-top: 10px;
-    
   }
 </style>

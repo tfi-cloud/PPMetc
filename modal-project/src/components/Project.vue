@@ -31,35 +31,34 @@ export default {
 
 <style scoped>
 
-.directory{
-    width: 310px;
-    margin-left: 1%;
-    background: white;
-    text-align: left;
-    padding: 30px;
-    border-radius: 10px;
-    height: 450px;
-    overflow: auto;
-} 
-.directory ul ul {
-    cursor: pointer;
-    color:black;
-}
-.directory li{
-    padding: 10px;
-    text-transform: capitalize;
-}
-.directory a{
-    text-decoration: none;
-}
-.directory ul.main:hover{
-    background-color: #D9D9D9;
-    font-weight: bold;
-    cursor: pointer;
-}
-.directory  a.router-link-exact-active{
-    font-weight: bold;
-    color: #0071C1 !important;
-}
-
+    .directory{
+        margin-left: 1%;
+        background: white;
+        text-align: left;
+        border-radius: 10px;
+        height: 520px;
+        overflow: auto;
+    } 
+    .directory ul ul {
+        cursor: pointer;
+        color:black;
+        width: 120px;
+    }
+    .directory li{
+        padding: 10px;
+        text-transform: capitalize;
+    }
+    .directory a{
+        text-decoration: none;
+    }
+    .directory ul.main:hover{
+        background-color: #D9D9D9;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .directory  a.router-link-exact-active{
+        font-weight: bold;
+        color: #0071C1 !important;
+    }
+    
 </style>

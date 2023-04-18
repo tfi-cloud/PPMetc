@@ -52,22 +52,21 @@ export default {
 
 <style>
   .action-bar{
-      max-width: 100%;
-      width: 97%;
-      border-radius: 5px;
-      margin:  0px auto;
-      position: relative;
-      overflow: hidden;
-      height: 40px;
-      background-color: white !important;
-      text-align: left;
-      padding-left: 15px;
-      display: grid;
-      grid-template-columns: 12% 12% 12%;
+    max-width: 100%;
+    width: 97%;
+    border-radius: 5px;
+    margin:  0px auto;
+    position: relative;
+    overflow: hidden;
+    height: 40px;
+    background-color: white !important;
+    text-align: left;
+    padding-left: 15px;
+    display: grid;
+    grid-template-columns: 12% 12% 12%;
   }
   .list-port{
-    margin-top: 10px 
-    !important;
+    margin-top: 10px !important;
     width: 260px;
   }
 </style>
