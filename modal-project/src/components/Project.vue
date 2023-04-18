@@ -41,7 +41,6 @@ export default {
     } 
     .directory ul ul {
         cursor: pointer;
-        color:black;
         width: 120px;
     }
     .directory li{
@@ -56,9 +55,11 @@ export default {
         font-weight: bold;
         cursor: pointer;
     }
-    .directory  a.router-link-exact-active{
+    .directory ul a.router-link-exact-active{
         font-weight: bold;
         color: #0071C1 !important;
     }
-    
+    a{
+        color:black;
+    }
 </style>

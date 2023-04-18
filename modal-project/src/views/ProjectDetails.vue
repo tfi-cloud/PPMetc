@@ -132,7 +132,7 @@
       grid-template-columns: 12% 12% 12%;
   }
     .details{
-      width: 92%;
+      width: 93%;
       background: white;
       text-align: left;
       padding: 40px;
