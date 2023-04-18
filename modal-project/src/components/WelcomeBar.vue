@@ -56,7 +56,7 @@
     }
     button{
         margin-top: 0px;
-        margin-left: 72%;
+        margin-left: 74%;
     }
     button:hover{
         background-color:#ECA60E;

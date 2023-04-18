@@ -75,7 +75,7 @@ export default {
     .col-3{
         color: #FEAE00;
         align-content: end;
-        margin-left: 33%;
+        margin-left: 42%;
         padding: 10px 0;
         cursor: pointer;
     }
