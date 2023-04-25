@@ -1,6 +1,6 @@
 <template>
 
-    <div class="portfolio-view" >
+  <div class="portfolio-view" >
         <welcome-bar></welcome-bar>
         <search-bar></search-bar>
         <nav-bar></nav-bar>
@@ -18,55 +18,98 @@
   
         <div class="container">
           <project @click.native="$router.go()" class="directory"></project>
-          <div class="details" v-if="documento">
+          <div class="canvas">
+          <div class="details">
+
+            <a class="title">{{ documentValue.nameProject }}</a>
   
-              <div class="col" >
-                <label>Name Project</label>
-                <span disabled> {{ documento.nameProject }}</span>
+            <label>Name Project</label>
+            <input contenteditable @input="onNameInput" :class="{ edit: nameEdit }" v-model="documentValue.nameProject">
               
-                <label>Description</label>
-                <span disabled style="height: fit-content;"> {{documento.descriptionProject }}</span>
+            <label>Description</label>
+            <textarea contenteditable style="width: 76%; height: 60px; max-height: fit-content; margin-bottom: 20px; padding: 10px; border-color: #DDDDDD; border-radius: 4px; font-size: medium; font-family: Arial, Helvetica, sans-serif; color: #6B6464;" id="DescriptionField" @input="onDescriptionInput" :class="{ edit: descriptionEdit }" v-model="documentValue.descriptionProject"></textarea>
 
-                <label>Status</label>
-                <span disabled> {{ documento.statusProject }}</span>
+            <label>Vision of the project</label>
+            <textarea contenteditable style="width: 76%; height: 60px; max-height: fit-content; margin-bottom: 20px; padding: 10px; border-color: #DDDDDD; border-radius: 4px; font-size: medium; font-family: Arial, Helvetica, sans-serif; color: #6B6464;" id="DescriptionField" @input="onDescriptionInput" :class="{ edit: descriptionEdit }" v-model="documentValue.visionProject"></textarea>
 
-                <label>Planned start date</label>
-                <span disabled> {{ documento.plannedStartDate }}</span>
+            <label>Status</label>
+            <select v-model="statusProject" style="width: 40%;text-transform: capitalize; margin-bottom: 20px; padding: 10px; border-color: #DDDDDD; border-radius: 4px; font-size: medium; color: #6B6464;" id="StatusField" @change="onStatusInput" :class="{ edit: statusEdit }" class="portfolio-select">
+              <option disabled value="option">{{ documentValue.statusProject }}</option>
+              <option value="active">Active</option>
+              <option value="disabled">Disabled</option>
+            </select>
 
-                <label>Planned finish date</label>
-                <span disabled> {{ documento.plannedFinishDate }}</span>
+            <label>Percent Complete</label>
+            <input contenteditable @input="onNameInput" :class="{ edit: nameEdit }" v-model="documentValue.percentComplete">
 
-                <label>Percent Complete</label>
-                <span disabled> {{ documento.percentComplete }}</span>
+            <label>Actual Cost</label>
+            <input contenteditable @input="onNameInput" :class="{ edit: nameEdit }" v-model="documentValue.actualCost">
 
-              </div>
+            <label>Actual Finish Date</label>
+            <input contenteditable @input="onNameInput" :class="{ edit: nameEdit }" v-model="documentValue.actualFinishDate">
+
+            <label>Actual Start Date</label>
+            <input contenteditable @input="onNameInput" :class="{ edit: nameEdit }" v-model="documentValue.actualStartDate">
+
+            <label>Budget At Completion</label>
+            <input contenteditable @input="onNameInput" :class="{ edit: nameEdit }" v-model="documentValue.budgetAtCompletion">
+
+            <label>Hashtag</label>
+            <input contenteditable @input="onNameInput" :class="{ edit: nameEdit }" v-model="documentValue.hashtag">
+
+            <label>owner project</label>
+            <input contenteditable @input="onNameInput" :class="{ edit: nameEdit }" v-model="documentValue.ownerProject">
+
+            <label>earned value</label>
+            <input contenteditable @input="onNameInput" :class="{ edit: nameEdit }" v-model="documentValue.earnedValue">
+
+            <label>Planned start date</label>
+            <input disabled style="width: 40%; background-color: #EFEFEF;" v-model="documentValue.plannedStartDate">
+
+            <label>Planned finish date</label>
+            <input disabled style="width: 40%; background-color: #EFEFEF;" v-model="documentValue.plannedFinishDate">
   
-              <div class="col">
-                <label>Created by</label>
-                <span disabled> {{ documento.createdBy }}</span>
+            <label>Created by</label>
+            <input disabled style="width: 40%; background-color: #EFEFEF;" v-model="documentValue.createdBy">
 
-                <label>Date of creation</label>
-                <span disabled>{{ documento.creationTime.toDate() }}</span>
+            <label>Date of creation</label>
+            <input disabled style="width: 40%; background-color: #EFEFEF;" v-model="documentValue.creationTime">
 
-                <label>Modified by</label>
-                <span disabled> {{ documento.modifiedBy }}</span>
+            <label>Modified by</label>
+            <input disabled style="width: 40%; background-color: #EFEFEF;" v-model="documentValue.modifiedBy">
 
-                <label>Date of modification</label>
-                <span disabled> {{ documento.modifiedTime.toDate() }}</span>
+            <label>Date of modification</label>
+            <input disabled style="width: 40%; background-color: #EFEFEF;" v-model="documentValue.modifiedTime">
 
-                <label>Planned value</label>
-                <span disabled> {{ documento.plannedValue }}</span>
+            <label>Planned value</label>
+            <input disabled style="width: 40%; background-color: #EFEFEF;" v-model="documentValue.plannedValue">
 
-                <label>Vision of the project</label>
-                <span disabled style="height: fit-content;"> {{ documento.visionProject }}</span>
-              </div>
           </div>
-          <div v-if="error">{{ error }}</div>
+        </div>
+          <div class="related">
+            <div><sub-nav></sub-nav></div>
+            <div class="resume">
+              <div class="col">
+                <span class="material-icons" style="color: #21ADFF;">crisis_alert</span> 
+                <span class="material-icons" style="color: #ECA60E;">description</span> 
+                <span class="material-icons" style="color: #FF42A1;">pie_chart</span> 
+                <span class="material-icons" style="color: #60D937;">insert_chart</span> 
+              </div>
+
+              <div class="col">
+                <a>portfolio objectives ()</a>
+                <a>portfolio projects ()</a>
+                <a>KPI's</a>
+                <a>Reports</a>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
-  </template>
+</template>
   
   <script>
+      import { ref } from 'vue';
       import WelcomeBar from '../components/WelcomeBar.vue'
       import SearchBar from '../components/SearchBar.vue'
       import NavBar from '../components/NavBar.vue'
@@ -74,6 +117,9 @@
       import NewProject from '../components/NewProject.vue'
       import Project from '../components/Project.vue'
       import getSubdocument from '../composables/getSubdocument'
+      import SubNav from '../components/SubNav.vue'
+      import { projectAuth } from '../firebase/config'
+      import { timestamp } from '../firebase/config'
   
   export default {
     props:['heading','text','id'],
@@ -85,11 +131,26 @@
         NewProject,
         ActionBar,
         Project,
+        SubNav,
       },
       setup(props){
+        const user = projectAuth.currentUser.displayName
         const { error, documento, load } = getSubdocument('portfolios','projects', props.id)
         load()
-        return{ error, documento }
+        const documentValue = ref(documento) 
+        const handleUpdate = async (name, description,status,owner) => {
+        const updates = {
+          namePortfolio: name,
+          descriptionPortfolio: description,
+          selectedStatus: status,
+          ownerPortfolio: owner,
+          modifiedBy: user,
+          modifiedTime: timestamp()
+        }
+        await updateDoc(updates)
+        console.log('se actualizó')
+      }
+        return{ error, documento, documentValue, handleUpdate }
       },
       data(){
         return{
@@ -97,74 +158,117 @@
           showModal: false,
         } 
       },
-  
       methods: {
       toggleModal() {
         this.showModal = !this.showModal
       },
     }
   }
-  
-  
   </script>
   
   <style scoped>
-    .container{
-      display: grid;
-      grid-template-columns: 18% auto;
-      max-width: 100%;
-      height: 100%;
-      position: relative;
-      padding: 8px;
-      grid-gap: 0px;
-      margin-left: 6px;
-    }
-    .action-bar{
-      max-width: 100%;
-      position: relative;
-      overflow: hidden;
-      height: 40px;
-      background-color: #efefef;
-      text-align: left;
-      padding-left: 15px;
-      margin-top: 10px;
-      display: grid;
-      grid-template-columns: 12% 12% 12%;
+  .container{
+    display: grid;
+    grid-template-columns: 16% 60% 30%;
+    max-width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 10px;
+    grid-gap: 3px;
   }
-    .details{
-      width: 93%;
-      background: white;
-      text-align: left;
-      padding: 40px;
-      border-radius: 10px;
-      height: 440px;
-      overflow: auto;
-    }
-    .col{
-      display: inline-block;
-      width: 50%;
-    }
-    .details label{
-      color:#646464;
-      display:block;
-      font-size: 0.7em;
-      text-transform: capitalize;
-      letter-spacing: 1px;
-      font-weight: bold;
-    }
-    .details span{
-      display:block;
-      padding: 10px 5px 10px 5px;
-      width: 90%;
-      box-sizing: border-box;
-      border:none;
-      height: 33px;
-      border: 1px solid #ddd;
-      color:#646464;
-      background-color: white;
-      margin-bottom: 8%;
-    }
-    .directory{
-      width: 260px !important;
-    }
-  </style>
+  .canvas{
+    background: white;
+    text-align: left;
+    padding: 40px;
+    border-radius: 10px;
+    height: 440px;
+    overflow: auto;
+  }
+  .details{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 30px;
+    grid-row-gap: 0px;
+  }
+  .details .title{
+    margin-bottom: 50px;
+    color: #0071C1;
+    font-size: 20px;
+  }
+  .details label{
+    color:#646464;
+    font-size: 0.9em;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    font-weight: bold;
+    grid-column: 1 / 2;
+  }
+  .details input{
+    padding: 10px 5px 10px 10px;
+    width: 80%;
+    box-sizing: border-box;
+    border:none;
+    height: fit-content;
+    border: 1px solid #ddd;
+    color:#646464;
+    background-color: white;
+    margin-bottom: 3%;
+    grid-column: 2 / 3;
+    border-radius: 5px;
+    font-size: medium;
+  }
+  .related{
+    width: 300px;
+    margin-left: 10px;
+    background: white;
+    text-align: left;
+    padding: 20px;
+    border-radius: 10px;
+    height: 260px;
+    overflow: auto;
+  }
+  .resume{
+    display: grid;
+    grid-template-columns: 16% 80%;
+  }
+  .related span{
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+  }
+  .related a{
+    display: block;
+    padding: 10px;
+    margin-top: 5px;
+    text-transform: capitalize;
+    cursor: pointer;
+  }
+  input.edit {
+    background-color: #FEF4DF; /* background when edited */
+  }
+  select.edit {
+    background-color: #FEF4DF; /* background when edited */
+  }
+  textarea.edit {
+    background-color: #FEF4DF; /* background when edited */
+  }
+  .details input:focus{
+    background-color: white;
+    border-color: #1B96FF;
+    border-width: 2px;
+    outline: none; 
+  }
+  .details textarea:focus{
+    background-color: white;
+    border-color: #1B96FF !important;
+    border-width: 2px;
+    outline: none; 
+  }
+  .details .portfolio-select:focus{
+    background-color: white;
+    border-color: #1B96FF !important;
+    border-width: 2px !important;
+    outline: none !important; 
+  }
+
+</style>
