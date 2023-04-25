@@ -14,9 +14,9 @@
 
         <action-bar type="Delete Portfolio" icon="delete"/>
 
-        <action-bar type="Save Portfolio" icon="save" @click="handleUpdate(documentValue.namePortfolio, documentValue.descriptionPortfolio, statusProject, documentValue.ownerPortfolio)"/>
+        <action-bar type="Save Portfolio" icon="save" @click="handleUpdate(documentValue.namePortfolio, documentValue.descriptionPortfolio, statusProject, documentValue.ownerPortfolio); toggleModalSave()"/>
         <div v-if="showSave">
-          <update-portfolio  @close="toggleModalSave"/>
+          <update-portfolio @close="toggleModalSave"/>
         </div>
       </div>
 
@@ -145,7 +145,6 @@ export default {
         ownerPortfolio: owner,
         modifiedBy: user,
         modifiedTime: timestamp()
-
       }
       await updateDoc(updates)
       console.log('se actualizó')
@@ -193,7 +192,6 @@ export default {
     onStatusInput() {
       this.statusEdit = true;
     }
-
   }
 }
 

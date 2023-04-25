@@ -28,10 +28,10 @@ export default {
         display: flex;
         align-items: center;
         top: 0;
-        left: 31.5%;
+        left: 36%;
         position: fixed;
         z-index: 1;
-        width: 500px;
+        width: 400px;
         height: 30px;
         padding: 14px;
         margin: 230px auto;
