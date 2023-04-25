@@ -8,7 +8,6 @@ const updateDocument = (collection, id) => {
   let isPending = ref(false)
   let docRef = projectFirestore.collection(collection).doc(id)
 
-
   const updateDoc = async (updates) => {
     isPending.value = true
     error.value = null
@@ -24,10 +23,7 @@ const updateDocument = (collection, id) => {
       error.value = 'could not update the document'
     }
   }
-
-
   return { error, isPending, updateDoc }
-
 }
 
 export default updateDocument

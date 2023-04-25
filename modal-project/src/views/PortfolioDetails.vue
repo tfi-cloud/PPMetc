@@ -14,7 +14,7 @@
 
         <action-bar type="Delete Portfolio" icon="delete"/>
 
-        <action-bar type="Save Portfolio" icon="save" @click.capture="toggleModalSave"/>
+        <action-bar type="Save Portfolio" icon="save" @click="handleUpdate(documentValue.namePortfolio, documentValue.descriptionPortfolio, statusProject, documentValue.ownerPortfolio)"/>
         <div v-if="showSave">
           <update-portfolio  @close="toggleModalSave"/>
         </div>
@@ -24,38 +24,36 @@
         <portfolio @click.native="$router.go()"></portfolio>
         <div class="canvas">
           <div class="details">
-
-            <a class="title">{{ document.namePortfolio }}</a>
+            <a class="title">{{ documentValue.namePortfolio }}</a>
 
             <label>Name Portfolio</label>
-            <span contenteditable id="NameField" @input="onNameInput" :class="{ edit: nameEdit }"> {{ document.namePortfolio }}</span>
+            <input contenteditable id="NameField" @input="onNameInput" :class="{ edit: nameEdit }"  v-model="documentValue.namePortfolio">
 
             <label>Description</label>
-            <span contenteditable style="height: 90px; max-height: fit-content;" id="DescriptionField" @input="onDescriptionInput" :class="{ edit: descriptionEdit }"> {{ document.descriptionPortfolio }}</span>
+            <textarea contenteditable style="width: 76%; height: 60px; max-height: fit-content; margin-bottom: 20px; padding: 10px; border-color: #DDDDDD; border-radius: 4px; font-size: medium; font-family: Arial, Helvetica, sans-serif; color: #6B6464;" id="DescriptionField" @input="onDescriptionInput" :class="{ edit: descriptionEdit }" v-model="documentValue.descriptionPortfolio"></textarea>
 
             <label>Status</label>
-            <select v-model="statusProject" style="width: 40%; margin-bottom: 20px; padding: 10px; border-color: #DDDDDD; border-radius: 4px; font-size: medium; color: #6B6464;" id="StatusField" @change="onStatusInput" :class="{ edit: statusEdit }" class="portfolio-select">
-              <option disabled value="option">{{ document.selectedStatus }}</option>
+            <select v-model="statusProject" style="width: 40%;text-transform: capitalize; margin-bottom: 20px; padding: 10px; border-color: #DDDDDD; border-radius: 4px; font-size: medium; color: #6B6464;" id="StatusField" @change="onStatusInput" :class="{ edit: statusEdit }" class="portfolio-select">
+              <option disabled value="option">{{ documentValue.selectedStatus }}</option>
               <option value="active">Active</option>
               <option value="disabled">Disabled</option>
             </select>
 
             <label>Owner</label>
-            <span contenteditable style="width: 40%;" id="OwnerField" @input="onOwnerInput" :class="{ edit: ownerEdit }"> {{ document.ownerPortfolio }}</span>
+            <input contenteditable style="width: 40%;" id="OwnerField" @input="onOwnerInput" :class="{ edit: ownerEdit }" v-model= "documentValue.ownerPortfolio" >
 
             <label>Created by</label>
-            <span disabled style="width: 40%; background-color: #EFEFEF;"> {{ document.createdBy }}</span>
+            <input disabled style="width: 40%; background-color: #EFEFEF;" v-model="documentValue.createdBy">
 
             <label>Date of creation</label>
-            <span disabled  style="background-color: #EFEFEF;">{{ document.creationTime.toDate() }}</span>
+            <input disabled  style="background-color: #EFEFEF;" :value="documentValue.creationTime.toDate()" >
 
             <label>Modified by</label>
-            <span disabled style="width: 40%; background-color: #EFEFEF;"> {{ document.modifiedBy }}</span>
+            <input disabled style="width: 40%; background-color: #EFEFEF;" v-model="documentValue.modifiedBy" >
 
             <label>Date of modification</label>
-            <span disabled style="background-color: #EFEFEF;"> {{ document.modifiedTime.toDate() }}</span>
+            <input disabled style="background-color: #EFEFEF;" :value="document.modifiedTime.toDate()">
           </div>
-        
           <div class="header">
             <div>
               <a class="sub-title">portfolio objectives</a>
@@ -94,26 +92,28 @@
             </div>
           </div>
         </div>
-
-
       </div>
   </div>
 
 </template>
 
 <script>
-    import WelcomeBar from '../components/WelcomeBar.vue'
-    import SearchBar from '../components/SearchBar.vue'
-    import NavBar from '../components/NavBar.vue'
-    import ActionBar from '../components/ActionBar.vue'
-    import NewPortfolio from '../components/NewPortfolio.vue'
-    import Portfolio from '../components/Portfolio.vue'
-    import getDocument from '../composables/getDocument'
-    import NewGoal from '../components/NewGoal.vue'
-    import getGoals from '../composables/getGoals'
-    import SubNav from '../components/SubNav.vue'
-    import getProjects from '../composables/getProjects'
-    import UpdatePortfolio from '../components/UpdatePortfolio.vue'
+  import { ref } from 'vue';
+  import WelcomeBar from '../components/WelcomeBar.vue'
+  import SearchBar from '../components/SearchBar.vue'
+  import NavBar from '../components/NavBar.vue'
+  import ActionBar from '../components/ActionBar.vue'
+  import NewPortfolio from '../components/NewPortfolio.vue'
+  import Portfolio from '../components/Portfolio.vue'
+  import getDocument from '../composables/getDocument'
+  import NewGoal from '../components/NewGoal.vue'
+  import getGoals from '../composables/getGoals'
+  import SubNav from '../components/SubNav.vue'
+  import getProjects from '../composables/getProjects'
+  import UpdatePortfolio from '../components/UpdatePortfolio.vue'
+  import updateDocument from '../composables/updateDocument'
+  import { projectAuth } from '../firebase/config'
+  import { timestamp } from '../firebase/config'
 
 export default {
   props:['id'],
@@ -130,10 +130,27 @@ export default {
       UpdatePortfolio,
     },
     setup(props){
+      const user = projectAuth.currentUser.displayName
       const { error, document } = getDocument('portfolios', props.id )
+      const documentValue = ref(document) 
+      const { updateDoc } = updateDocument('portfolios', props.id)
       const { projects } = getProjects('projects', props.id)
       const { goals } = getGoals('goals', props.id )
-      return{ error, document, goals, projects }
+      
+      const handleUpdate = async (name, description,status,owner) => {
+      const updates = {
+        namePortfolio: name,
+        descriptionPortfolio: description,
+        selectedStatus: status,
+        ownerPortfolio: owner,
+        modifiedBy: user,
+        modifiedTime: timestamp()
+
+      }
+      await updateDoc(updates)
+      console.log('se actualizó')
+    }
+    return{ error, document, goals, projects, documentValue, handleUpdate }
     },
     data(){
       return{
@@ -219,7 +236,7 @@ export default {
     font-weight: bold;
     grid-column: 1 / 2;
   }
-  .details span{
+  .details input{
     padding: 10px 5px 10px 10px;
     width: 80%;
     box-sizing: border-box;
@@ -231,6 +248,7 @@ export default {
     margin-bottom: 3%;
     grid-column: 2 / 3;
     border-radius: 5px;
+    font-size: medium;
   }
   .header{
     display: grid;
@@ -285,15 +303,24 @@ export default {
     text-transform: capitalize;
     cursor: pointer;
   }
-  span.edit {
+  input.edit {
     background-color: #FEF4DF; /* background when edited */
   }
   select.edit {
     background-color: #FEF4DF; /* background when edited */
   }
-  .details span:focus{
+  textarea.edit {
+    background-color: #FEF4DF; /* background when edited */
+  }
+  .details input:focus{
     background-color: white;
     border-color: #1B96FF;
+    border-width: 2px;
+    outline: none; 
+  }
+  .details textarea:focus{
+    background-color: white;
+    border-color: #1B96FF !important;
     border-width: 2px;
     outline: none; 
   }

@@ -26,7 +26,7 @@ const getDocument = (collection, id) => {
     onInvalidate(() => unsub());
   });
 
-  return { error, document }
+  return { error, document}
 }
 
 export default getDocument
