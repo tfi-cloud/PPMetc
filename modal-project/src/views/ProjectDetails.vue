@@ -7,13 +7,16 @@
 
         <div class="action-bar">
 
+          <action-bar type="Add Project" icon="add" @click.capture="toggleModal"/>
           <div v-if="showModal">
             <new-project :heading="heading" :text="text" @close="toggleModal"/>
           </div>
 
-          <action-bar type="Add Project" icon="add" @click.capture="toggleModal"/>
           <action-bar type="Delete Project" icon="delete"/>
-          <action-bar type="Save Project" icon="save"/>
+          <action-bar type="Save Project" icon="save" @click="handleUpdate(documentValue.nameProject, documentValue.descriptionProject, documentValue.visionProject,
+           statusProject, documentValue.percentComplete, documentValue.actualCost,documentValue.actualFinishDate,documentValue.budgetAtCompletion, documentValue.hashtag,
+           documentValue.ownerProject,documentValue.earnedValue )"/>
+
         </div>
   
         <div class="container">
@@ -30,7 +33,7 @@
             <textarea contenteditable style="width: 76%; height: 60px; max-height: fit-content; margin-bottom: 20px; padding: 10px; border-color: #DDDDDD; border-radius: 4px; font-size: medium; font-family: Arial, Helvetica, sans-serif; color: #6B6464;" id="DescriptionField" @input="onDescriptionInput" :class="{ edit: descriptionEdit }" v-model="documentValue.descriptionProject"></textarea>
 
             <label>Vision of the project</label>
-            <textarea contenteditable style="width: 76%; height: 60px; max-height: fit-content; margin-bottom: 20px; padding: 10px; border-color: #DDDDDD; border-radius: 4px; font-size: medium; font-family: Arial, Helvetica, sans-serif; color: #6B6464;" id="DescriptionField" @input="onDescriptionInput" :class="{ edit: descriptionEdit }" v-model="documentValue.visionProject"></textarea>
+            <textarea contenteditable style="width: 76%; height: 60px; max-height: fit-content; margin-bottom: 20px; padding: 10px; border-color: #DDDDDD; border-radius: 4px; font-size: medium; font-family: Arial, Helvetica, sans-serif; color: #6B6464;" id="DescriptionField" @input="onVisionInput" :class="{ edit: descriptionEdit }" v-model="documentValue.visionProject"></textarea>
 
             <label>Status</label>
             <select v-model="statusProject" style="width: 40%;text-transform: capitalize; margin-bottom: 20px; padding: 10px; border-color: #DDDDDD; border-radius: 4px; font-size: medium; color: #6B6464;" id="StatusField" @change="onStatusInput" :class="{ edit: statusEdit }" class="portfolio-select">
@@ -40,28 +43,28 @@
             </select>
 
             <label>Percent Complete</label>
-            <input contenteditable @input="onNameInput" :class="{ edit: nameEdit }" v-model="documentValue.percentComplete">
+            <input contenteditable @input="onPercent" :class="{ edit: nameEdit }" v-model="documentValue.percentComplete">
 
             <label>Actual Cost</label>
-            <input contenteditable @input="onNameInput" :class="{ edit: nameEdit }" v-model="documentValue.actualCost">
+            <input contenteditable @input="onActualCost" :class="{ edit: nameEdit }" v-model="documentValue.actualCost">
 
             <label>Actual Finish Date</label>
-            <input contenteditable @input="onNameInput" :class="{ edit: nameEdit }" v-model="documentValue.actualFinishDate">
+            <input contenteditable @input="onActualFinishDate" :class="{ edit: nameEdit }" v-model="documentValue.actualFinishDate">
 
             <label>Actual Start Date</label>
-            <input contenteditable @input="onNameInput" :class="{ edit: nameEdit }" v-model="documentValue.actualStartDate">
+            <input contenteditable @input="onActualStartDate" :class="{ edit: nameEdit }" v-model="documentValue.actualStartDate">
 
             <label>Budget At Completion</label>
-            <input contenteditable @input="onNameInput" :class="{ edit: nameEdit }" v-model="documentValue.budgetAtCompletion">
+            <input contenteditable @input="onBudgetComplete" :class="{ edit: nameEdit }" v-model="documentValue.budgetAtCompletion">
 
             <label>Hashtag</label>
-            <input contenteditable @input="onNameInput" :class="{ edit: nameEdit }" v-model="documentValue.hashtag">
+            <input contenteditable @input="onHashtag" :class="{ edit: nameEdit }" v-model="documentValue.hashtag">
 
             <label>owner project</label>
-            <input contenteditable @input="onNameInput" :class="{ edit: nameEdit }" v-model="documentValue.ownerProject">
+            <input contenteditable @input="onOwner" :class="{ edit: nameEdit }" v-model="documentValue.ownerProject">
 
             <label>earned value</label>
-            <input contenteditable @input="onNameInput" :class="{ edit: nameEdit }" v-model="documentValue.earnedValue">
+            <input contenteditable @input="onEarnedValue" :class="{ edit: nameEdit }" v-model="documentValue.earnedValue">
 
             <label>Planned start date</label>
             <input disabled style="width: 40%; background-color: #EFEFEF;" v-model="documentValue.plannedStartDate">
@@ -109,20 +112,21 @@
 </template>
   
   <script>
-      import { ref } from 'vue';
-      import WelcomeBar from '../components/WelcomeBar.vue'
-      import SearchBar from '../components/SearchBar.vue'
-      import NavBar from '../components/NavBar.vue'
-      import ActionBar from '../components/ActionBar.vue'
-      import NewProject from '../components/NewProject.vue'
-      import Project from '../components/Project.vue'
-      import getSubdocument from '../composables/getSubdocument'
-      import SubNav from '../components/SubNav.vue'
-      import { projectAuth } from '../firebase/config'
-      import { timestamp } from '../firebase/config'
+    import { ref } from 'vue';
+    import WelcomeBar from '../components/WelcomeBar.vue'
+    import SearchBar from '../components/SearchBar.vue'
+    import NavBar from '../components/NavBar.vue'
+    import ActionBar from '../components/ActionBar.vue'
+    import NewProject from '../components/NewProject.vue'
+    import Project from '../components/Project.vue'
+    import getSubdocument from '../composables/getSubdocument'
+    import SubNav from '../components/SubNav.vue'
+    import { projectAuth } from '../firebase/config'
+    import { timestamp } from '../firebase/config'
+    import updateSubdocument from '../composables/updateSubDocument'
   
   export default {
-    props:['heading','text','id'],
+    props:['heading','text','id'],  
     name: 'ProjectDetails',
       components: {
         WelcomeBar,
@@ -136,18 +140,28 @@
       setup(props){
         const user = projectAuth.currentUser.displayName
         const { error, documento, load } = getSubdocument('portfolios','projects', props.id)
+        const { upload } = updateSubdocument('portfolios','projects', props.id)
         load()
+        
         const documentValue = ref(documento) 
-        const handleUpdate = async (name, description,status,owner) => {
+        const handleUpdate = async (name,description,vision,status,percentComplete,actualCost,actualFinishDate,budgetAtCompletion,hashtag,owner,earnedValue) => {
         const updates = {
-          namePortfolio: name,
-          descriptionPortfolio: description,
-          selectedStatus: status,
-          ownerPortfolio: owner,
+          nameProject: name,
+          descriptionProject: description,
+          statusProject: status,
+          ownerProject: owner,
+          visionProject: vision,
+          percentComplete: percentComplete,
+          actualCost: actualCost,
+          actualFinishDate: actualFinishDate,
+          budgetAtCompletion: budgetAtCompletion,
+          hashtag: hashtag,
+          earnedValue: earnedValue,
           modifiedBy: user,
           modifiedTime: timestamp()
         }
-        await updateDoc(updates)
+        await upload(updates) 
+        location.reload();
         console.log('se actualizó')
       }
         return{ error, documento, documentValue, handleUpdate }
@@ -156,6 +170,7 @@
         return{
           heading: 'Create a new project',
           showModal: false,
+          statusProject:'option',
         } 
       },
       methods: {
