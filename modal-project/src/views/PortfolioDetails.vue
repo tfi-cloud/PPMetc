@@ -3,7 +3,10 @@
   <div class="portfolio-view" >
       <welcome-bar></welcome-bar>
       <search-bar></search-bar>
-      <nav-bar></nav-bar>
+      <div class="portfolio-change"> 
+        <nav-bar></nav-bar>
+      </div>
+      
 
       <div class="action-bar">
 
@@ -147,7 +150,6 @@ export default {
         modifiedTime: timestamp()
       }
       await updateDoc(updates)
-      console.log('se actualizó')
     }
     return{ error, document, goals, projects, documentValue, handleUpdate }
     },
@@ -329,4 +331,13 @@ export default {
     outline: none !important; 
   }
 
+</style>
+<style>
+  .portfolio-change .portfolio-link {
+    font-weight: bold;
+    border-top: 2px;
+    border-top-style: solid !important;
+    border-top-color: #FEAE00;
+    background-color: #efefef;
+  }
 </style>

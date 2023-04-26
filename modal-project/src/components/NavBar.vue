@@ -2,8 +2,8 @@
     <div class="navbar">
         <nav class="nav-bar">
             <router-link to="/dashboard">Dashboard</router-link>
-            <router-link to="/portfolio">Portfolio</router-link>
-            <router-link to="/projects/">Project</router-link>
+            <router-link to="/portfolio" class="portfolio-link">Portfolio</router-link>
+            <router-link to="/projects/" class="project-link">Project</router-link>
             <router-link to="/resources">Resources</router-link>
             <router-link to="/costs">Costs</router-link>
             <router-link to="/reports">Reports</router-link>
@@ -18,7 +18,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
     .navbar{
         max-width: 100%;
         position: relative;
@@ -44,12 +44,15 @@ export default {
         border-top-color: #FEAE00;
         background-color: #efefef;
     }
-    .nav-bar a.router-link-exact-active {
+
+    .nav-bar a.router-link-exact-active,
+    .nav-bar a.active {
         font-weight: bold;
         border-top: 2px;
         border-top-style: solid !important;
         border-top-color: #FEAE00;
         background-color: #efefef;
     }
+
 </style>
     

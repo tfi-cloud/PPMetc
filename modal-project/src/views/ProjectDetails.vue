@@ -3,7 +3,9 @@
   <div class="portfolio-view" >
         <welcome-bar></welcome-bar>
         <search-bar></search-bar>
-        <nav-bar></nav-bar>
+        <div class="project-change"> 
+          <nav-bar></nav-bar>
+        </div>
 
         <div class="action-bar">
 
@@ -14,7 +16,7 @@
 
           <action-bar type="Delete Project" icon="delete"/>
           <action-bar type="Save Project" icon="save" @click="handleUpdate(documentValue.nameProject, documentValue.descriptionProject, documentValue.visionProject,
-           statusProject, documentValue.percentComplete, documentValue.actualCost,documentValue.actualFinishDate,documentValue.budgetAtCompletion, documentValue.hashtag,
+           selectedStatus, documentValue.percentComplete, documentValue.actualCost,documentValue.actualFinishDate,documentValue.budgetAtCompletion, documentValue.hashtag,
            documentValue.ownerProject,documentValue.earnedValue )"/>
 
         </div>
@@ -32,39 +34,39 @@
             <label>Description</label>
             <textarea contenteditable style="width: 76%; height: 60px; max-height: fit-content; margin-bottom: 20px; padding: 10px; border-color: #DDDDDD; border-radius: 4px; font-size: medium; font-family: Arial, Helvetica, sans-serif; color: #6B6464;" id="DescriptionField" @input="onDescriptionInput" :class="{ edit: descriptionEdit }" v-model="documentValue.descriptionProject"></textarea>
 
-            <label>Vision of the project</label>
-            <textarea contenteditable style="width: 76%; height: 60px; max-height: fit-content; margin-bottom: 20px; padding: 10px; border-color: #DDDDDD; border-radius: 4px; font-size: medium; font-family: Arial, Helvetica, sans-serif; color: #6B6464;" id="DescriptionField" @input="onVisionInput" :class="{ edit: descriptionEdit }" v-model="documentValue.visionProject"></textarea>
+            <label>Vision</label>
+            <textarea contenteditable style="width: 76%; height: 60px; max-height: fit-content; margin-bottom: 20px; padding: 10px; border-color: #DDDDDD; border-radius: 4px; font-size: medium; font-family: Arial, Helvetica, sans-serif; color: #6B6464;" id="DescriptionField" @input="onVisionInput" :class="{ edit: visionEdit }" v-model="documentValue.visionProject"></textarea>
 
             <label>Status</label>
-            <select v-model="statusProject" style="width: 40%;text-transform: capitalize; margin-bottom: 20px; padding: 10px; border-color: #DDDDDD; border-radius: 4px; font-size: medium; color: #6B6464;" id="StatusField" @change="onStatusInput" :class="{ edit: statusEdit }" class="portfolio-select">
+            <select v-model="selectedStatus" style="width: 40%;text-transform: capitalize; margin-bottom: 20px; padding: 10px; border-color: #DDDDDD; border-radius: 4px; font-size: medium; color: #6B6464;" id="StatusField" @change="onStatusInput" :class="{ edit: statusEdit }" class="project-select">
               <option disabled value="option">{{ documentValue.statusProject }}</option>
               <option value="active">Active</option>
               <option value="disabled">Disabled</option>
             </select>
 
             <label>Percent Complete</label>
-            <input contenteditable @input="onPercent" :class="{ edit: nameEdit }" v-model="documentValue.percentComplete">
+            <input contenteditable style="width: 40%;" @input="onPercent" :class="{ edit: percentEdit }" v-model="documentValue.percentComplete">
 
             <label>Actual Cost</label>
-            <input contenteditable @input="onActualCost" :class="{ edit: nameEdit }" v-model="documentValue.actualCost">
+            <input contenteditable style="width: 40%;" @input="onActualCost" :class="{ edit: aCostEdit }" v-model="documentValue.actualCost">
 
             <label>Actual Finish Date</label>
-            <input contenteditable @input="onActualFinishDate" :class="{ edit: nameEdit }" v-model="documentValue.actualFinishDate">
+            <input contenteditable style="width: 40%;" @input="onActualFinishDate" :class="{ edit: aFinishDateEdit }" v-model="documentValue.actualFinishDate">
 
             <label>Actual Start Date</label>
-            <input contenteditable @input="onActualStartDate" :class="{ edit: nameEdit }" v-model="documentValue.actualStartDate">
+            <input contenteditable style="width: 40%;" @input="onActualStartDate" :class="{ edit: aStartDateEdit }" v-model="documentValue.actualStartDate">
 
             <label>Budget At Completion</label>
-            <input contenteditable @input="onBudgetComplete" :class="{ edit: nameEdit }" v-model="documentValue.budgetAtCompletion">
+            <input contenteditable style="width: 40%;" @input="onBudgetComplete" :class="{ edit: budgetCompEdit }" v-model="documentValue.budgetAtCompletion">
 
             <label>Hashtag</label>
-            <input contenteditable @input="onHashtag" :class="{ edit: nameEdit }" v-model="documentValue.hashtag">
+            <input contenteditable style="width: 40%;" @input="onHashtag" :class="{ edit: hashtagEdit }" v-model="documentValue.hashtag">
 
             <label>owner project</label>
-            <input contenteditable @input="onOwner" :class="{ edit: nameEdit }" v-model="documentValue.ownerProject">
+            <input contenteditable style="width: 40%;" @input="onOwner" :class="{ edit: ownerEdit }" v-model="documentValue.ownerProject">
 
             <label>earned value</label>
-            <input contenteditable @input="onEarnedValue" :class="{ edit: nameEdit }" v-model="documentValue.earnedValue">
+            <input contenteditable style="width: 40%;" @input="onEarnedValue" :class="{ edit: earnedValEdit }" v-model="documentValue.earnedValue">
 
             <label>Planned start date</label>
             <input disabled style="width: 40%; background-color: #EFEFEF;" v-model="documentValue.plannedStartDate">
@@ -76,13 +78,13 @@
             <input disabled style="width: 40%; background-color: #EFEFEF;" v-model="documentValue.createdBy">
 
             <label>Date of creation</label>
-            <input disabled style="width: 40%; background-color: #EFEFEF;" v-model="documentValue.creationTime">
+            <input disabled style="width: 79%; background-color: #EFEFEF;" :value="documentValue.creationTime.toDate()">
 
             <label>Modified by</label>
             <input disabled style="width: 40%; background-color: #EFEFEF;" v-model="documentValue.modifiedBy">
 
             <label>Date of modification</label>
-            <input disabled style="width: 40%; background-color: #EFEFEF;" v-model="documentValue.modifiedTime">
+            <input disabled style="width: 79%; background-color: #EFEFEF;" :value="documentValue.modifiedTime.toDate()">
 
             <label>Planned value</label>
             <input disabled style="width: 40%; background-color: #EFEFEF;" v-model="documentValue.plannedValue">
@@ -100,8 +102,8 @@
               </div>
 
               <div class="col">
-                <a>portfolio objectives ()</a>
-                <a>portfolio projects ()</a>
+                <a>project values ()</a>
+                <a>project ()</a>
                 <a>KPI's</a>
                 <a>Reports</a>
               </div>
@@ -111,19 +113,19 @@
     </div>
 </template>
   
-  <script>
-    import { ref } from 'vue';
-    import WelcomeBar from '../components/WelcomeBar.vue'
-    import SearchBar from '../components/SearchBar.vue'
-    import NavBar from '../components/NavBar.vue'
-    import ActionBar from '../components/ActionBar.vue'
-    import NewProject from '../components/NewProject.vue'
-    import Project from '../components/Project.vue'
-    import getSubdocument from '../composables/getSubdocument'
-    import SubNav from '../components/SubNav.vue'
-    import { projectAuth } from '../firebase/config'
-    import { timestamp } from '../firebase/config'
-    import updateSubdocument from '../composables/updateSubDocument'
+<script>
+  import { ref } from 'vue';
+  import WelcomeBar from '../components/WelcomeBar.vue'
+  import SearchBar from '../components/SearchBar.vue'
+  import NavBar from '../components/NavBar.vue'
+  import ActionBar from '../components/ActionBar.vue'
+  import NewProject from '../components/NewProject.vue'
+  import Project from '../components/Project.vue'
+  import getSubdocument from '../composables/getSubdocument'
+  import SubNav from '../components/SubNav.vue'
+  import { projectAuth } from '../firebase/config'
+  import { timestamp } from '../firebase/config'
+  import updateSubdocument from '../composables/updateSubDocument'
   
   export default {
     props:['heading','text','id'],  
@@ -162,7 +164,6 @@
         }
         await upload(updates) 
         location.reload();
-        console.log('se actualizó')
       }
         return{ error, documento, documentValue, handleUpdate }
       },
@@ -170,13 +171,28 @@
         return{
           heading: 'Create a new project',
           showModal: false,
-          statusProject:'option',
+          selectedStatus:'option',
+          onNameInput: false,
+          onDescriptionInput: false,
+          onVisionInput: false,
+          onStatusInput: false,
+          onPercent: false,
+          onActualCost: false,
+          onActualFinishDate: false,
+          onActualStartDate: false,
+          onBudgetComplete: false,
+          onHashtag: false,
+          onOwner: false,
+          onEarnedValue: false,
         } 
       },
       methods: {
       toggleModal() {
         this.showModal = !this.showModal
       },
+      onNameInput() {
+      this.nameEdit = true;
+    },
     }
   }
   </script>
@@ -205,10 +221,11 @@
     grid-column-gap: 30px;
     grid-row-gap: 0px;
   }
-  .details .title{
+  .title{
     margin-bottom: 50px;
     color: #0071C1;
     font-size: 20px;
+    text-transform: capitalize;
   }
   .details label{
     color:#646464;
@@ -279,11 +296,19 @@
     border-width: 2px;
     outline: none; 
   }
-  .details .portfolio-select:focus{
+  .details .project-select:focus{
     background-color: white;
     border-color: #1B96FF !important;
     border-width: 2px !important;
     outline: none !important; 
   }
-
+</style>
+<style>
+  .project-change .project-link {
+    font-weight: bold;
+    border-top: 2px;
+    border-top-style: solid !important;
+    border-top-color: #FEAE00;
+    background-color: #efefef;
+  }
 </style>
