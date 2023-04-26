@@ -6,11 +6,10 @@
 
       <div class="action-bar">
 
+        <action-bar type="Add Project" icon="add" @click.capture="toggleModal"/>
         <div v-if="showModal">
           <new-project :heading="heading" :text="text" @close="toggleModal"/>
         </div>
-
-        <action-bar type="Add Project" icon="add" @click.capture="toggleModal"/>
         <action-bar type="Delete Project" icon="delete"/>
         <action-bar type="Save Project" icon="save"/>
       </div>

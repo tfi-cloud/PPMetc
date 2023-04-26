@@ -3,7 +3,6 @@
         <welcome-bar></welcome-bar>
         <search-bar></search-bar>
         <nav-bar></nav-bar>
-        <portfolio></portfolio>
     </div>
   </template>
   

@@ -65,9 +65,12 @@
 </script>
   
 <style scoped>
+.dashboardView {
+  width: 100%;
+}
 .canvas{
     display: grid;
-    grid-template-columns: auto 25%;
+    grid-template-columns: 1fr 25%;
     max-width: 100%;
     height: 100%;
     position: relative;
@@ -89,7 +92,7 @@
   }
   .canvas .welcome{
     width: 70%;
-    height: 487px;
+    height: 485px;
     margin: 10px;
     margin-top: 2%;
     background: white;
@@ -99,8 +102,28 @@
   }
   .cancel{
     background-color: #d9d9d9;
+    max-width: 60%;
   }
   .message{
     height: 430px;
   }
+  .button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+}
+@media (max-width: 768px) {
+  .button {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cancel {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
 </style>

@@ -6,11 +6,11 @@
 
       <div class="action-bar">
 
+        <action-bar type="Add Portfolio" icon="add" @click.capture="toggleModal"/>
         <div v-if="showModal">
           <new-portfolio :heading="heading" :text="text" @close="toggleModal"/>
         </div>
 
-        <action-bar type="Add Portfolio" icon="add" @click.capture="toggleModal"/>
         <action-bar type="Delete Portfolio" icon="delete"/>
         <action-bar type="Save Portfolio" icon="save"/>
       </div>

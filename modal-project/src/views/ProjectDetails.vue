@@ -17,7 +17,11 @@
           <action-bar type="Delete Project" icon="delete"/>
           <action-bar type="Save Project" icon="save" @click="handleUpdate(documentValue.nameProject, documentValue.descriptionProject, documentValue.visionProject,
            selectedStatus, documentValue.percentComplete, documentValue.actualCost,documentValue.actualFinishDate,documentValue.budgetAtCompletion, documentValue.hashtag,
-           documentValue.ownerProject,documentValue.earnedValue )"/>
+           documentValue.ownerProject,documentValue.earnedValue ); toggleModalSave()"/>
+          
+          <div v-if="showSave">
+            <update-portfolio @close="toggleModalSave"/>
+          </div>
 
         </div>
   
@@ -48,16 +52,16 @@
             <input contenteditable style="width: 40%;" @input="onPercent" :class="{ edit: percentEdit }" v-model="documentValue.percentComplete">
 
             <label>Actual Cost</label>
-            <input contenteditable style="width: 40%;" @input="onActualCost" :class="{ edit: aCostEdit }" v-model="documentValue.actualCost">
+            <input contenteditable style="width: 40%;" @input="onActualCost" :class="{ edit: actualCostEdit }" v-model="documentValue.actualCost">
 
             <label>Actual Finish Date</label>
-            <input contenteditable style="width: 40%;" @input="onActualFinishDate" :class="{ edit: aFinishDateEdit }" v-model="documentValue.actualFinishDate">
+            <input contenteditable style="width: 40%;" @input="onActualFinishDate" :class="{ edit: actualFinishDateEdit }" v-model="documentValue.actualFinishDate">
 
             <label>Actual Start Date</label>
-            <input contenteditable style="width: 40%;" @input="onActualStartDate" :class="{ edit: aStartDateEdit }" v-model="documentValue.actualStartDate">
+            <input contenteditable style="width: 40%;" @input="onActualStartDate" :class="{ edit: actualStartDateEdit}" v-model="documentValue.actualStartDate">
 
             <label>Budget At Completion</label>
-            <input contenteditable style="width: 40%;" @input="onBudgetComplete" :class="{ edit: budgetCompEdit }" v-model="documentValue.budgetAtCompletion">
+            <input contenteditable style="width: 40%;" @input="onBudgetComplete" :class="{ edit: budgetCompleteEdit }" v-model="documentValue.budgetAtCompletion">
 
             <label>Hashtag</label>
             <input contenteditable style="width: 40%;" @input="onHashtag" :class="{ edit: hashtagEdit }" v-model="documentValue.hashtag">
@@ -66,7 +70,7 @@
             <input contenteditable style="width: 40%;" @input="onOwner" :class="{ edit: ownerEdit }" v-model="documentValue.ownerProject">
 
             <label>earned value</label>
-            <input contenteditable style="width: 40%;" @input="onEarnedValue" :class="{ edit: earnedValEdit }" v-model="documentValue.earnedValue">
+            <input contenteditable style="width: 40%;" @input="onEarnedValue" :class="{ edit: earnedValueEdit }" v-model="documentValue.earnedValue">
 
             <label>Planned start date</label>
             <input disabled style="width: 40%; background-color: #EFEFEF;" v-model="documentValue.plannedStartDate">
@@ -126,6 +130,7 @@
   import { projectAuth } from '../firebase/config'
   import { timestamp } from '../firebase/config'
   import updateSubdocument from '../composables/updateSubDocument'
+  import UpdatePortfolio from '../components/UpdatePortfolio.vue'
   
   export default {
     props:['heading','text','id'],  
@@ -138,6 +143,7 @@
         ActionBar,
         Project,
         SubNav,
+        UpdatePortfolio,
       },
       setup(props){
         const user = projectAuth.currentUser.displayName
@@ -172,27 +178,67 @@
           heading: 'Create a new project',
           showModal: false,
           selectedStatus:'option',
-          onNameInput: false,
-          onDescriptionInput: false,
-          onVisionInput: false,
-          onStatusInput: false,
-          onPercent: false,
-          onActualCost: false,
-          onActualFinishDate: false,
-          onActualStartDate: false,
-          onBudgetComplete: false,
-          onHashtag: false,
-          onOwner: false,
-          onEarnedValue: false,
+          nameEdit: false,
+          descriptionEdit: false,
+          visionEdit: false,
+          statusEdit: false,
+          percentEdit: false,
+          actualCostEdit: false,
+          actualFinishDateEdit: false,
+          actualStartDateEdit: false,
+          budgetCompleteEdit: false,
+          hashtagEdit: false,
+          ownerEdit: false,
+          earnedValueEdit: false,
+          showSave:false,
         } 
       },
       methods: {
       toggleModal() {
         this.showModal = !this.showModal
       },
+      toggleModalSave() {
+        this.showSave = !this.showSave
+      },
       onNameInput() {
-      this.nameEdit = true;
-    },
+        this.nameEdit = true;
+      },
+      onDescriptionInput() {
+        this.descriptionEdit = true;
+      },
+      onVisionInput() {
+        this.visionEdit = true;
+      },
+      onDescriptionInput() {
+        this.descriptionEdit = true;
+      },
+      onStatusInput() {
+        this.statusEdit = true;
+      },
+      onPercent() {
+        this.percentEdit = true;
+      },
+      onActualCost() {
+        this.actualCostEdit = true;
+      },
+      onActualFinishDate() {
+        this.actualFinishDateEdit = true;
+      },
+      onActualStartDate() {
+        this.actualStartDateEdit = true;
+      },
+      onBudgetComplete() {
+        this.budgetCompleteEdit = true;
+      },
+      onHashtag() {
+        this.hashtagEdit = true;
+      },
+      onOwner() {
+        this.ownerEdit = true;
+      },
+      onEarnedValue() {
+        this.earnedValueEdit = true;
+      },
     }
   }
   </script>
